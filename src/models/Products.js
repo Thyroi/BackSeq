@@ -1,0 +1,51 @@
+const { DataTypes } = require('sequelize');
+
+module.exports = (sequelize) => {
+    sequelize.define('Products', {
+        id_product: {
+            type: DataTypes.STRING(),
+            allowNull: false,
+            primaryKey: true,
+            unique: true
+        },
+        name: {
+            type: DataTypes.STRING(),
+            allowNull: false,
+        },
+        authorized_refund: {
+            type: DataTypes.BOOLEAN(),
+            allowNull: false,
+            defaultValue: false
+        },
+        price: {
+            type: DataTypes.FLOAT(),
+            allowNull: false
+        },
+        description: {
+            type: DataTypes.TEXT(),
+            allowNull: false,
+        },
+        brand: {
+            type: DataTypes.STRING(),
+            allowNull: false,
+        },
+        is_offer: {
+            type: DataTypes.BOOLEAN(),
+            allowNull: false,
+            defaultValue: false
+        },
+        variants: {
+            type: DataTypes.JSON(),
+            allowNull: false
+        },
+        delete: {
+            type: DataTypes.BOOLEAN(),
+            allowNull: false,
+            defaultValue: false
+        },
+        default_image: {
+            type: DataTypes.STRING(),
+            allowNull: false
+        }
+    }, {timestamps: true});
+}

@@ -1,0 +1,16 @@
+migrar
+=======================
+npx prisma migrate dev --name NOMBRE
+
+migrar si se corrompio todo
+=======================
+npx prisma db push --force-reset
+
+actualizar desde remoto
+=======================
+npx prisma db pull			// map remote db
+npx prisma generate			// generate schema file
+
+start client
+
+
