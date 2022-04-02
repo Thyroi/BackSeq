@@ -1,4 +1,3 @@
-const axios = require('axios');
 const { Sequelize, Op } = require('sequelize');
 const { Products, Category, Collection } = require('../db.js');
 
@@ -83,35 +82,11 @@ const getProductByName = async (name) => {
 // }
 
 ///////////////////////////////////////////////
-const products = {
-    getProducts: async (req, res) => {
-        try {
-            const { name, id } = req.body;
-            let response = await getAllProducts();
-            if (name) {
-                // filters = fixValues(); using dictionary
-                response = await getProductByName(name);
-            }
-            return response.msg
-            ? res.status(404).json(response)
-            : res.status(200).json(response);
-        } catch (error) {
-            console.log(error);
-            return res.status(500).json('Se rompio todo.');
-        }
-    },
-    getProductsById: async (req, res) => {
-        try {
-            const { id } = req.params;
-            const response = await getProductDetails(id);
-            return response.msg
-                ? res.status(404).json(response)
-                : res.status(200).json(response);
-        } catch (error) {
-            console.log(error);
-            return res.status(500).json('Se rompio todo.');
-        }
-    }
-}
 
-module.exports = products;
+
+module.exports = {
+    getProductDetails,
+    getAllProducts,
+    getProductByName
+
+};
