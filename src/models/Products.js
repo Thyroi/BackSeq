@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
             type: DataTypes.JSON(),
             allowNull: false
         },
-        delete: {
+        sdelete: {
             type: DataTypes.BOOLEAN(),
             allowNull: false,
             defaultValue: false

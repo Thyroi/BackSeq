@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const products = require('./products');
+const products = require('./products.js');
 const populate = require('./populate.js');
 
 router.use('/populate', populate);
