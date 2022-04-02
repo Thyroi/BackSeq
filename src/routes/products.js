@@ -2,6 +2,18 @@ const route = require("express").Router();
 const { getAllProducts, getProductDetails, getProductByName } = require('../controllers/Products');
 const { getByCategory } = require('../controllers/category.js');
 
+route.get("/bycat/", async (req, res) => {
+    const { id } = req.query;
+    try {
+        let productsByCategory = await getByCategory(id)
+        if (productsByCategory === null) {
+            return res.status(404).json({ message: "Category not found" });
+        }
+        return res.status(200).json(productsByCategory);
+    } catch (e) {
+        return res.status(500).json({ message: e.data })
+    }
+});
 
 route.get("/",
     async (req, res) => {
@@ -37,17 +49,4 @@ route.get("/:id",
     }
 );
 
-route.get("/bycat", async (req, res) => {
-    const { id } = req.query;
-    try {
-        let productsByCategory = await getByCategory(id)
-        if (productsByCategory === null) {
-            return res.status(404).json({ message: "Category not found" });
-        }
-        return res.status(200).json(productsByCategory);
-    } catch (e) {
-        return res.status(500).json({ message: e.data })
-    }
-
-});
 module.exports = route;
