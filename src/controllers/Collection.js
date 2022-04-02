@@ -13,7 +13,7 @@ const collection = {
   addCollection: async (req, res) => {
     try {
       let temporada = Collection.bulkCreate(season);
-      res.status(200).json(temporada);
+      res.status(200).json({msg: 'Colecciones carga con éxito!!'});
     }
     catch (error) {
       console.log(error);
