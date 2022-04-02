@@ -1,6 +1,23 @@
 const { Sequelize, Op } = require('sequelize');
 const { Products, Category, Collection } = require('../db.js');
 
+const updateProducts = async (updatedProduct) => {
+    console.log(`AQUI____________________________\n ${updatedProduct}`)
+    try {
+        actualizado = await Products.update(
+            updatedProduct, {
+            where: {
+                id_product: updatedProduct.id_product
+            }
+        }
+        )
+        return actualizado[0] === 0
+            ? { msg: 'No se encontro para actualizar.' }
+            : await Products.findByPk(updatedProduct.id_product);
+    } catch (error) {
+        console.log(error);
+    }
+}
 const getProductDetails = async (id) => {
     try {
         const details = await Products.findByPk(id
@@ -14,7 +31,7 @@ const getProductDetails = async (id) => {
                 }]
             }
         );
-        return details===null
+        return details === null
             ? { msg: 'No se encontro producto con ese Id.' }
             : details;
     } catch (error) {
@@ -41,7 +58,7 @@ const getProductByName = async (name) => {
             }
         })
         return !response.length
-            ? { msg:'Product not found'}
+            ? { msg: 'Product not found' }
             : response;
     } catch (error) {
         console.log(error);
@@ -51,5 +68,6 @@ const getProductByName = async (name) => {
 module.exports = {
     getProductDetails,
     getAllProducts,
-    getProductByName
+    getProductByName,
+    updateProducts
 };
