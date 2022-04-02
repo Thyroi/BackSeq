@@ -14,7 +14,7 @@ const getProductDetails = async (id) => {
                 }]
             }
         );
-        return details===null
+        return details === null
             ? { msg: 'No se encontro producto con ese Id.' }
             : details;
     } catch (error) {
@@ -41,10 +41,30 @@ const getProductByName = async (name) => {
             }
         })
         return !response.length
-            ? { msg:'Product not found'}
+            ? { msg: 'Product not found' }
             : response;
     } catch (error) {
         console.log(error);
+    }
+}
+const createProduct = async (product) => {
+    
+    try {
+        const { id_product, name, authorized_refund, price, description, bran, is_offer, variants, delete, default_image } = product
+        const newProduct = await Products.create({
+            id_product,
+            name,
+            authorized_refund,
+            price,
+            description,
+            bran,
+            is_offer,
+            variants,
+            delete : delete,
+            default_image
+        })
+    } catch (error) {
+        return res.status(500).json({ "mesagge": error.data })
     }
 }
 ///////////////////////////////////////////////
