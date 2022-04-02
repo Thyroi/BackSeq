@@ -42,8 +42,11 @@ const {
   ProductsCategories,
 } = sequelize.models;
 
-Products.belongsToMany(Category, { through: 'ProductsCategories' });
+Products.belongsToMany(Category, { through: 'ProductsCategories' , timestamps: false});
 Category.belongsToMany(Products, { through: 'ProductsCategories' });
+
+Category.hasMany(Category);
+Collection.hasMany(Products);
 
 module.exports = {
   ...sequelize.models,

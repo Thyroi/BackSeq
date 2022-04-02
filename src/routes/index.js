@@ -5,7 +5,7 @@ const populate = require('./populate.js')
 // const categories = require('./categories.js');
 // const products = require('./products.js');
 
-router.use('/populate',populate);
+router.use('/populate', populate);
 // router.use('/categories',categories);
 // router.use('/clients', clients); 
 

@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('Products', {
         id_product: {
-            type: DataTypes.STRING(),
+            type: DataTypes.INTEGER(),
             allowNull: false,
             primaryKey: true,
             unique: true

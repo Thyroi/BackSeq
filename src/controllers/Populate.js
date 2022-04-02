@@ -1,83 +1,80 @@
 const { Sequelize, Op } = require('sequelize');
 const productos = require('../data/productsCleanWithOutUndefinedSecondTry.json');
-const { Products } = require('../db');
+const { Products, Category } = require('../db');
 
-const temp = [
-    {
-        "id_product": 2000459086,
-        "name": "Strangers Baseball Cap",
-        "authorized_refund": false,
-        "price": 12.99,
-        "description": "DetailsA woven baseball cap featuring a front \"Strangers\" text rubber applique, curved brim, eyelets, buttoned top, and adjustable back strap.Content + Care- 100% cottonSize + Fit- Circumference: 23\"- Brim: 3\"",
-        "brand": "21MEN",
-        "is_offer": false,
-        "variants": [
-            {
-                "ColorName": "BLACK/RED",
-                "Stocks": {
-                    "ONE SIZE": 108
-                },
-                "ProductImages": [
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw4da9b486/1_front_750/00459086-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw4da9b486/1_front_750/00459086-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw334da0a7/2_side_750/00459086-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwa54a165f/3_back_750/00459086-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw26f980c0/4_full_750/00459086-01.jpg"
-                ],
-                "SwatchImage": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwb4008630/sw_22/00459086-01.jpg"
-            }
-        ],
-        "delete": false,
-        "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw4da9b486/1_front_750/00459086-01.jpg",
-        "collection": 1,
-        "id_category": 3
-    },
-    {
-        "id_product": 2000457117,
-        "name": "Embroidered FUBU Baseball Cap",
-        "authorized_refund": false,
-        "price": 7.49,
-        "description": "DetailsFrom our Forever 21 x FUBU collection, this woven baseball cap features front \"FUBU\" embroidery and a curved brim.- Officially licensed productContent + Care- 100% cotton- Hand wash coldSize + Fit- Circumference: 23\"- Brim: 3\"",
-        "brand": "21MEN",
-        "is_offer": true,
-        "variants": [
-            {
-                "ColorName": "ORANGE/MULTI",
-                "Stocks": {
-                    "ONE SIZE": 24
-                },
-                "ProductImages": [
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5a97c9a9/1_front_750/00457117-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5a97c9a9/1_front_750/00457117-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwfaedf0af/2_side_750/00457117-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwcdc41094/3_back_750/00457117-01.jpg",
-                    "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5d5eff6a/4_full_750/00457117-01.jpg"
-                ],
-                "SwatchImage": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw8a4c5a85/sw_22/00457117-01.jpg"
-            }
-        ],
-        "delete": false,
-        "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5a97c9a9/1_front_750/00457117-01.jpg",
-        "collection": 2,
-        "id_category": 3
-    }
-]
-
+const cat = [
+    { id_category: 1, name: 'women', CategoryIdCategory: 1 },
+    { id_category: 2, name: 'men', CategoryIdCategory: 2 },
+    { id_category: 3, name: 'mens_accessories_hats', CategoryIdCategory: 2 },
+    { id_category: 4, name: 'acc_hat', CategoryIdCategory: 2 },
+    { id_category: 5, name: 'acc_beauty_makeup', CategoryIdCategory: 1 },
+    { id_category: 6, name: 'swimwear_all', CategoryIdCategory: 1 },
+    { id_category: 7, name: 'outerwear_coats_and_jackets', CategoryIdCategory: 1 },
+    { id_category: 8, name: 'sweater', CategoryIdCategory: 1 },
+    { id_category: 9, name: 'shoes', CategoryIdCategory: 1 },
+    { id_category: 10, name: 'top_blouses', CategoryIdCategory: 1 },
+    { id_category: 11, name: 'acc_jewelry', CategoryIdCategory: 1 },
+    { id_category: 12, name: 'activewear', CategoryIdCategory: 1 },
+    { id_category: 13, name: 'lingerie', CategoryIdCategory: 1 },
+    { id_category: 14, name: 'acc_handbags', CategoryIdCategory: 1 },
+    { id_category: 15, name: 'sets', CategoryIdCategory: 1 },
+    { id_category: 16, name: 'home_and_gift', CategoryIdCategory: 1 },
+    { id_category: 17, name: 'dress', CategoryIdCategory: 1 },
+    { id_category: 18, name: 'loungewear', CategoryIdCategory: 1 },
+    { id_category: 19, name: 'acc_glasses', CategoryIdCategory: 1 },
+    { id_category: 20, name: 'bottoms_skirt', CategoryIdCategory: 1 },
+    { id_category: 21, name: 'bottoms_shorts', CategoryIdCategory: 1 },
+    { id_category: 22, name: 'rompers_jumpsuits', CategoryIdCategory: 1 },
+    { id_category: 23, name: 'mens_bottom_swim', CategoryIdCategory: 2 },
+    { id_category: 24, name: 'mens_bottom_shorts', CategoryIdCategory: 2 },
+    { id_category: 25, name: 'mens_jackets_and_coats', CategoryIdCategory: 2 },
+    { id_category: 26, name: 'mens_tops', CategoryIdCategory: 2 },
+    { id_category: 27, name: 'mens_bottom_denim', CategoryIdCategory: 2 },
+    { id_category: 28, name: 'mens_bottom_pants', CategoryIdCategory: 2 },
+    { id_category: 29, name: 'mens_tees_tanks_graphic', CategoryIdCategory: 2 },
+    { id_category: 30, name: 'mens_underwear_socks', CategoryIdCategory: 2 },
+    { id_category: 31, name: 'mens_sweaters', CategoryIdCategory: 2 }
+];
 
 const dbFunctions = {
     populateDB: async (req, res) => {
+        let categories = await Category.bulkCreate(
+            cat
+        )
         let response = await Products.bulkCreate(
             productos,
             {
-            ignoreDuplicates: true
+                ignoreDuplicates: true
             }
         )
         try {
-            res.status(200).json(response);
+            res.status(200).json(`${response.length} products. ${categories.length}`);
         } catch (error) {
             console.log('ERROR_____________________\n' + error.message + error.filename + error.lineNumber + error.stack);
             res.redirect(404, '../');
         }
+    },
+    addProduct: async(req, res) => {
+
+        let encontrados = await Products.findAll({
+            where: {
+                id_product: 1000453235
+            }
+        })
+        let encontrado = await Products.findOne({
+            where: {
+                id_product: 1000453235
+            }
+        })
+
+        let categoria = await Category.findOne({
+            where: {
+                name:"men"
+            }
+        })
+        
+        let response = await encontrado.addCategory(categoria);
+        res.status(200).json(`${response} products. ${response.length}`);
     }
 }
 
