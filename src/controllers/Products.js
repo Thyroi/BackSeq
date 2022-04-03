@@ -1,19 +1,39 @@
 const { Sequelize, Op } = require('sequelize');
 const { Products, Category, Collection } = require('../db.js');
 
-const updateProducts = async (updatedProduct) => {
-    console.log(`AQUI____________________________\n ${updatedProduct}`)
+const deleteProduct = async (id) => {
     try {
-        actualizado = await Products.update(
+        eliminado = await Products.update(
+            { sdelete: true }, {
+            where: {
+                id_product: id
+            }
+        })
+        return eliminado[0] === 0
+            ? { msg: 'No se encontro para eliminar.' }
+            : eliminado[0];
+    } catch (error) {
+        console.log(error);
+    }
+}
+const updateProducts = async ({ updatedProduct, productCategories }) => {
+    try {
+        actualizacion = await Products.update(
             updatedProduct, {
             where: {
                 id_product: updatedProduct.id_product
             }
-        }
-        )
+        })
+        let actualizado = await Products.findByPk(updatedProduct.id_product)
+        productCategories.map(category => {
+            const category = await Category.findOne({
+                where: { name: category }
+            });
+            actualizado.addCategory(category);
+        })
         return actualizado[0] === 0
             ? { msg: 'No se encontro para actualizar.' }
-            : await Products.findByPk(updatedProduct.id_product);
+            : actualizado;
     } catch (error) {
         console.log(error);
     }
@@ -69,5 +89,6 @@ module.exports = {
     getProductDetails,
     getAllProducts,
     getProductByName,
-    updateProducts
+    updateProducts,
+    deleteProduct
 };

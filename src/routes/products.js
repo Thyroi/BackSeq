@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { getAllProducts, getProductDetails, getProductByName, updateProducts } = require('../controllers/Products');
+const { getAllProducts, getProductDetails, getProductByName, updateProducts, deleteProduct } = require('../controllers/Products');
 const { getByCategory } = require('../controllers/category.js');
 
 route.get("/bycat", async (req, res) => {
@@ -20,6 +20,21 @@ route.get("/update",
         try {
             const updatedProduct = req.body;
             const response = await updateProducts(updatedProduct);
+            return response.msg
+                ? res.status(404).json(response)
+                : res.status(200).json(response);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json('Se rompio todo.');
+        }
+    }
+);
+
+route.get("/delete/:id",
+    async (req, res) => {
+        try {
+            const { id } = req.params;
+            const response = await deleteProduct(id);
             return response.msg
                 ? res.status(404).json(response)
                 : res.status(200).json(response);
