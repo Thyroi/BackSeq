@@ -88,7 +88,7 @@ route.get("/",
             return res.status(500).json('Se rompio todo.');
         }
     }
-)
+);
 
 route.post("/add", async (req, res) =>{
     const product = req.body
@@ -99,5 +99,5 @@ route.post("/add", async (req, res) =>{
     }catch(error){
         return res.json({"message": error.data, "nota": newProduct})
     }
-})
+});
 module.exports = route;
