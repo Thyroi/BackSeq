@@ -1,7 +1,7 @@
 const route = require("express").Router();
-const {} = require('../controllers/Users');
+const { addUser } = require('../controllers/Users');
 
-// route.post("/",addClient);
+route.post("/",addUser);
 // route.get("/",getClients);
 
 module.exports = route;
