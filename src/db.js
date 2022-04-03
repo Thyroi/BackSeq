@@ -46,7 +46,9 @@ Products.belongsToMany(Category, { through: 'ProductsCategories' , timestamps: f
 Category.belongsToMany(Products, { through: 'ProductsCategories' });
 
 Category.hasMany(Category);
+Category.belongsTo(Category);
 Collection.hasMany(Products);
+Products.belongsTo(Collection);
 
 module.exports = {
   ...sequelize.models,
