@@ -1,6 +1,5 @@
 const route = require("express").Router();
-const { getAllProducts, getProductDetails, getProductByName } = require('../controllers/Products');
-const { getByCategory } = require('../controllers/category.js');
+const { getAllProducts, getProductDetails, getProductByName, createProduct, getByCategory, getByCollection } = require('../controllers/Products');
 
 route.get("/bycat", async (req, res) => {
     const { id } = req.query;
@@ -8,6 +7,19 @@ route.get("/bycat", async (req, res) => {
         let productsByCategory = await getByCategory(id)
         if (productsByCategory === null) {
             return res.status(404).json({ message: "Category not found" });
+        }
+        return res.status(200).json(productsByCategory);
+    } catch (e) {
+        return res.status(500).json({ message: e.data })
+    }
+});
+
+route.get("/bycol", async (req, res) => {
+    const { id } = req.query;
+    try {
+        let productsByCategory = await getByCollection(id)
+        if (productsByCategory === null) {
+            return res.status(404).json({ message: "Collection not found" });
         }
         return res.status(200).json(productsByCategory);
     } catch (e) {
@@ -49,4 +61,14 @@ route.get("/",
     }
 )
 
+route.post("/add", async (req, res) =>{
+    const product = req.body
+    try{
+        const newProduct = await createProduct(product);
+            return res.json(newProduct)
+        
+    }catch(error){
+        return res.json({"message": error.data, "nota": newProduct})
+    }
+})
 module.exports = route;
