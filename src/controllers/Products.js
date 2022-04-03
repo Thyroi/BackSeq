@@ -17,6 +17,7 @@ const deleteProduct = async (id) => {
     }
 }
 const updateProducts = async ({ updatedProduct, productCategories }) => {
+    console.log("AQUI___________________________\n"+productCategories+updatedProduct)
     try {
         actualizacion = await Products.update(
             updatedProduct, {
@@ -25,15 +26,15 @@ const updateProducts = async ({ updatedProduct, productCategories }) => {
             }
         })
         let actualizado = await Products.findByPk(updatedProduct.id_product)
-        productCategories.map(category => {
-            const category = await Category.findOne({
+        productCategories.map(async category => {
+            const categoryFind = await Category.findOne({
                 where: { name: category }
             });
-            actualizado.addCategory(category);
+            actualizado.addCategory(categoryFind);
         })
         return actualizado[0] === 0
             ? { msg: 'No se encontro para actualizar.' }
-            : actualizado;
+            : actualizado[0];
     } catch (error) {
         console.log(error);
     }
@@ -133,6 +134,12 @@ const createProduct = async (prop) => {
             })
             newProduct.addCategory(eDB);
         });
+        collections.map(async e => {
+            const cDB = await Collection.findAll({
+                where: { name: e }
+            })
+            newProduct.addCollections(cDB);
+        });
         return { "status": 201, "message": "Product has been created correctly.", "data": newProduct };
     } catch (error) {
         return error.data
@@ -144,5 +151,7 @@ module.exports = {
     getProductByName,
     getByCategory,
     getByCollection,
-    createProduct
+    createProduct,
+    deleteProduct,
+    updateProducts
 };
