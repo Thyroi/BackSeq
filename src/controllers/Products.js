@@ -1,4 +1,4 @@
-const { Sequelize, Op } = require('sequelize');
+const { Sequelize, Op, where } = require('sequelize');
 const { Products, Category, Collection } = require('../db.js');
 
 const deleteProduct = async (id) => {
@@ -61,7 +61,12 @@ const getProductDetails = async (id) => {
 }
 const getAllProducts = async () => {
     try {
-        let hasData = await Products.findAll();
+        let hasData = await Products.findAll({
+            where: {
+                sdelete:false
+            }
+        }
+        );
         return !hasData.length
             ? { msg: 'Esta vacia la tabla.' }
             : hasData;
@@ -73,6 +78,7 @@ const getProductByName = async (name) => {
     try {
         const response = await Products.findAll({
             where: {
+                sdelete: false
                 name: {
                     [Op.iLike]: `%${name}%`
                 }
@@ -111,6 +117,8 @@ const getByCollection = async (id) => {
             }]
         }
     );
+    const collection = await Collection.findByPk(id);
+    Products.get();
     return details
 }
 const createProduct = async (prop) => {
@@ -134,12 +142,13 @@ const createProduct = async (prop) => {
             })
             newProduct.addCategory(eDB);
         });
-        collections.map(async e => {
-            const cDB = await Collection.findAll({
-                where: { name: e }
-            })
-            newProduct.addCollections(cDB);
-        });
+        // collections.map(async e => {
+        //     const cDB = await Collection.findAll({
+        //         where: { name: e }
+        //     })
+        //     newProduct.setCollection(cDB);
+        const collection = await Collection.findByPk(collections);
+        collection.addProducts(newProduct);
         return { "status": 201, "message": "Product has been created correctly.", "data": newProduct };
     } catch (error) {
         return error.data
