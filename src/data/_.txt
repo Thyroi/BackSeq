@@ -1,0 +1,99 @@
+collection collection
+
+Diego: user client
+Nati: carrito
+
+Card
+=======
+imgdefault
+name
+brand
+collections*
+prices
+
+
+DetailsId
+==========
+name
+brand
+collections
+variants
+price
+descripcion
+
+filterBy
+==>
+categories
+collections
+brand
+name
+
+filterByOffer
+all is_offer true | false | all
+
+filterByStock , para despues...
+
+filterByBrand
+============
+
+add favoritos
+===========
+1 a N table
+
+
+
+
+
+
+Categories
+=======
+ID	NAME	PARENT_CAT
+0	GENERAL	0
+1	MEN		1
+2	WOMAN	2
+3	BUZITOS	1
+4	JEANS	2
+5	JEANS	1
+6	GORRAS	1
+
+trae todo
+http://localhost:3001/products/
+
+trae por name unsensitive
+http://localhost:3001/products/
+query: {name}
+
+trae detalle por id
+http://localhost:3001/products/:id
+params: {id}
+
+trae productos por categorias
+http://localhost:3001/products/bycat?id=1
+query {id}
+
+trae productos por coleccion
+http://localhost:3001/products/bycol?id=4
+query {id}
+
+trae todas las categorias
+http://localhost:3001/selectors/categories
+
+traer todas las colecciones
+http://localhost:3001/selectors/collections
+
+crear un productos
+http://localhost:3001/products/add
+body {
+	producto:{},
+    "categories": ["men","women",...],
+    "collections": id(numerico)
+	}
+	
+actualizar un producto
+http://localhost:3001/products/update
+body {
+	producto:{},
+    "categories": ["men","women",...]
+	}
+	
+	
