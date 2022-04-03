@@ -26,6 +26,20 @@ route.get("/bycol", async (req, res) => {
         return res.status(500).json({ message: e.data })
     }
 });
+route.get("/update",
+    async (req, res) => {
+        try {
+            const updatedProduct = req.body;
+            const response = await updateProducts(updatedProduct);
+            return response.msg
+                ? res.status(404).json(response)
+                : res.status(200).json(response);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json('Se rompio todo.');
+        }
+    }
+);
 
 route.get("/:id",
     async (req, res) => {
