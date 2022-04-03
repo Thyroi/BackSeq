@@ -19,8 +19,7 @@ const collection = {
       console.log(error);
       res.redirect(404, '../');
     }
-  },
-
+  }
 }
 
 module.exports = collection;
