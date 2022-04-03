@@ -74,11 +74,11 @@ route.get("/:id",
 route.get("/",
     async (req, res) => {
         try {
-            const { name } = req.body;
+            const { name, brand } = req.body;
             let response = await getAllProducts();
             if (name) {
                 // filters = fixValues(); using dictionary
-                response = await getProductByName(name);
+                response = await getProductByName(name, brand);
             }
             return response.msg
                 ? res.status(404).json(response)
