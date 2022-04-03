@@ -47,6 +47,9 @@ const getProductDetails = async (id) => {
             {
                 include: [{
                     model: Category,
+                    where:{
+                        sdelete: false,
+                    },
                     through: {
                         attributes: []
                     }
@@ -106,6 +109,9 @@ const getByCategory = async (id) => {
         {
             include: [{
                 model: Products,
+                where:{
+                    sdelete: false,
+                },
                 through: {
                     attributes: []
                 }
@@ -120,6 +126,9 @@ const getByCollection = async (id) => {
         {
             include: [{
                 model: Products,
+                where:{
+                    sdelete: false,
+                },
                 through: {
                     attributes: []
                 }
