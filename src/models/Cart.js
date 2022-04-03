@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
     },
     cart_items: {
       type: DataTypes.JSON(),
-      allowNull: false
+      allowNull: true
     }
       }, { timestamps: false });
 };
