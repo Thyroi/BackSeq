@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { getAllProducts, getProductDetails, getProductByName, createProduct, getByCategory, getByCollection, updateProducts } = require('../controllers/Products');
+const { getAllProducts, getProductDetails, getProductByName, createProduct, getByCategory, getByCollection, updateProducts, getByOffer } = require('../controllers/Products');
 
 route.get("/bycat", async (req, res) => {
     const { id } = req.query;
@@ -26,6 +26,20 @@ route.get("/bycol", async (req, res) => {
         return res.status(500).json({ message: e.data })
     }
 });
+
+route.get("/byoffer", async (req, res) => {
+    const { offer } = req.query;
+    try {
+        let productsByOffer = await getByOffer(offer)
+        if (productsByOffer === null) {
+            return res.status(404).json({ message: "There aren't items found." });
+        }
+        return res.status(200).json({"state": 200,message: `Those the products with offer on: ${offer} `,"data":productsByOffer});
+    } catch (e) {
+        return res.status(500).json({ message: e.data })
+    }
+});
+
 route.patch("/update",
     async (req, res) => {
         try {

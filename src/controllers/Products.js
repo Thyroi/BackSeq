@@ -139,6 +139,24 @@ const getByCollection = async (id) => {
     Products.get();
     return details
 }
+const getByOffer = async (param) =>{
+
+    try {
+        let hasData = await Products.findAll({
+            where: {
+                sdelete : false,
+                is_offer : param
+            }
+        }
+        );
+
+        return !hasData.length
+            ? { msg: 'Esta vacia la tabla.' }
+            : hasData;
+    } catch (error) {
+        console.log(error);
+    }
+}
 const createProduct = async (prop) => {
     const { product, categories, collections } = prop
     const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image } = product
@@ -172,12 +190,14 @@ const createProduct = async (prop) => {
         return error.data
     }
 }
+
 module.exports = {
     getProductDetails,
     getAllProducts,
     getProductByName,
     getByCategory,
     getByCollection,
+    getByOffer,
     createProduct,
     deleteProduct,
     updateProducts
