@@ -50,8 +50,8 @@ Category.hasMany(Category);
 Category.belongsTo(Category);
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
-Cart.hasOne(Client);
-Client.belongsTo(Cart);
+Client.hasOne(Cart);
+Cart.belongsTo(Client);
 
 module.exports = {
   ...sequelize.models,
