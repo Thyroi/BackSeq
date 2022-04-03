@@ -4,12 +4,14 @@ const populate = require('./populate.js');
 const collection = require('./collection');
 const users = require('./users');
 const client = require('./client');
+const cart = require('./cart');
 
 router.use('/populate', populate);
 router.use('/products', products);
 router.use('/collection', collection);
 router.use('/users', users);
 router.use('/client', client);
+router.use('/cart', cart);
 
 
 module.exports = router;

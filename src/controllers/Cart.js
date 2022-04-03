@@ -1,9 +1,9 @@
 const axios = require('axios');
 const { Sequelize, Op } = require('sequelize');
-const { Client } = require('../db.js');
+const { Cart } = require('../db.js');
 
-const client = {
+const cart = {
 
 }
 
-module.exports = client;
+module.exports = cart;
