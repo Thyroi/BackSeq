@@ -78,7 +78,7 @@ const getProductByName = async (name) => {
     try {
         const response = await Products.findAll({
             where: {
-                sdelete: false
+                sdelete: false,
                 name: {
                     [Op.iLike]: `%${name}%`
                 }
