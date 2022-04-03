@@ -1,3 +1,4 @@
+const { toNamespacedPath } = require('path');
 const { Sequelize, Op, where } = require('sequelize');
 const { Products, Category, Collection } = require('../db.js');
 
@@ -74,12 +75,20 @@ const getAllProducts = async () => {
         console.log(error);
     }
 }
-const getProductByName = async (name) => {
+const getProductByName = async (name, brand) => {
     try {
         const response = await Products.findAll({
             where: {
-                sdelete: false
-                name: {
+                sdelete: false,
+                [Op.or]: [
+                    {name: {
+                        [Op.iLike]: names.map(n=> `%${n}%` )
+                    }},
+                    {brand: {
+                        [Op.iLike]: brand.map(b=> `%${b}%` )
+                    }}
+                ],
+                brand: {
                     [Op.iLike]: `%${name}%`
                 }
             }
