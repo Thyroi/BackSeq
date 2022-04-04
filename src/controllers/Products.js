@@ -1,4 +1,3 @@
-const { toNamespacedPath } = require('path');
 const { Sequelize, Op, where } = require('sequelize');
 const { Products, Category, Collection } = require('../db.js');
 
@@ -18,7 +17,7 @@ const deleteProduct = async (id) => {
     }
 }
 const updateProducts = async ({ updatedProduct, productCategories }) => {
-    console.log("AQUI___________________________\n"+productCategories+updatedProduct)
+    console.log("AQUI___________________________\n" + productCategories + updatedProduct)
     try {
         actualizacion = await Products.update(
             updatedProduct, {
@@ -64,7 +63,7 @@ const getAllProducts = async () => {
     try {
         let hasData = await Products.findAll({
             where: {
-                sdelete:false
+                sdelete: false
             }
         }
         );
@@ -75,24 +74,38 @@ const getAllProducts = async () => {
         console.log(error);
     }
 }
-const getProductByName = async (name, brand) => {
+const getProductBySuperSearch = async (filters) => {
     try {
         const response = await Products.findAll({
+            include: [{
+                model: Category,
+                required: true
+            }],
             where: {
                 sdelete: false,
-                [Op.or]: [
-                    {name: {
-                        [Op.iLike]: names.map(n=> `%${n}%` )
-                    }},
-                    {brand: {
-                        [Op.iLike]: brand.map(b=> `%${b}%` )
-                    }}
-                ],
-                brand: {
-                    [Op.iLike]: `%${name}%`
+                [Op.or]: [{
+                    name: {
+                        [Op.iLike]: {
+                            [Op.any]: name.map(n => `%${n}%`)
+                        }
+                    }
+                }, {
+                    brand: {
+                        [Op.iLike]: {
+                            [Op.any]: brand.map(b => `%${b}%`)
+                        }
+                    }
+                },
+                {
+                    '$Categories.name$': {
+                        [Op.iLike]: {
+                            [Op.any]: color.map(c => `%${c}%`)
+                        }
+                    }
                 }
+                ]
             }
-        })
+        });
         return !response.length
             ? { msg: 'Product not found.' }
             : response;
@@ -135,14 +148,14 @@ const createProduct = async (prop) => {
     const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image } = product
     try {
         const newProduct = await Products.create({
-            id_product, 
-            name, 
-            authorized_refund, price, 
-            description, 
-            brand, 
+            id_product,
+            name,
+            authorized_refund, price,
+            description,
+            brand,
             is_offer,
-            variants, 
-            sdelete, 
+            variants,
+            sdelete,
             default_image
         });
         categories.map(async e => {
@@ -164,12 +177,12 @@ const createProduct = async (prop) => {
     }
 }
 module.exports = {
-    getProductDetails,
     getAllProducts,
-    getProductByName,
+    getProductDetails,
+    createProduct,
+    updateProducts,
+    deleteProduct,
     getByCategory,
     getByCollection,
-    createProduct,
-    deleteProduct,
-    updateProducts
+    getProductBySuperSearch
 };

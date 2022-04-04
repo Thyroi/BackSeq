@@ -1,5 +1,11 @@
 const route = require("express").Router();
-const { getAllProducts, getProductDetails, getProductByName, createProduct, getByCategory, getByCollection, updateProducts } = require('../controllers/Products');
+const { getAllProducts,
+    getProductDetails,
+    createProduct,
+    updateProducts,
+    getByCategory,
+    getByCollection,
+    getProductBySuperSearch } = require('../controllers/Products');
 
 route.get("/bycat", async (req, res) => {
     const { id } = req.query;
@@ -74,14 +80,13 @@ route.get("/:id",
 route.get("/",
     async (req, res) => {
         try {
-            const { name, brand } = req.body;
-            let response = await getAllProducts();
-            if (name) {
-                // filters = fixValues(); using dictionary
-                response = await getProductByName(name, brand);
-            }
+            let { filters } = req.body;
+            filters = filters?.length ? filters : null;
+            let response;
+            if (filters)  response = await getProductBySuperSearch(filters);
+            if (!filters) response = await getAllProducts();
             return response.msg
-                ? res.status(404).json(response)
+            ? res.status(404).json(response)
                 : res.status(200).json(response);
         } catch (error) {
             console.log(error);
@@ -90,14 +95,14 @@ route.get("/",
     }
 );
 
-route.post("/add", async (req, res) =>{
+route.post("/add", async (req, res) => {
     const product = req.body
-    try{
+    try {
         const newProduct = await createProduct(product);
-            return res.json(newProduct)
-        
-    }catch(error){
-        return res.json({"message": error.data, "nota": newProduct})
+        return res.json(newProduct)
+
+    } catch (error) {
+        return res.json({ "message": error.data, "nota": newProduct })
     }
 });
 module.exports = route;
