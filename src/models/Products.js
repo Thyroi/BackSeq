@@ -46,6 +46,10 @@ module.exports = (sequelize) => {
         default_image: {
             type: DataTypes.STRING(),
             allowNull: false
+        },
+        collection: {
+            type: DataTypes.INTEGER(),
+            allowNull: false
         }
     }, {timestamps: true});
 }

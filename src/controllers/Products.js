@@ -104,38 +104,44 @@ const getProductByName = async (name, brand) => {
     }
 }
 const getByCategory = async (id) => {
-    const details = await Category.findByPk(
-        id,
-        {
-            include: [{
-                model: Products,
-                where:{
-                    sdelete: false,
-                },
-                through: {
-                    attributes: []
-                }
-            }]
-        }
-    );
-    return details
+    if (id === 1 || id === 2){
+        const details = await Category.findAll({
+            include:[{
+                model: Category,
+                required: false
+            }],
+            where: {
+                '$Categories.CategoryIdCategory$': id,
+            }
+        });
+        return details;
+    }else{
+        const details = await Category.findByPk(
+            id,
+            {
+                include: [{
+                    model: Products,
+                    where:{
+                        sdelete: false,
+                    },
+                    through: {
+                        attributes: []
+                    }
+                }]
+            }
+        );
+        return details;
+    }
+    
+    
 }
 const getByCollection = async (id) => {
-    const details = await Collection.findByPk(
-        id,
-        {
-            include: [{
-                model: Products,
-                where:{
-                    sdelete: false,
-                },
-                through: {
-                    attributes: []
-                }
-            }]
+    const details = await Product.findAll({
+        where: {
+            collection: id
         }
+    }  
     );
-    const collection = await Collection.findByPk(id);
     Products.get();
     return details
 }
@@ -178,11 +184,6 @@ const createProduct = async (prop) => {
             })
             newProduct.addCategory(eDB);
         });
-        // collections.map(async e => {
-        //     const cDB = await Collection.findAll({
-        //         where: { name: e }
-        //     })
-        //     newProduct.setCollection(cDB);
         const collection = await Collection.findByPk(collections);
         collection.addProducts(newProduct);
         return { "status": 201, "message": "Product has been created correctly.", "data": newProduct };

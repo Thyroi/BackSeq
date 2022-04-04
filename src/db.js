@@ -51,7 +51,7 @@ Category.hasMany(Category);
 Category.belongsTo(Category);
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
-Favorites.hasMany(Products);
+// Favorites.hasMany(Products);
 
 module.exports = {
   ...sequelize.models,

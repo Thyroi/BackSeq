@@ -3,8 +3,9 @@ const { getAllProducts, getProductDetails, getProductByName, createProduct, getB
 
 route.get("/bycat", async (req, res) => {
     const { id } = req.query;
+    console.log(id)
     try {
-        let productsByCategory = await getByCategory(id)
+        let productsByCategory = await getByCategory(id);
         if (productsByCategory === null) {
             return res.status(404).json({ message: "Category not found" });
         }
