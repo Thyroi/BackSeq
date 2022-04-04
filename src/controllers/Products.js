@@ -86,20 +86,20 @@ const getProductBySuperSearch = async (filters) => {
                 [Op.or]: [{
                     name: {
                         [Op.iLike]: {
-                            [Op.any]: name.map(n => `%${n}%`)
+                            [Op.any]: filters.map(n => `%${n}%`)
                         }
                     }
                 }, {
                     brand: {
                         [Op.iLike]: {
-                            [Op.any]: brand.map(b => `%${b}%`)
+                            [Op.any]: filters.map(b => `%${b}%`)
                         }
                     }
                 },
                 {
                     '$Categories.name$': {
                         [Op.iLike]: {
-                            [Op.any]: color.map(c => `%${c}%`)
+                            [Op.any]: filters.map(c => `%${c}%`)
                         }
                     }
                 }

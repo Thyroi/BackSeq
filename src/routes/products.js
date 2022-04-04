@@ -84,7 +84,7 @@ route.get("/",
             filters = filters?.length ? filters : null;
             let response;
             if (filters)  response = await getProductBySuperSearch(filters);
-            if (!filters) response = await getAllProducts();
+            if (filters===null) response = await getAllProducts();
             return response.msg
             ? res.status(404).json(response)
                 : res.status(200).json(response);
