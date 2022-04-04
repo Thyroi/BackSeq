@@ -2,23 +2,6 @@
 const { Sequelize, Op } = require('sequelize');
 const { Cart, Client } = require('../db');
 
-
- /* const  createCart= async (info)=>{
-
-    console.log(info,"____________________________");
-    try{
-           let{cart_items, ClientPhone}=info;
-        let newCart=await Cart.create({
-            cart_items,
-        });
-
-        let  resp= await Client.findByPk(ClientPhone);
-        newCart.setClient(resp);
-        return  newCart;
-    }catch(e){
-        console.log(e);
-    }};  */
-
     const getCart=async (info)=>{
         console.log(info);
 
