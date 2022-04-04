@@ -5,10 +5,11 @@ module.exports = (sequelize) => {
   sequelize.define('PurchaseOrder', {
      orderId:{
          type:DataTypes.INTEGER(),
+         autoIncrement: true,
          unique:true,
          allowNull:false,
          primaryKey:true,
-     } ,
+     },
      date:{
          type:DataTypes.DATE(),
          allowNULL:false,
@@ -16,8 +17,8 @@ module.exports = (sequelize) => {
     orderStatus:{
         type: DataTypes.ENUM(),
         values: ['Canceled', 'Submitted', 'Completed', 'Processing'] ,
-         isDeleted: DataTypes.BOOLEAN,
-         allowNull:false,
+        isDeleted: DataTypes.BOOLEAN(),
+        allowNull:false,
     },
     orderStatusDetails: {
       type:DataTypes.STRING(),
