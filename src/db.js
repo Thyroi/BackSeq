@@ -37,6 +37,8 @@ fs.readdirSync(path.join(__dirname, '/models'))
 modelDefiners.forEach(model => model(sequelize));
 
 const {
+  Cart,
+  Client,
   Products,
   Category,
   Collection,
@@ -51,7 +53,11 @@ const {
 Products.belongsToMany(Category, { through: 'ProductsCategories' , timestamps: false});
 Category.belongsToMany(Products, { through: 'ProductsCategories' });
 Category.hasMany(Category);
+Category.belongsTo(Category);
 Collection.hasMany(Products);
+Products.belongsTo(Collection);
+Client.hasOne(Cart);
+Cart.belongsTo(Client);
 
 
 Client.hasMany(PurchaseOrder);
