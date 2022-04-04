@@ -38,14 +38,13 @@ modelDefiners.forEach(model => model(sequelize));
 
 const {
   Cart,
-  Client,
   Products,
   Category,
   Collection,
   ProductsCategories,
-  Cart,
   PurchaseOrder,
   Client,
+  Users
 } = sequelize.models;
 
 
@@ -58,13 +57,8 @@ Collection.hasMany(Products);
 Products.belongsTo(Collection);
 Client.hasOne(Cart);
 Cart.belongsTo(Client);
-
-
 Client.hasMany(PurchaseOrder);
 PurchaseOrder.belongsTo(Client);
-Client.hasOne(Cart);
-Cart.belongsTo(Client);
-
 
 
 module.exports = {

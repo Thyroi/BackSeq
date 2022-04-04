@@ -4,25 +4,25 @@ const { Cart, Client } = require('../db');
 
 
  /* const  createCart= async (info)=>{
-          
+
     console.log(info,"____________________________");
-    try{ 
+    try{
            let{cart_items, ClientPhone}=info;
         let newCart=await Cart.create({
             cart_items,
         });
-    
+
         let  resp= await Client.findByPk(ClientPhone);
         newCart.setClient(resp);
         return  newCart;
     }catch(e){
         console.log(e);
     }};  */
- 
+
     const getCart=async (info)=>{
         console.log(info);
-    
-        try{ 
+
+        try{
          let clientCart=await Cart.findOne({
              where:{
                  ClientPhone:info
@@ -32,24 +32,23 @@ const { Cart, Client } = require('../db');
      }catch(e){
          console.log(e);
      }};
-    
-     const updateCart= async (info,id)=>{  
+
+     const updateCart= async (info,id)=>{
          console.log(info, id);
-        try{ 
+        try{
             console.log(info);
             const updatedCart= await Cart.update({
-                cart_items:info }     
+                cart_items:info }
                 , {where:{ClientPhone:id}});
-            
+
             return  updatedCart;
         }catch(e){
-            console.log(e);    
-    } 
+            console.log(e);
+    }
 
-} 
+}
 
 module.exports ={
-    createCart,
     updateCart,
     getCart
 }

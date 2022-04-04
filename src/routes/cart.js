@@ -1,6 +1,6 @@
 
 const { Router } = require('express');
-const {Cart}=require ('../db');
+const {Cart, Client}=require ('../db');
 const {createCart, updateCart, getCart}=require ('../controllers/cart.js');
 
 const router = Router();
@@ -65,6 +65,6 @@ router.get('/:id',async(req,res)=>{
         return res.status(500).json('Error en el servidor')
     }
 });
-       
+
 
 module.exports = router;

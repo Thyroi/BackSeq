@@ -14,8 +14,5 @@ router.use('/client', client);
 router.use('/cart', cart);
 
 
- const cart= require('./cart.js');
-router.use('/cart', cart);
-
 
 module.exports = router;

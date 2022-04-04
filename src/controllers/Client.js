@@ -2,6 +2,7 @@ const axios = require('axios');
 const { Sequelize, Op } = require('sequelize');
 const { Client } = require('../db.js');
 
+
 const client = {
   addClient: async (req, res) => {
     try {
