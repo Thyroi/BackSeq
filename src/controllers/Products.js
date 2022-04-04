@@ -46,6 +46,9 @@ const getProductDetails = async (id) => {
             {
                 include: [{
                     model: Category,
+                    where:{
+                        sdelete: false,
+                    },
                     through: {
                         attributes: []
                     }
@@ -114,34 +117,64 @@ const getProductBySuperSearch = async (filters) => {
     }
 }
 const getByCategory = async (id) => {
-    const details = await Category.findByPk(
-        id,
-        {
-            include: [{
-                model: Products,
-                through: {
-                    attributes: []
-                }
-            }]
-        }
-    );
-    return details
+    if (id === 1 || id === 2){
+        const details = await Category.findAll({
+            include:[{
+                model: Category,
+                required: false
+            }],
+            where: {
+                '$Categories.CategoryIdCategory$': id,
+            }
+        });
+        return details;
+    }else{
+        const details = await Category.findByPk(
+            id,
+            {
+                include: [{
+                    model: Products,
+                    where:{
+                        sdelete: false,
+                    },
+                    through: {
+                        attributes: []
+                    }
+                }]
+            }
+        );
+        return details;
+    }
+    
+    
 }
 const getByCollection = async (id) => {
-    const details = await Collection.findByPk(
-        id,
-        {
-            include: [{
-                model: Products,
-                through: {
-                    attributes: []
-                }
-            }]
+    const details = await Product.findAll({
+        where: {
+            collection: id
         }
+    }  
     );
-    const collection = await Collection.findByPk(id);
     Products.get();
     return details
+}
+const getByOffer = async (param) =>{
+
+    try {
+        let hasData = await Products.findAll({
+            where: {
+                sdelete : false,
+                is_offer : param
+            }
+        }
+        );
+
+        return !hasData.length
+            ? { msg: 'Esta vacia la tabla.' }
+            : hasData;
+    } catch (error) {
+        console.log(error);
+    }
 }
 const createProduct = async (prop) => {
     const { product, categories, collections } = prop
@@ -164,11 +197,6 @@ const createProduct = async (prop) => {
             })
             newProduct.addCategory(eDB);
         });
-        // collections.map(async e => {
-        //     const cDB = await Collection.findAll({
-        //         where: { name: e }
-        //     })
-        //     newProduct.setCollection(cDB);
         const collection = await Collection.findByPk(collections);
         collection.addProducts(newProduct);
         return { "status": 201, "message": "Product has been created correctly.", "data": newProduct };
@@ -176,9 +204,13 @@ const createProduct = async (prop) => {
         return error.data
     }
 }
+
 module.exports = {
     getAllProducts,
     getProductDetails,
+    getByCategory,
+    getByCollection,
+    getByOffer,
     createProduct,
     updateProducts,
     deleteProduct,
