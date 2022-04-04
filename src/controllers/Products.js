@@ -149,13 +149,12 @@ const getByCategory = async (id) => {
     
 }
 const getByCollection = async (id) => {
-    const details = await Product.findAll({
+    const details = await Products.findAll({
         where: {
-            collection: id
+            collection: parseInt(id)
         }
     }  
     );
-    Products.get();
     return details
 }
 const getByOffer = async (param) =>{
