@@ -38,12 +38,10 @@ modelDefiners.forEach(model => model(sequelize));
 
 const {
   Cart,
-  Client,
   Products,
   Category,
   Collection,
   ProductsCategories,
-  Cart,
   PurchaseOrder,
   Client,
 } = sequelize.models;
