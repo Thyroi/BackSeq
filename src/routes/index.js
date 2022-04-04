@@ -6,4 +6,8 @@ router.use('/populate', populate);
 router.use('/products', products);
 
 
+ const cart= require('./cart.js');
+router.use('/cart', cart); 
+
+
 module.exports = router;
