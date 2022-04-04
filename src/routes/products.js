@@ -42,7 +42,7 @@ route.get("/byoffer", async (req, res) => {
         if (productsByOffer === null) {
             return res.status(404).json({ message: "There aren't items found." });
         }
-        return res.status(200).json({"state": 200,message: `Those the products with offer on: ${offer} `,"data":productsByOffer});
+        return res.status(200).json({ "state": 200, message: `Those the products with offer on: ${offer} `, "data": productsByOffer });
     } catch (e) {
         return res.status(500).json({ message: e.data })
     }
@@ -99,10 +99,10 @@ route.get("/",
             let { filters } = req.query;
             filters = filters ? filters.split(" ") : null;
             let response;
-            if (filters)  response = await getProductBySuperSearch(filters);
-            if (filters===null) response = await getAllProducts();
+            if (filters) response = await getProductBySuperSearch(filters);
+            if (!filters) response = await getAllProducts();
             return response.msg
-            ? res.status(404).json(response)
+                ? res.status(404).json(await getAllProducts())
                 : res.status(200).json(response);
         } catch (error) {
             console.log(error);
