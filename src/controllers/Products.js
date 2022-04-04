@@ -44,11 +44,11 @@ const getProductDetails = async (id) => {
         const details = await Products.findByPk(id
             ,
             {
+                where: {
+                    sdelete: false,
+                },
                 include: [{
                     model: Category,
-                    where:{
-                        sdelete: false,
-                    },
                     through: {
                         attributes: []
                     }
@@ -82,7 +82,10 @@ const getProductBySuperSearch = async (filters) => {
         const response = await Products.findAll({
             include: [{
                 model: Category,
-                required: true
+                required: false,
+                through: {
+                    attributes: []
+                }
             }],
             where: {
                 sdelete: false,
@@ -117,9 +120,9 @@ const getProductBySuperSearch = async (filters) => {
     }
 }
 const getByCategory = async (id) => {
-    if (id === 1 || id === 2){
+    if (id === 1 || id === 2) {
         const details = await Category.findAll({
-            include:[{
+            include: [{
                 model: Category,
                 required: false
             }],
@@ -128,13 +131,13 @@ const getByCategory = async (id) => {
             }
         });
         return details;
-    }else{
+    } else {
         const details = await Category.findByPk(
             id,
             {
                 include: [{
                     model: Products,
-                    where:{
+                    where: {
                         sdelete: false,
                     },
                     through: {
@@ -145,25 +148,25 @@ const getByCategory = async (id) => {
         );
         return details;
     }
-    
-    
+
+
 }
 const getByCollection = async (id) => {
     const details = await Products.findAll({
         where: {
             collection: parseInt(id)
         }
-    }  
+    }
     );
     return details
 }
-const getByOffer = async (param) =>{
+const getByOffer = async (param) => {
 
     try {
         let hasData = await Products.findAll({
             where: {
-                sdelete : false,
-                is_offer : param
+                sdelete: false,
+                is_offer: param
             }
         }
         );

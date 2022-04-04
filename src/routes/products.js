@@ -96,8 +96,8 @@ route.get("/:id",
 route.get("/",
     async (req, res) => {
         try {
-            let { filters } = req.body;
-            filters = filters?.length ? filters : null;
+            let { filters } = req.query;
+            filters = filters ? filters.split(" ") : null;
             let response;
             if (filters)  response = await getProductBySuperSearch(filters);
             if (filters===null) response = await getAllProducts();
