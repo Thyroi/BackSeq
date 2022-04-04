@@ -179,8 +179,8 @@ const getByOffer = async (param) => {
     }
 }
 const createProduct = async (prop) => {
-    const { product, categories, collections } = prop
-    const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image } = product
+    const { product, categories, collection } = prop
+    const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image} = product
     try {
         const newProduct = await Products.create({
             id_product,
@@ -191,7 +191,8 @@ const createProduct = async (prop) => {
             is_offer,
             variants,
             sdelete,
-            default_image
+            default_image, 
+            collection
         });
         categories.map(async e => {
             const eDB = await Category.findAll({
@@ -199,8 +200,8 @@ const createProduct = async (prop) => {
             })
             newProduct.addCategory(eDB);
         });
-        const collection = await Collection.findByPk(collections);
-        collection.addProducts(newProduct);
+        // const collectione = await Collection.findByPk(collections);
+        // collectione.addProducts(newProduct);
         return { "status": 201, "message": "Product has been created correctly.", "data": newProduct };
     } catch (error) {
         return error.data
