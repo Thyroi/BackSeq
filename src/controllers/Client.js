@@ -1,20 +1,21 @@
 const axios = require('axios');
 const { Sequelize, Op } = require('sequelize');
-const { Client } = require('../db.js');
-
+const { Client, Cart } = require('../db.js');
 
 const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
       const createdClient = await Client.create({
-        phone,
-        email,
-        login_name,
-        login_password,
-        name,
-        lastname,
-        address});
+          phone,
+          email,
+          login_name,
+          login_password,
+          name,
+          lastname,
+          address});
+      let newCart=await Cart.create();
+      newCart.setClient(phone);
       res.status(200).send("Cliente creado de manera Exitosa!!");
     }
     catch (error) {
