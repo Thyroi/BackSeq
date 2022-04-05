@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
             defaultValue: false
         },
         variants: {
-            type: DataTypes.JSON(),
+            type: DataTypes.JSONB(),
             allowNull: false
         },
         sdelete: {

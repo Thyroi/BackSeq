@@ -19,10 +19,10 @@ const deleteProduct = async (id) => {
 const updateProducts = async ({ updatedProduct, productCategories }) => {
     console.log("AQUI___________________________\n" + productCategories + updatedProduct)
     try {
-        actualizacion = await Products.update(
+        let actualizacion = await Products.update(
             updatedProduct, {
             where: {
-                id_product: updatedProduct.id_product
+                id_product: parseInt(updatedProduct.id_product)
             }
         })
         let actualizado = await Products.findByPk(updatedProduct.id_product)
@@ -41,7 +41,7 @@ const updateProducts = async ({ updatedProduct, productCategories }) => {
 }
 const getProductDetails = async (id) => {
     try {
-        const details = await Products.findByPk(id
+        const details = await Products.findByPk(parseInt(id)
             ,
             {
                 where: {
@@ -102,6 +102,18 @@ const getProductBySuperSearch = async (filters) => {
                         }
                     }
                 },
+                // {
+                //     // variants: {
+                //     //     [Op.contains]: [{ColorName: 'PATITO'}]
+                //     // }
+                //     // variants: {
+                //     //     [Op.contains]: [{
+                //     //         ColorName: {
+                //     //             [Op.any]: filters.map(co => `%${co}%`)
+                //     //         }
+                //     //     }]
+                //     // }
+                // },
                 {
                     '$Categories.name$': {
                         [Op.iLike]: {
@@ -180,7 +192,7 @@ const getByOffer = async (param) => {
 }
 const createProduct = async (prop) => {
     const { product, categories, collection } = prop
-    const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image} = product
+    const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image } = product
     try {
         const newProduct = await Products.create({
             id_product,
@@ -191,7 +203,7 @@ const createProduct = async (prop) => {
             is_offer,
             variants,
             sdelete,
-            default_image, 
+            default_image,
             collection
         });
         categories.map(async e => {

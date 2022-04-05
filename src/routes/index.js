@@ -5,6 +5,8 @@ const collection = require('./collection');
 const users = require('./users');
 const client = require('./client');
 const cart = require('./cart');
+const selectors = require('./selectors');
+const review = require('./review');
 
 router.use('/populate', populate);
 router.use('/products', products);
@@ -15,5 +17,6 @@ router.use('/client', client);
 router.use('/cart', cart);
 
 
+router.use('/reviews', review);
 
 module.exports = router;

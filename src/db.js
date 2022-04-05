@@ -3,10 +3,9 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-
 const sequelize = new Sequelize('postgres://ddgtzexdoamtzi:77725ff983fdc03b57e2b68721b4ea644df1e9598a7c3d598f115936b28b7724@ec2-44-194-92-192.compute-1.amazonaws.com:5432/d4mjv55hcavib9',
   {
-    logging: false,
+    logging: true,
     native: false,
     dialectOptions: {
       ssl: {
@@ -39,9 +38,11 @@ modelDefiners.forEach(model => model(sequelize));
 const {
   Cart,
   Products,
+  Client,
   Category,
   Collection,
   Favorites,
+  Reviews,
   ProductsCategories,
   PurchaseOrder,
   Client,
@@ -55,6 +56,7 @@ Products.belongsToMany(Category, { through: 'ProductsCategories' , timestamps: f
 Category.belongsToMany(Products, { through: 'ProductsCategories' });
 Category.hasMany(Category);
 Category.belongsTo(Category);
+
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
 // Favorites.hasMany(Products);
@@ -66,6 +68,11 @@ PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);
 
 
+
+Products.hasMany(Reviews);
+Reviews.belongsTo(Products);
+Client.hasMany(Reviews);
+Reviews.belongsTo(Client);
 
 module.exports = {
   ...sequelize.models,
