@@ -37,21 +37,35 @@ fs.readdirSync(path.join(__dirname, '/models'))
 modelDefiners.forEach(model => model(sequelize));
 
 const {
+  Cart,
   Products,
   Category,
   Collection,
   Favorites,
   ProductsCategories,
+  PurchaseOrder,
+  Client,
+  Users,
+  Invoice
 } = sequelize.models;
+
+
 
 Products.belongsToMany(Category, { through: 'ProductsCategories' , timestamps: false});
 Category.belongsToMany(Products, { through: 'ProductsCategories' });
-
 Category.hasMany(Category);
 Category.belongsTo(Category);
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
 // Favorites.hasMany(Products);
+Client.hasOne(Cart);
+Cart.belongsTo(Client);
+Client.hasMany(PurchaseOrder);
+PurchaseOrder.belongsTo(Client);
+PurchaseOrder.hasOne(Invoice);
+Invoice.belongsTo(PurchaseOrder);
+
+
 
 module.exports = {
   ...sequelize.models,
