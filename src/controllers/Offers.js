@@ -7,27 +7,27 @@ module.exports = {
         return date.getDay()
     },
     genOffer: async(id) => {
-        const hola = await Category.findAll({
+        let date = new Date()
+        let hola = parseInt(date.getDay())
+
+        const women = await Category.findAll({
             where: {
-                CategoryIdCategory: id
+                CategoryIdCategory: hola
             },
             include: [{
                 model: Products,
                 where: {
-                    sdelete: false
+                    sdelete: false,
                 },
                 through: {
                     attributes: []
                 }
             }]
         });
-        // const offer = hola?.map(e =>{
-        //     // return {
-        //     //     id_product: e.id_product,
-        //     //     is_offer: e.is_offer,
-        //     //     price: e.price
-        //     // }
-        // })
-        return hola
+        const offer = women.map(e => {
+            return "hola"
+        })
+
+        return offer
     }
 };
