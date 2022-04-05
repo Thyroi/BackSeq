@@ -7,6 +7,7 @@ const client = require('./client');
 const cart = require('./cart');
 const selectors = require('./selectors');
 const review = require('./review');
+const offers = require('./offers');
 
 router.use('/populate', populate);
 router.use('/products', products);
@@ -15,6 +16,7 @@ router.use('/collection', collection);
 router.use('/users', users);
 router.use('/client', client);
 router.use('/cart', cart);
+router.use('/offers', offers);
 
 
 router.use('/reviews', review);

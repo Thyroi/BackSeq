@@ -131,61 +131,107 @@ const getProductBySuperSearch = async (filters) => {
         console.log(error);
     }
 }
-const getByCategory = async (id) => {
-    if (id === 1 || id === 2) {
-        const details = await Category.findAll({
-            include: [{
-                model: Category,
-                required: false
-            }],
+const getByCategory = async () => {
+    const women = await Category.findAll({
+        where: {
+            CategoryIdCategory: 1
+        },
+        include: [{
+            model: Products,
             where: {
-                '$Categories.CategoryIdCategory$': id,
+                sdelete: false
+            },
+            through: {
+                attributes: []
             }
-        });
-        return details;
-    } else {
-        const details = await Category.findByPk(
-            id,
-            {
-                include: [{
-                    model: Products,
-                    where: {
-                        sdelete: false,
-                    },
-                    through: {
-                        attributes: []
-                    }
-                }]
+        }]
+    });
+    const men = await Category.findAll({
+        where: {
+            CategoryIdCategory: 2
+        },
+        include: [{
+            model: Products,
+            where: {
+                sdelete: false
+            },
+            through: {
+                attributes: []
             }
-        );
-        return details;
-    }
-
-
+        }]
+    });
+    return {women, men};
 }
 const getByCollection = async (id) => {
-    const details = await Products.findAll({
-        where: {
-            collection: parseInt(id)
-        }
-    }
-    );
-    return details
+        const women = await Category.findAll({
+            where: {
+                CategoryIdCategory: 1
+            },
+            include: [{
+                model: Products,
+                where: {
+                    sdelete: false,
+                    collection : id
+                },
+                through: {
+                    attributes: []
+                }
+            }]
+        });
+        const men = await Category.findAll({
+            where: {
+                CategoryIdCategory: 1
+            },
+            include: [{
+                model: Products,
+                where: {
+                    sdelete: false,
+                    collection : id
+                },
+                through: {
+                    attributes: []
+                }
+            }]
+        });
+    return { women, men }
 }
 const getByOffer = async (param) => {
 
     try {
-        let hasData = await Products.findAll({
+        const women = await Products.findAll({
             where: {
                 sdelete: false,
                 is_offer: param
-            }
+            },
+            include: [{
+                model: Category,
+                where: {
+                    CategoryIdCategory: 1
+                },
+                through: {
+                    attributes: []
+                }
+            }]
+        }
+        );
+        const men = await Products.findAll({
+            where: {
+                sdelete: false,
+                is_offer: param
+            },
+            include: [{
+                model: Category,
+                where: {
+                    CategoryIdCategory: 2
+                },
+                through: {
+                    attributes: []
+                }
+            }]
         }
         );
 
-        return !hasData.length
-            ? { msg: 'Esta vacia la tabla.' }
-            : hasData;
+        return { women, men };
     } catch (error) {
         console.log(error);
     }
@@ -219,7 +265,42 @@ const createProduct = async (prop) => {
         return error.data
     }
 }
-
+const getWomen = async (id) => {
+    const women = await Products.findAll({
+        where: {
+            sdelete: false,
+        },
+        include: [{
+            model: Category,
+            where: {
+                CategoryIdCategory: id
+            },
+            through: {
+                attributes: []
+            }
+        }]
+    }
+    );
+    return women;
+}
+const getMen = async (id) => {
+    const men = await Products.findAll({
+        where: {
+            sdelete: false,
+        },
+        include: [{
+            model: Category,
+            where: {
+                CategoryIdCategory: id
+            },
+            through: {
+                attributes: []
+            }
+        }]
+    }
+    );
+    return men;
+}
 module.exports = {
     getAllProducts,
     getProductDetails,
@@ -231,5 +312,7 @@ module.exports = {
     deleteProduct,
     getByCategory,
     getByCollection,
+    getWomen,
+    getMen,
     getProductBySuperSearch
 };
