@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT(),
             allowNull: false
         },
+        price_offer: {
+            type: DataTypes.FLOAT(),
+            allowNull: true
+        },
         description: {
             type: DataTypes.TEXT(),
             allowNull: false,
@@ -35,7 +39,7 @@ module.exports = (sequelize) => {
             defaultValue: false
         },
         variants: {
-            type: DataTypes.JSON(),
+            type: DataTypes.JSONB(),
             allowNull: false
         },
         sdelete: {
@@ -45,6 +49,10 @@ module.exports = (sequelize) => {
         },
         default_image: {
             type: DataTypes.STRING(),
+            allowNull: false
+        },
+        collection: {
+            type: DataTypes.INTEGER(),
             allowNull: false
         }
     }, {timestamps: true});

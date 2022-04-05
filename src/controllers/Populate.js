@@ -3,7 +3,7 @@ const productos = require('../data/productsCleanWithOutUndefinedSecondTry.json')
 const clientes = require('../data/clientes.json');
 const { Products, Category, Client } = require('../db');
 
-const cat = [
+const cat = [   
     { id_category: 1, name: 'women', CategoryIdCategory: 1 },
     { id_category: 2, name: 'men', CategoryIdCategory: 2 },
     { id_category: 3, name: 'mens_accessories_hats', CategoryIdCategory: 2 },
@@ -13,7 +13,7 @@ const cat = [
     { id_category: 7, name: 'outerwear_coats_and_jackets', CategoryIdCategory: 1 },
     { id_category: 8, name: 'sweater', CategoryIdCategory: 1 },
     { id_category: 9, name: 'shoes', CategoryIdCategory: 1 },
-    { id_category: 10, name: 'top_blouses', CategoryIdCategory: 1 },
+    { id_category: 10, name: 'top_blouses ', CategoryIdCategory: 1 },
     { id_category: 11, name: 'acc_jewelry', CategoryIdCategory: 1 },
     { id_category: 12, name: 'activewear', CategoryIdCategory: 1 },
     { id_category: 13, name: 'lingerie', CategoryIdCategory: 1 },
@@ -56,7 +56,7 @@ const dbFunctions = {
             res.redirect(404, '../');
         }
     },
-    addProduct: async(req, res) => {
+    addProduct: async (req, res) => {
 
         let encontrados = await Products.findAll({
             where: {
@@ -71,7 +71,7 @@ const dbFunctions = {
 
         let categoria = await Category.findOne({
             where: {
-                name:"men"
+                name: "men"
             }
         })
 
