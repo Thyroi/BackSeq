@@ -60,6 +60,9 @@ Client.hasOne(Cart);
 Cart.belongsTo(Client);
 Client.hasMany(PurchaseOrder);
 PurchaseOrder.belongsTo(Client);
+PurchaseOrder.hasOne(Invoice);
+Invoice.belongsTo(PurchaseOrder);
+
 
 
 module.exports = {
