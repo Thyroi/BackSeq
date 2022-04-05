@@ -2,7 +2,7 @@ const { Sequelize, Op } = require('sequelize');
 const productos = require('../data/productsCleanWithOutUndefinedSecondTry.json');
 const { Products, Category } = require('../db');
 
-const cat = [
+const cat = [   
     { id_category: 1, name: 'women', CategoryIdCategory: 1 },
     { id_category: 2, name: 'men', CategoryIdCategory: 2 },
     { id_category: 3, name: 'mens_accessories_hats', CategoryIdCategory: 2 },
