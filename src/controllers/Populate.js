@@ -1,6 +1,7 @@
 const { Sequelize, Op } = require('sequelize');
 const productos = require('../data/productsCleanWithOutUndefinedSecondTry.json');
-const { Products, Category } = require('../db');
+const clientes = require('../data/clientes.json');
+const { Products, Category, Client } = require('../db');
 
 const cat = [   
     { id_category: 1, name: 'women', CategoryIdCategory: 1 },
@@ -47,8 +48,9 @@ const dbFunctions = {
                 ignoreDuplicates: true
             }
         )
+        let clients = await Client.bulkCreate(clientes)
         try {
-            res.status(200).json(`${response.length} products. ${categories.length}`);
+            res.status(200).json(`${response.length} products. ${categories.length} categories and ${clients.length} clients.`);
         } catch (error) {
             console.log('ERROR_____________________\n' + error.message + error.filename + error.lineNumber + error.stack);
             res.redirect(404, '../');
