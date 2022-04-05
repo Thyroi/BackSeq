@@ -44,7 +44,8 @@ const {
   ProductsCategories,
   PurchaseOrder,
   Client,
-  Users
+  Users,
+  Invoice
 } = sequelize.models;
 
 
