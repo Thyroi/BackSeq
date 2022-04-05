@@ -1,0 +1,141 @@
+[{
+    "phone":"916-351-8823",
+    "email":"LawrenceVFeldman@gustr.com",
+    "login_name":"LawrenceVFeldman",
+    "login_password":"66554433",
+    "name":"Lawrence",
+    "lastname":"Feldman",
+    "address": {
+        "calle":"Burning Memory Lane",
+        "numero":"2570",
+        "city":"Philadelphia",
+        "zip_code":"19124"
+    }
+},
+{
+    "phone":"203-405-2487",
+    "email":"PeterMTurner@superrito.com",
+    "login_name":"PeterMTurner",
+    "login_password":"shohth0Ae",
+    "name":"Peter",
+    "lastname":"Turner",
+    "address": {
+        "calle":"Cheshire Road",
+        "numero":"1800",
+        "city":"Stamford",
+        "zip_code":"06995"
+    }
+},
+{
+    "phone":"305-658-8858",
+    "email":"JamesGMoberly@gustr.com",
+    "login_name":"Sibrom",
+    "login_password":"EipheJ7Ee",
+    "name":"James",
+    "lastname":"Moberly",
+    "address": {
+        "calle":"Golden Street",
+        "numero":"1302",
+        "city":"Miami",
+        "zip_code":"33179"
+    }
+},
+{
+    "phone":"218-467-3105",
+    "email":"CaitlinDHunter@gustr.com",
+    "login_name":"Moothoung65",
+    "login_password":"suo8Ood4",
+    "name":"Caitlin",
+    "lastname":"Hunter",
+    "address": {
+        "calle":"Ferrell Street",
+        "numero":"4933",
+        "city":"Solway",
+        "zip_code":"56678"
+    }
+},
+{
+    "phone":"650-301-6766",
+    "email":"MaryHGage@superrito.com",
+    "login_name":"Privall",
+    "login_password":"aquoo7ioV",
+    "name":"Mary",
+    "lastname":"Gage",
+    "address": {
+        "calle":"Ella Street",
+        "numero":"1168",
+        "city":"Daly City",
+        "zip_code":"94015"
+    }
+},
+{
+    "phone":"601-895-0356",
+    "email":"VernonDCabrera@superrito.com",
+    "login_name":"Allons1960",
+    "login_password":"doVie6ugah6",
+    "name":"Vernon",
+    "lastname":"Cabrera",
+    "address": {
+        "calle":"Devils Hill Road",
+        "numero":"4213",
+        "city":"Jackson",
+        "zip_code":"39201"
+    }
+},
+{
+    "phone":"215-274-6503",
+    "email":"MasonPFord@gustr.com",
+    "login_name":"Muckbithat",
+    "login_password":"ohveiK2Yoh",
+    "name":"Mason",
+    "lastname":"Ford",
+    "address": {
+        "calle":"Burning Memory Lane",
+        "numero":"2747",
+        "city":"Philadelphia",
+        "zip_code":"19103"
+    }
+},
+{
+    "phone":"541-899-9729",
+    "email":"ValeriePFarnsworth@gustr.com",
+    "login_name":"Malithe",
+    "login_password":"yo4aejaiSh",
+    "name":"Valerie",
+    "lastname":"Farnsworth",
+    "address": {
+        "calle":"Skinner Hollow Road",
+        "numero":"1978",
+        "city":"Jacksonville",
+        "zip_code":"97530"
+    }
+},
+{
+    "phone":"212-935-2783",
+    "email":"DonnaRLatch@gustr.com",
+    "login_name":"Ockbet",
+    "login_password":"Towag4Ei",
+    "name":"Donna",
+    "lastname":"Latch",
+    "address": {
+        "calle":"Rosewood Lane",
+        "numero":"4216",
+        "city":"New York",
+        "zip_code":"10022"
+    }
+},
+{
+    "phone":"708-487-3792",
+    "email":"VirgieTRichards@superrito.com",
+    "login_name":"Boothat",
+    "login_password":"jio4eLiecie",
+    "name":"Virgie",
+    "lastname":"Richards",
+    "address": {
+        "calle":"Hog Camp Road",
+        "numero":"971",
+        "city":"Arlington Heights",
+        "zip_code":"60005"
+    }
+}
+]
