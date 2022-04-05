@@ -38,7 +38,6 @@ modelDefiners.forEach(model => model(sequelize));
 const {
   Cart,
   Products,
-  Client,
   Category,
   Collection,
   Favorites,
@@ -59,15 +58,12 @@ Category.belongsTo(Category);
 
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
-// Favorites.hasMany(Products);
 Client.hasOne(Cart);
 Cart.belongsTo(Client);
 Client.hasMany(PurchaseOrder);
 PurchaseOrder.belongsTo(Client);
 PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);
-
-
 
 Products.hasMany(Reviews);
 Reviews.belongsTo(Products);
