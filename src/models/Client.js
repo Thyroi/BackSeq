@@ -20,7 +20,6 @@ module.exports = (sequelize) => {
       login_password: {
         type: DataTypes.STRING(),
         allowNull: false,
-        unique: true,
       },
       name: {
         type: DataTypes.STRING(),

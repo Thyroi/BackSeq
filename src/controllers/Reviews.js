@@ -1,11 +1,16 @@
 const { Sequelize, Op } = require('sequelize');
-const { Products, Reviews, Client } = require('../db.js');
+const { Reviews } = require('../db.js');
 
 const getReviews = async (filters) => {
     const { user, product } = filters
     console.log(filters)
     try {
-        const review = await Reviews.findAll(
+        const review = await Reviews.findAll();
+        return review;
+    } catch (error) {
+        return error.data
+    }
+}
         //     {
         //     // where: {
         //     //     user: `%`
@@ -13,12 +18,6 @@ const getReviews = async (filters) => {
         //         // user: { [Op.like]: !user ? '%' : user },
         //         // product: { [Op.like]: !product ? '%' : product }
         // }
-        );
-        return review;
-    } catch (error) {
-        return error.data
-    }
-}
 
 const createReview = async (review) => {
     const { start, description, user, product } = review

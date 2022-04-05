@@ -25,9 +25,7 @@ module.exports = (sequelize) => {
         },
         product: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            unique: true
+            allowNull: false
         }
     }, { timestamps: true });
 };

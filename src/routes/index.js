@@ -11,6 +11,7 @@ const offers = require('./offers');
 
 router.use('/populate', populate);
 router.use('/products', products);
+router.use('/reviews', review);
 router.use('/selectors', selectors);
 router.use('/collection', collection);
 router.use('/users', users);
