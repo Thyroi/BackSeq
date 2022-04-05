@@ -9,6 +9,10 @@ module.exports = (sequelize) => {
          allowNull:false,
          primaryKey:true,
      } ,
+=======
+
+      allowNULL:false,
+     },
      date:{
          type:DataTypes.DATE,
          allowNULL:false,
