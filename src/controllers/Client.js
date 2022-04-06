@@ -6,25 +6,34 @@ const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-      const createdClient = await Client.create({
-          phone,
-          email,
-          login_name,
-          login_password,
-          name,
-          lastname,
-          address});
+        const createdClient = await Client.create({
+            phone,
+            email,
+            login_name,
+            login_password,
+            name,
+            lastname,
+            address,
+            isRegistered:login_name !==""? true:false,
+          });
+
+  
       let newCart=await Cart.create();
       newCart.setClient(phone);
+  
+    
       res.status(200).send("Cliente creado de manera Exitosa!!");
+
     }
     catch (error) {
       console.log(error);
     }
   },
+
   getClientbyID: async (req, res) => {
     try {
       const id = req.params.phone;
+     // const id = req.params.email;
       const getclientid = await Client.findOne({
         where: {phone: id}
       });
@@ -45,13 +54,13 @@ const client = {
   },
   updateClient: async (req, res) => {
     try {
-      const id = req.query.phone;
+     const id = req.query.phone;
       const updatedclient = await Client.update(req.body, {
         where: { phone: id }
       });
       console.log("Cliente actualizado con Exito!!");
       res.status(200).json("Cliente actualizado con Exito!!");
-    } catch (error) {
+    } catch(error) {
       console.log(error);
     }
   },
@@ -59,9 +68,9 @@ const client = {
     try {
       const id = req.params.phone;
       const deleteClient = await Client.destroy({
-        where: { phone: id }
+        where: { phone: id } 
       });
-      console.log("Cliente eleiminado con Exito!!");
+      console.log("Cliente eliminado con Exito!!");
       res.status(200).send("Cliente eleiminado con Exito!!");
     } catch (error) {
       console.log(error);

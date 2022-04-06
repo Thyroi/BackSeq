@@ -58,9 +58,9 @@ Category.belongsTo(Category);
 
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
-Client.hasOne(Cart);
+Client.hasOne(Cart, /* {foreignKey:'clientId'} */);
 Cart.belongsTo(Client);
-Client.hasMany(PurchaseOrder);
+Client.hasMany(PurchaseOrder,{foreignKey:'clientId'});
 PurchaseOrder.belongsTo(Client);
 PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);

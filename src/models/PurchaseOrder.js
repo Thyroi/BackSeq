@@ -11,22 +11,29 @@ module.exports = (sequelize) => {
          primaryKey:true,
 
      },
-     date:{
+   /*   date:{
          type:DataTypes.DATE(),
          allowNULL:false,
-     },
+     }, */
     orderStatus:{
         type: DataTypes.ENUM(),
-        values: ['Canceled', 'Submitted', 'Completed', 'Processing'] ,
+        values: ['Canceled', 'Submited', 'Completed', 'Processing'],
+        defaultValue:'Submitted',
         isDeleted: DataTypes.BOOLEAN(),
         allowNull:false,
     },
-    orderStatusDetails: {
-      type:DataTypes.STRING(),
+    orderDetails: {
+      type:DataTypes.JSON(),
       allowNull:false,
+  },
+  address:{
+    type:DataTypes.JSON(),
+    allowNull:true,
   }
 
-
-  },{timestamps: true} );
+  },{timestamps: true,
+    updatedAt:false,
+    ceratedAt: 'date',
+} );
 
 };

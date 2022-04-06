@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Client', {
       phone: {
-          type: DataTypes.STRING(),
+          type: DataTypes.BIGINT(),
           allowNull: false,
           primaryKey: true,
           unique: true
@@ -10,16 +10,17 @@ module.exports = (sequelize) => {
       email: {
           type: DataTypes.STRING(),
           allowNull: false,
-          unique: true
+          unique: true,
+          //primaryKey: true,
       },
       login_name: {
         type: DataTypes.STRING(),
-        allowNull: false,
+        allowNull: true,
         unique: true
       },
       login_password: {
         type: DataTypes.STRING(),
-        allowNull: false,
+        allowNull: true,
         unique: false,
       },
       name: {
@@ -33,6 +34,12 @@ module.exports = (sequelize) => {
       address: {
         type: DataTypes.JSON(),
         allowNull: false
+      },
+      isRegistered:{
+        type:DataTypes.BOOLEAN(),
+        defaultValue: false,
+
       }
+      
   }, { timestamps: false });
 };
