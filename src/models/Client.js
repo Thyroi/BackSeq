@@ -44,6 +44,9 @@ module.exports = (sequelize) => {
       isRegistered:{
         type:DataTypes.BOOLEAN(),
         allowNull:true,
+        /* set(value) {
+           this.setDataValue('isRegistered',this.login_name!==""&&this.login_name!==null?value=true:value=false)
+        },  */
       }
       
   }, { timestamps: false });
