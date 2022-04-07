@@ -6,7 +6,7 @@ const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-        const createdClient = await Client.create({
+        /* const createdClient = await Client.create({
             phone,
             email,
             login_name,
@@ -15,14 +15,26 @@ const client = {
             lastname,
             address,
             isRegistered:login_name !==""? true:false,
-          });
+          }); */
+          const createdClient = await Client.findOrCreate({
+            where:{phone:phone},
+            defaults:{
+            phone,
+            email,
+            login_name,
+            login_password,
+            name,
+            lastname,
+            address,
+            isRegistered:login_name? true:false,
+          }});
 
-  
+          console.log(createdClient);
       let newCart=await Cart.create();
       newCart.setClient(phone);
   
     
-      res.status(200).send("Cliente creado de manera Exitosa!!");
+      res.status(200).send(createdClient[1]===true?"Cliente creado de manera Exitosa!!":"Ese  cliente ya existe");
 
     }
     catch (error) {
@@ -32,12 +44,12 @@ const client = {
 
   getClientbyID: async (req, res) => {
     try {
-      const id = req.params.phone;
+      const id = req.params.id;
      // const id = req.params.email;
       const getclientid = await Client.findOne({
         where: {phone: id}
       });
-      res.status(200).json(getclientid);
+      res.status(200).json(getclientid).send("Cliente encontrado");
     }
     catch (error) {
       console.log(error);
@@ -54,12 +66,13 @@ const client = {
   },
   updateClient: async (req, res) => {
     try {
-     const id = req.query.phone;
+     const id = req.params.id;
       const updatedclient = await Client.update(req.body, {
         where: { phone: id }
       });
-      console.log("Cliente actualizado con Exito!!");
-      res.status(200).json("Cliente actualizado con Exito!!");
+     
+      
+      res.status(200).json(updatedclient).send("Cliente actualizado");
     } catch(error) {
       console.log(error);
     }

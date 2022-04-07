@@ -1,19 +1,17 @@
 const { Sequelize, Op } = require('sequelize');
 const { PurchaseOrder, Client } = require('../db');
 
-    const newOrder=async (info, clientId,address, )=>{
+    const newOrder=async (info, address, clientPhone )=>{
         console.log(info);
-        console.log(clientId);
+        console.log(clientPhone);
 
-        //let addressDb= await Client.findByPk(clientId)
-        // aca me traigo la direccion resgitrada
 
         try{
          let purchaseOrder=await PurchaseOrder.create({
                  orderDetails:info,
                  address   
          });
-         let  resp= await Client.findByPk(clientId);
+         let  resp= await Client.findByPk(clientPhone);
         purchaseOrder.setClient(resp);
         return  purchaseOrder;
 

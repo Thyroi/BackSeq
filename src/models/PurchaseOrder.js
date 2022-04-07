@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
     orderStatus:{
         type: DataTypes.ENUM(),
         values: ['Canceled', 'Submited', 'Completed', 'Processing'],
-        defaultValue:'Submitted',
+        defaultValue:'Submited',
         isDeleted: DataTypes.BOOLEAN(),
         allowNull:false,
     },

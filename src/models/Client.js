@@ -1,4 +1,6 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, STRING } = require('sequelize');
+
+
 module.exports = (sequelize) => {
   sequelize.define('Client', {
       phone: {
@@ -15,8 +17,12 @@ module.exports = (sequelize) => {
       },
       login_name: {
         type: DataTypes.STRING(),
+         get() {
+          return this.getDataValue('login_name')===null? "Anonymous": this.getDataValue('login_name')
+        }, 
         allowNull: true,
-        unique: true
+        unique: true,
+
       },
       login_password: {
         type: DataTypes.STRING(),
@@ -37,8 +43,7 @@ module.exports = (sequelize) => {
       },
       isRegistered:{
         type:DataTypes.BOOLEAN(),
-        defaultValue: false,
-
+        allowNull:true,
       }
       
   }, { timestamps: false });
