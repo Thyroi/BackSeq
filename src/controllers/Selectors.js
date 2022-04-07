@@ -1,6 +1,7 @@
 const { Category, Collection } = require('../db');
 
 module.exports =  {
+    
     getCategories: async() =>{
         
         try{
@@ -20,8 +21,8 @@ module.exports =  {
         }
         
     },
+
     getCollections: async() =>{
-        
         try{
             let hasData = await Collection.findAll();
             return !hasData.length
@@ -30,6 +31,19 @@ module.exports =  {
         }catch(error){
             return error.data
         }
-        
+    },
+
+    addCat: async(info) =>{
+        const { id_category, name, CategoryIdCategory } =  info
+        try{
+            let newCat = await Category.create({
+                id_category,    
+                name,
+                CategoryIdCategory
+            });
+            return newCat;
+        }catch(error){
+            return error.data
+        }
     }
 };

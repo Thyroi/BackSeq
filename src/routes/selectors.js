@@ -1,4 +1,4 @@
-const { getCategories, getCollections } = require("../controllers/selectors");
+const { getCategories, getCollections, addCat } = require("../controllers/selectors");
 
 const route = require("express").Router();
 
@@ -18,4 +18,9 @@ route.get("/collections", async (req, res) =>{
         return res.json({ "message": error.data })
     }
 });
+route.post("/addCat", async (req, res) => {
+    const info = req.body;
+    let newCat = await addCat(info);
+    return res.status(200).json(newCat);
+})
 module.exports = route;
