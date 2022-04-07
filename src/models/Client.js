@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       login_name: {
         type: DataTypes.STRING(),
          get() {
-          return this.getDataValue('login_name')===null? "Anonymous": this.getDataValue('login_name')
+          return this.getDataValue('login_name')===null|| this.getDataValue('login_name')===""? "Anonymous": this.getDataValue('login_name')
         }, 
         allowNull: true,
         unique: true,

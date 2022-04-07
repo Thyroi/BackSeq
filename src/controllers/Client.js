@@ -2,24 +2,21 @@ const axios = require('axios');
 const { Sequelize, Op } = require('sequelize');
 const { Client, Cart } = require('../db.js');
 
+const hash=(string)=>{
+  let characters= string.slice(0,-4).split("");
+  return characters.reduce((h,c)=>(h=c.charCodeAt(0)+(h<<6)+(h<<16)-h), 0);
+}
 const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-        /* const createdClient = await Client.create({
-            phone,
-            email,
-            login_name,
-            login_password,
-            name,
-            lastname,
-            address,
-            isRegistered:login_name !==""? true:false,
-          }); */
+      let phone2=phone.length?phone:hash(email);
+      console.log(phone2);
+       
           const createdClient = await Client.findOrCreate({
-            where:{phone:phone},
+            where:{phone:phone2},
             defaults:{
-            phone,
+            phone:phone2,
             email,
             login_name,
             login_password,
@@ -31,7 +28,7 @@ const client = {
 
           console.log(createdClient);
       let newCart=await Cart.create();
-      newCart.setClient(phone);
+      newCart.setClient(phone2);
   
     
       res.status(200).send(createdClient[1]===true?"Cliente creado de manera Exitosa!!":"Ese  cliente ya existe");
@@ -83,7 +80,7 @@ const client = {
   },
   deleteUser: async (req, res) => {
     try {
-      const id = req.params.phone;
+      const id = req.params.id;
       const deleteClient = await Client.destroy({
         where: { phone: id } 
       });
