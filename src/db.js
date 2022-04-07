@@ -5,7 +5,7 @@ const path = require('path');
 
 const sequelize = new Sequelize('postgres://ddgtzexdoamtzi:77725ff983fdc03b57e2b68721b4ea644df1e9598a7c3d598f115936b28b7724@ec2-44-194-92-192.compute-1.amazonaws.com:5432/d4mjv55hcavib9',
   {
-    logging: true,
+    logging: false,
     native: false,
     dialectOptions: {
       ssl: {
@@ -58,9 +58,9 @@ Category.belongsTo(Category);
 
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
-Client.hasOne(Cart);
+Client.hasOne(Cart, /* {foreignKey:'clientId'} */);
 Cart.belongsTo(Client);
-Client.hasMany(PurchaseOrder);
+Client.hasMany(PurchaseOrder,/* {foreignKey:'clientId'} */);
 PurchaseOrder.belongsTo(Client);
 PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);

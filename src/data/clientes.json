@@ -1,7 +1,7 @@
 [{
-    "phone":"916-351-8823",
+    "phone":91635188230,
     "email":"LawrenceVFeldman@gustr.com",
-    "login_name":"LawrenceVFeldman",
+    "login_name":"",
     "login_password":"66554433",
     "name":"Lawrence",
     "lastname":"Feldman",
@@ -10,10 +10,12 @@
         "numero":"2570",
         "city":"Philadelphia",
         "zip_code":"19124"
-    }
+    },
+    "isRegistered":false
+   
 },
 {
-    "phone":"203-405-2487",
+    "phone":2034052487,
     "email":"PeterMTurner@superrito.com",
     "login_name":"PeterMTurner",
     "login_password":"shohth0Ae",
@@ -24,10 +26,12 @@
         "numero":"1800",
         "city":"Stamford",
         "zip_code":"06995"
-    }
+    },
+    "isRegistered":true
+   
 },
-{
-    "phone":"305-658-8858",
+ {
+    "phone":759089880,
     "email":"JamesGMoberly@gustr.com",
     "login_name":"Sibrom",
     "login_password":"EipheJ7Ee",
@@ -38,10 +42,11 @@
         "numero":"1302",
         "city":"Miami",
         "zip_code":"33179"
-    }
+    },
+    "isRegistered":true
 },
 {
-    "phone":"218-467-3105",
+    "phone":2184673105,
     "email":"CaitlinDHunter@gustr.com",
     "login_name":"Moothoung65",
     "login_password":"suo8Ood4",
@@ -52,10 +57,11 @@
         "numero":"4933",
         "city":"Solway",
         "zip_code":"56678"
-    }
+    },
+    "isRegistered":true
 },
 {
-    "phone":"650-301-6766",
+    "phone":6503016766,
     "email":"MaryHGage@superrito.com",
     "login_name":"Privall",
     "login_password":"aquoo7ioV",
@@ -66,10 +72,11 @@
         "numero":"1168",
         "city":"Daly City",
         "zip_code":"94015"
-    }
+    },
+    "isRegistered":true
 },
 {
-    "phone":"601-895-0356",
+    "phone":6018950356,
     "email":"VernonDCabrera@superrito.com",
     "login_name":"Allons1960",
     "login_password":"doVie6ugah6",
@@ -80,10 +87,11 @@
         "numero":"4213",
         "city":"Jackson",
         "zip_code":"39201"
-    }
+    },
+    "isRegistered":true
 },
 {
-    "phone":"215-274-6503",
+    "phone":2152746503,
     "email":"MasonPFord@gustr.com",
     "login_name":"Muckbithat",
     "login_password":"ohveiK2Yoh",
@@ -94,10 +102,11 @@
         "numero":"2747",
         "city":"Philadelphia",
         "zip_code":"19103"
-    }
+    },
+    "isRegistered":true
 },
 {
-    "phone":"541-899-9729",
+    "phone":5418999729,
     "email":"ValeriePFarnsworth@gustr.com",
     "login_name":"Malithe",
     "login_password":"yo4aejaiSh",
@@ -108,10 +117,11 @@
         "numero":"1978",
         "city":"Jacksonville",
         "zip_code":"97530"
-    }
+    },
+    "isRegistered":true
 },
 {
-    "phone":"212-935-2783",
+    "phone":2129352783,
     "email":"DonnaRLatch@gustr.com",
     "login_name":"Ockbet",
     "login_password":"Towag4Ei",
@@ -122,10 +132,11 @@
         "numero":"4216",
         "city":"New York",
         "zip_code":"10022"
-    }
+    },
+    "isRegistered":true
 },
 {
-    "phone":"708-487-3792",
+    "phone":7084873792,
     "email":"VirgieTRichards@superrito.com",
     "login_name":"Boothat",
     "login_password":"jio4eLiecie",
@@ -136,6 +147,7 @@
         "numero":"971",
         "city":"Arlington Heights",
         "zip_code":"60005"
-    }
-}
+    },
+    "isRegistered":true
+} 
 ]

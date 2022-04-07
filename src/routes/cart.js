@@ -29,7 +29,7 @@ router.get('/:id',async(req,res)=>{
     try{
         let clientId=req.params.id;
         console.log(clientId, "hola");
-        let response=await getCart(clientId);
+        let response=await getCart(clientPhone);
        return response?res.status(200).json(response):res.status(404);
 
     }catch(e){

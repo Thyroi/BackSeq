@@ -1,15 +1,18 @@
 
 const { Sequelize, Op } = require('sequelize');
-const { Cart, Client } = require('../db');
+const { Cart, } = require('../db');
 
     const getCart=async (info)=>{
         console.log(info);
 
         try{
          let clientCart=await Cart.findOne({
-             where:{
+              where:{
                  ClientPhone:info
-             }
+             } 
+            /*  where:{
+                clientId:info
+            } */
          });
         return clientCart;
      }catch(e){
@@ -21,8 +24,8 @@ const { Cart, Client } = require('../db');
         try{
             console.log(info);
             const updatedCart= await Cart.update({
-                cart_items:info }
-                , {where:{ClientPhone:id}});
+                cart_items:info },
+                 {where:{ClientPhone:id}});
 
             return  updatedCart;
         }catch(e){
