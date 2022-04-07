@@ -12,6 +12,7 @@ const { PurchaseOrder, Client } = require('../db');
                  address   
          });
          let  resp= await Client.findByPk(clientPhone);
+         console.log(resp);
         purchaseOrder.setClient(resp);
         return  purchaseOrder;
 

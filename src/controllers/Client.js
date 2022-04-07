@@ -65,13 +65,17 @@ const client = {
     }
   },
   updateClient: async (req, res) => {
+    console.log(req.body)
     try {
      const id = req.params.id;
-      const updatedclient = await Client.update(req.body, {
+     const info=req.body;
+      const updatedclient = await Client.update(info,
+        {
         where: { phone: id }
       });
+    
      
-      
+    
       res.status(200).json(updatedclient).send("Cliente actualizado");
     } catch(error) {
       console.log(error);
