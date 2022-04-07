@@ -2,21 +2,21 @@ const axios = require('axios');
 const { Sequelize, Op } = require('sequelize');
 const { Client, Cart } = require('../db.js');
 
-const hash=(string)=>{
+/* const hash=(string)=>{
   let characters= string.slice(0,-4).split("");
   return characters.reduce((h,c)=>(h=c.charCodeAt(0)+(h<<6)+(h<<16)-h), 0);
-}
+} */
 const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-      let phone2=phone.length?phone:hash(email);
-      console.log(phone2);
+     /*  let phone2=phone.length?phone:hash(email);
+      console.log(phone2); */
        
           const createdClient = await Client.findOrCreate({
-            where:{phone:phone2},
+            where:{phone:phone},
             defaults:{
-            phone:phone2,
+            phone:phone,
             email,
             login_name,
             login_password,
@@ -28,7 +28,7 @@ const client = {
 
           console.log(createdClient);
       let newCart=await Cart.create();
-      newCart.setClient(phone2);
+      newCart.setClient(phone);
   
     
       res.status(200).send(createdClient[1]===true?"Cliente creado de manera Exitosa!!":"Ese  cliente ya existe");
