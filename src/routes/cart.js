@@ -27,8 +27,8 @@ router.patch('/:id', async(req,res)=>{
 router.get('/:id',async(req,res)=>{
     console.log(req.params);
     try{
-        let clientId=req.params.id;
-        console.log(clientId, "hola");
+        let clientPhone=req.params.id;
+        /* console.log(clientId, "hola"); */
         let response=await getCart(clientPhone);
        return response?res.status(200).json(response):res.status(404);
 
