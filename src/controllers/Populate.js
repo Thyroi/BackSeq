@@ -1,9 +1,10 @@
-const { Sequelize, Op } = require('sequelize');
+const { Sequelize, Op, NOW } = require('sequelize');
+const crypto = require('crypto');
 const productos = require('../data/productsCleanWithOutUndefinedSecondTry.json');
 const clientes = require('../data/clientes.json');
 const { Products, Category, Client } = require('../db');
 
-const cat = [   
+const cat = [
     { id_category: 1, name: 'women', CategoryIdCategory: 1 },
     { id_category: 2, name: 'men', CategoryIdCategory: 2 },
     { id_category: 3, name: 'mens_accessories_hats', CategoryIdCategory: 2 },
@@ -48,36 +49,45 @@ const dbFunctions = {
                 ignoreDuplicates: true
             }
         )
-        let clients = await Client.bulkCreate(clientes)
-        try {
-            res.status(200).json(`${response.length} products. ${categories.length} categories and ${clients.length} clients.`);
-        } catch (error) {
-            console.log('ERROR_____________________\n' + error.message + error.filename + error.lineNumber + error.stack);
-            res.redirect(404, '../');
-        }
+let clients = await Client.bulkCreate(clientes)
+await Client.update(
+    {
+        token: crypto.createHash('md5').update(`${NOW}`).digest('hex')
     },
-    addProduct: async (req, res) => {
+    {
+        where: {
+            token: null
+        }
+    });
 
-        let encontrados = await Products.findAll({
-            where: {
-                id_product: 1000453235
-            }
-        })
-        let encontrado = await Products.findOne({
-            where: {
-                id_product: 1000453235
-            }
-        })
+try {
+    res.status(200).json(`${response.length} products. ${categories.length} categories and ${clients.length} clients.`);
+} catch (error) {
+    console.log('ERROR_____________________\n' + error.message + error.filename + error.lineNumber + error.stack);
+    res.redirect(404, '../');
+}
+    },
+addProduct: async (req, res) => {
+    let encontrados = await Products.findAll({
+        where: {
+            id_product: 1000453235
+        }
+    })
+    let encontrado = await Products.findOne({
+        where: {
+            id_product: 1000453235
+        }
+    })
 
-        let categoria = await Category.findOne({
-            where: {
-                name: "men"
-            }
-        })
+    let categoria = await Category.findOne({
+        where: {
+            name: "men"
+        }
+    })
 
-        let response = await encontrado.addCategory(categoria);
-        res.status(200).json(`${response} products. ${response.length}`);
-    }
+    let response = await encontrado.addCategory(categoria);
+    res.status(200).json(`${response} products. ${response.length}`);
+}
 }
 
 module.exports = dbFunctions;

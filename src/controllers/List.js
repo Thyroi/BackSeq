@@ -1,10 +1,10 @@
+const mailer = require('./Mailer.js')
 const { Sequelize, Op } = require('sequelize');
 const { Client, Products, List } = require('../db.js');
 
 const getList = async (filters) => {
     let { product, user } = filters
     user = user ? parseInt(user) : null;
-    console.log(user)
     // product = product ? parseInt(product) : null;
     // Colaborators: { [Op.contains]: user ? product : { [Op.ne]: null } }
     try {
@@ -20,8 +20,8 @@ const getList = async (filters) => {
                         }
                     ]
                 }
+                // get only 1 photo, dscription, price
             });
-        console.log(tLists)
         return tLists;
     } catch (error) {
         console.log(error);
@@ -83,12 +83,30 @@ const deleteList = async (id) => {
         return error.data
     }
 }
-
+const sendOffers = async () => {
+    try {
+        let tList = await getList({user: 2152746503});
+        tList = tList[0].List.map(l=>parseInt(l));
+        let products = await Products.findAll({
+            where: {
+                id_product: {
+                    [Op.in]: tList
+                }
+            }
+        });
+        products = products.filter(product => product.is_offfer && product)
+        !products.length && mailer()
+        return 'holis'
+    } catch(error) {
+        console.log(error);
+    }
+}
 
 
 module.exports = {
     createList,
     updateList,
     getList,
-    deleteList
+    deleteList,
+    sendOffers
 };

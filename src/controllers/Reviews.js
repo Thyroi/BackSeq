@@ -1,60 +1,96 @@
 const { Sequelize, Op } = require('sequelize');
-const { Reviews } = require('../db.js');
+const { Client, Products, Review } = require('../db.js');
 
 const getReviews = async (filters) => {
-    const { user, product } = filters
-    console.log(filters)
+    let { product, user, rating, orderField, order } = filters
+    rating = rating ? rating : 1
+    user = user ? parseInt(user) : null;
+    product = product ? parseInt(product) : null;
     try {
-        const review = await Reviews.findAll();
-        return review;
+        const tReviews = await Review.findAll(
+            {
+                where: {
+                    ClientPhone: user ? user : { [Op.ne]: null } ,
+                    ProductIdProduct: product ? product : { [Op.ne]: null },
+                    stars: {
+                        [Op.gte]: rating
+                    }
+                },
+                order: [
+                    orderField && order ? [orderField, order] : ['updatedAt', 'DESC']
+                ],
+                include: [{
+                    model: Client,
+                    attributes: ['login_name', 'name', 'lastname', 'email']
+                }]
+            });
+        return tReviews;
     } catch (error) {
+        console.log(error);
         return error.data
     }
 }
-        //     {
-        //     // where: {
-        //     //     user: `%`
-        //     // }
-        //         // user: { [Op.like]: !user ? '%' : user },
-        //         // product: { [Op.like]: !product ? '%' : product }
-        // }
 
 const createReview = async (review) => {
-    const { start, description, user, product } = review
+    const { stars, description, user, product } = review
+    const tReview = {
+        stars: stars,
+        description: description,
+        ClientPhone: parseInt(user)
+    }
     try {
-        const review = await Reviews.create({
-            stars: start,
-            description: description,
-            user: user,
-            product: product
-        });
-        return review;
+        if (!user) return { msg: 'Provide userId.' }
+        const tProduct = await Products.findByPk(parseInt(product));
+        const CreatedReview = await tProduct?.createReview(tReview);
+        return !tProduct
+            ? { msg: 'Product not found.' }
+            : !CreatedReview
+                ? { msg: 'Product ok. Check other fields. ' }
+                : CreatedReview;
     } catch (error) {
+        console.log('SUIZO VGRA' + error);
         return error.data
     }
 }
 
 const updateReview = async (review) => {
-    const { start, description, user, product } = review
+    const { stars, description, user, product } = review
     try {
-        const review = await Reviews.update({
-            stars: start,
+        const review = await Review.update({
+            stars: stars,
             description: description
         }, {
             where: {
-                user: parseInt(user),
-                product: parseInt(product)
+                ClientPhone: user,
+                ProductIdProduct: product
             }
         });
         return review;
+    } catch (error) {
+        console.log(error);
+        return error.data
+    }
+}
+
+const deleteReview = async ({ idClient, idProduct }) => {
+    try {
+        const tDeleted = await Review.destroy({
+            where: {
+                ClientPhone: parseInt(idClient),
+                ProductIdProduct: parseInt(idProduct)
+            }
+        });
+        return tDeleted;
     } catch (error) {
         return error.data
     }
 }
 
+
+
 module.exports = {
     createReview,
     updateReview,
-    getReviews
-    // deleteReview,
+    getReviews,
+    deleteReview
 };

@@ -8,6 +8,7 @@ const cart = require('./cart');
 const selectors = require('./selectors');
 const review = require('./review');
 const offers = require('./offers');
+const list = require('./list');
 const purchaseOrders = require('./purchaseOrders');
 
 router.use('/populate', populate);
@@ -19,6 +20,7 @@ router.use('/users', users);
 router.use('/client', client);
 router.use('/cart', cart);
 router.use('/offers', offers);
+router.use('/lists', list);
 
 
 router.use('/reviews', review);

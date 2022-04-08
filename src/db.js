@@ -71,7 +71,8 @@ Review.belongsTo(Products);
 Client.hasMany(Review);
 Review.belongsTo(Client);
 
-
+Client.hasMany(List);
+List.belongsTo(Client);
 
 module.exports = {
   ...sequelize.models,

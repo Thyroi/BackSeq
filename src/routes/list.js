@@ -3,13 +3,25 @@ const {
     createList,
     updateList,
     getList,
-    deleteList
+    deleteList,
+    sendOffers
 } = require('../controllers/List');
 
 route.get("/get", async (req, res) => {
     const filters = req.query;
     try {
         let lists = await getList(filters);
+        return lists
+            ? res.status(200).json(lists)
+            : res.status(404).json({ msg: `something go wrong. \n ${lists}` });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json('rompiste todo.');
+    }
+});
+route.get("/offer", async (req, res) => {
+    try {
+        let lists = await sendOffers();
         return lists
             ? res.status(200).json(lists)
             : res.status(404).json({ msg: `something go wrong. \n ${lists}` });
