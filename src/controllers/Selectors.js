@@ -2,7 +2,6 @@ const { Category, Collection } = require('../db');
 
 module.exports = {
     getCategories: async () => {
-
         try {
             let women = await Category.findAll({
                 where: {
@@ -21,7 +20,6 @@ module.exports = {
 
     },
     getCollections: async () => {
-
         try {
             let hasData = await Collection.findAll();
             return !hasData.length

@@ -40,8 +40,9 @@ const {
   Products,
   Category,
   Collection,
+  List,
   Favorites,
-  Reviews,
+  Review,
   ProductsCategories,
   PurchaseOrder,
   Client,
@@ -58,17 +59,19 @@ Category.belongsTo(Category);
 
 Collection.hasMany(Products);
 Products.belongsTo(Collection);
-Client.hasOne(Cart);
+Client.hasOne(Cart, /* {foreignKey:'clientId'} */);
 Cart.belongsTo(Client);
-Client.hasMany(PurchaseOrder);
+Client.hasMany(PurchaseOrder,/* {foreignKey:'clientId'} */);
 PurchaseOrder.belongsTo(Client);
 PurchaseOrder.hasOne(Invoice);
 Invoice.belongsTo(PurchaseOrder);
 
-Products.hasMany(Reviews);
-Reviews.belongsTo(Products);
-Client.hasMany(Reviews);
-Reviews.belongsTo(Client);
+Products.hasMany(Review);
+Review.belongsTo(Products);
+Client.hasMany(Review);
+Review.belongsTo(Client);
+
+
 
 module.exports = {
   ...sequelize.models,

@@ -8,6 +8,7 @@ const cart = require('./cart');
 const selectors = require('./selectors');
 const review = require('./review');
 const offers = require('./offers');
+const purchaseOrders = require('./purchaseOrders');
 
 router.use('/populate', populate);
 router.use('/products', products);
@@ -21,5 +22,5 @@ router.use('/offers', offers);
 
 
 router.use('/reviews', review);
-
+router.use('/orders', purchaseOrders);
 module.exports = router;
