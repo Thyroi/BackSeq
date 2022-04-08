@@ -10,8 +10,8 @@ module.exports = {
             port: 587,
             secure: true, // true for 465, false for other ports
             auth: {
-                user: 'thyroi0208@gmail.com', // generated ethereal user
-                pass:  'arenasdeltiempo' // generated ethereal password
+                user: '', // generated ethereal user
+                pass:  '' // generated ethereal password
             },
         });
         let hola = transporter.verify(function (error, success) {
