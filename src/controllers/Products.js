@@ -85,7 +85,7 @@ const getSomeProducts = async (products) => {
                     [Op.contains]: products
                 }
             }
-        );
+        });
         return !tProducts.length
             ? { msg: 'Sin coincidencias en la tabla.' }
             : tProducts;
