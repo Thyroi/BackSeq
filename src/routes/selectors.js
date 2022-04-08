@@ -18,9 +18,9 @@ route.get("/collections", async (req, res) =>{
         return res.json({ "message": error.data })
     }
 });
-route.post("/addCat", async (req, res) => {
+route.post("/addCat", async (req, res) =>{
     const info = req.body;
     let newCat = await addCat(info);
-    return res.status(200).json(newCat);
+    res.json(newCat)
 })
 module.exports = route;
