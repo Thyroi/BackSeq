@@ -180,7 +180,7 @@ const getByCollection = async (id) => {
         });
         const men = await Category.findAll({
             where: {
-                CategoryIdCategory: 1
+                CategoryIdCategory: 2
             },
             include: [{
                 model: Products,
