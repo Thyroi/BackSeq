@@ -1,5 +1,5 @@
 const { Sequelize, Op, where } = require('sequelize');
-const { Products, Category, Collection } = require('../db.js');
+const { Products, Category, Collection, Review } = require('../db.js');
 
 const deleteProduct = async (id) => {
     try {
@@ -17,7 +17,6 @@ const deleteProduct = async (id) => {
     }
 }
 const updateProducts = async ({ updatedProduct, productCategories }) => {
-    console.log("AQUI___________________________\n" + productCategories + updatedProduct)
     try {
         let actualizacion = await Products.update(
             updatedProduct, {
@@ -73,6 +72,23 @@ const getAllProducts = async () => {
         return !hasData.length
             ? { msg: 'Esta vacia la tabla.' }
             : hasData;
+    } catch (error) {
+        console.log(error);
+    }
+}
+const getSomeProducts = async (products) => {
+    try {
+        let tProducts = await Products.findAll({
+            where: {
+                sdelete: false,
+                id_product: {
+                    [Op.contains]: products
+                }
+            }
+        );
+        return !tProducts.length
+            ? { msg: 'Sin coincidencias en la tabla.' }
+            : tProducts;
     } catch (error) {
         console.log(error);
     }
@@ -160,39 +176,39 @@ const getByCategory = async () => {
             }
         }]
     });
-    return {women, men};
+    return { women, men };
 }
 const getByCollection = async (id) => {
-        const women = await Category.findAll({
+    const women = await Category.findAll({
+        where: {
+            CategoryIdCategory: 1
+        },
+        include: [{
+            model: Products,
             where: {
-                CategoryIdCategory: 1
+                sdelete: false,
+                collection: id
             },
-            include: [{
-                model: Products,
-                where: {
-                    sdelete: false,
-                    collection : id
-                },
-                through: {
-                    attributes: []
-                }
-            }]
-        });
-        const men = await Category.findAll({
+            through: {
+                attributes: []
+            }
+        }]
+    });
+    const men = await Category.findAll({
+        where: {
+            CategoryIdCategory: 2
+        },
+        include: [{
+            model: Products,
             where: {
-                CategoryIdCategory: 1
+                sdelete: false,
+                collection: id
             },
-            include: [{
-                model: Products,
-                where: {
-                    sdelete: false,
-                    collection : id
-                },
-                through: {
-                    attributes: []
-                }
-            }]
-        });
+            through: {
+                attributes: []
+            }
+        }]
+    });
     return { women, men }
 }
 const getByOffer = async (param) => {
@@ -301,8 +317,32 @@ const getMen = async (id) => {
     );
     return men;
 }
+const getReviews = async ({ id, rating, limit, orderField, order }) => {
+    limit = limit ? limit : 20
+    id = parseInt(id);
+    rating = parseInt(rating);
+    if (!id) return { msg: 'Provide product id.' }
+    const tProduct = await Products.findByPk(id)
+    const tReviews = await tProduct?.getReviews({
+        limit: limit,
+        order: [
+            (orderField && order) ? [orderField, order] : ['updatedAt', 'DESC']
+        ],
+        where: {
+            stars: {
+                [Op.gte]: rating ? rating : 1
+            }
+        }
+    })
+    return !tProduct
+        ? { msg: 'Product not found.' }
+        : !tReviews.length
+            ? { msg: 'Product has no reviews.' }
+            : tReviews;
+}
 module.exports = {
     getAllProducts,
+    getSomeProducts,
     getProductDetails,
     getByCategory,
     getByCollection,
@@ -314,5 +354,6 @@ module.exports = {
     getByCollection,
     getWomen,
     getMen,
+    getReviews,
     getProductBySuperSearch
 };

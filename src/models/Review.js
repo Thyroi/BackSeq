@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
-    sequelize.define('Reviews', {
+    sequelize.define('Review', {
         review: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -10,6 +10,7 @@ module.exports = (sequelize) => {
         },
         stars: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             validate: {
                 min: 1,
                 max: 5
@@ -18,14 +19,6 @@ module.exports = (sequelize) => {
         description: {
             type: DataTypes.TEXT(),
             allowNull: false,
-        },
-        user: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        product: {
-            type: DataTypes.INTEGER,
-            allowNull: false
         }
     }, { timestamps: true });
 };

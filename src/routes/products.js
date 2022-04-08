@@ -1,5 +1,6 @@
 const route = require("express").Router();
 const { getAllProducts,
+    getSomeProducts,
     getProductDetails,
     createProduct,
     updateProducts,
@@ -7,14 +8,15 @@ const { getAllProducts,
     getByCollection,
     getByOffer,
     getWomen,
-    getProductBySuperSearch, 
-    getMen} = require('../controllers/Products');
+    getReviews,
+    getProductBySuperSearch,
+    getMen } = require('../controllers/Products');
 
 route.get("/bygender", async (req, res) => {
     try {
         const women = await getWomen(1);
         const men = await getMen(2);
-        return res.json({women , men})
+        return res.json({ women, men })
 
     } catch (error) {
         error
@@ -53,7 +55,7 @@ route.get("/byoffer", async (req, res) => {
         if (productsByOffer === null) {
             return res.status(404).json({ message: "There aren't items found." });
         }
-        return res.status(200).json( productsByOffer);
+        return res.status(200).json(productsByOffer);
     } catch (e) {
         return res.status(500).json({ message: e.data })
     }
@@ -79,6 +81,36 @@ route.patch("/delete/:id",
         try {
             const { id } = req.params;
             const response = await deleteProduct(id);
+            return response.msg
+                ? res.status(404).json(response)
+                : res.status(200).json(response);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json('Se rompio todo.');
+        }
+    }
+);
+
+route.get("/getReviews",
+    async (req, res) => {
+        let flags = req.query;
+        try {
+            let response = await getReviews(flags);
+            return response.msg
+                ? res.status(404).json(response)
+                : res.status(200).json(response);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json('Se rompio todo.');
+        }
+    }
+);
+
+route.get("/someProducts",
+    async (req, res) => {
+        try {
+            let { products } = req.body;
+            const response = await getSomeProducts(products);
             return response.msg
                 ? res.status(404).json(response)
                 : res.status(200).json(response);
