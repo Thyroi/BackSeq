@@ -13,7 +13,7 @@ const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-      let token = crypto.createHash('md5').update(Date.now().toString).digest('hex');
+      let token = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
       const createdClient = await Client.findOrCreate({
         where: { phone: phone },
         defaults: {
@@ -28,11 +28,26 @@ const client = {
           token
         }
       });
-      if (createdClient) {
+      if(!createdClient[1] && login_name){
+        console.log(login_name, login_password);
+        let update =await Client.update({
+          login_name:login_name,
+          login_password:login_password,
+          isRegistered:true,
+        }, {where:{phone:phone}}
+        )
+      };
+      if (createdClient && login_password) {
         sendMail(email, token)
+      };
+      let isThereCar=await Cart.findOne({
+        where:{
+           ClientPhone:phone} 
+   });
+      if(login_name &&!isThereCar){ 
+        let newCart = await Cart.create();
+        newCart.setClient(phone);
       }
-      let newCart = await Cart.create();
-      newCart.setClient(phone);
       res.status(200).send(createdClient[1] === true ? "Cliente creado de manera Exitosa!!" : "Ese  cliente ya existe");
 
     }

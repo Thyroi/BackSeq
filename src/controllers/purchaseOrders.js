@@ -4,8 +4,6 @@ const { PurchaseOrder, Client } = require('../db');
     const newOrder=async (info, address, clientPhone )=>{
         console.log(info);
 
-
-
         try{
          let purchaseOrder=await PurchaseOrder.create({
                  orderDetails:info,
@@ -45,38 +43,34 @@ const { PurchaseOrder, Client } = require('../db');
                 include:{
                     model:Client,
                     attributes:['phone'],
-                    //through:{attributes:[]}
-                } 
-             
+                }         
                });
            }catch(e){
          console.log(e);
      };
     }
-
-     const getOrdersByStatus=async (filter)=>{
-        console.log(filter.toLowerCase(), "hola");
-
+     const getOrdersByStatus=async (status)=>{
+    
         try{
             const response = await PurchaseOrder.findAll({
-              /*   where:{orderStatus:filter} ,      */      
-                include: [{
-                    model: Client,
-                    through: {
-                        attributes: ['phone']
-                    }
-                }], 
+               where:{orderStatus:status} ,          
             })    
-      
         return  response;
-
+     }catch(e){
+         console.log(e);
+     }};
+     const getOrdersByClientId=async (client)=>{
+        try{
+            const response = await PurchaseOrder.findAll({
+               where:{ClientPhone:client} ,          
+            })    
+        return  response;
      }catch(e){
          console.log(e);
      }};
 
      
      const getOrderDetails=async (id)=>{
-
         try{
             const response = await PurchaseOrder.findByPk(id);
              
@@ -93,7 +87,8 @@ const { PurchaseOrder, Client } = require('../db');
         updateOrder,
         getAllOrders,
         getOrdersByStatus,
-        getOrderDetails
+        getOrderDetails,
+        getOrdersByClientId
     }
 
 

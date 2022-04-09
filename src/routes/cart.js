@@ -5,7 +5,7 @@ const {createCart, updateCart, getCart, deleteCart}=require ('../controllers/car
 
 const router = Router();
 
-router.patch('/:id', async(req,res)=>{
+router.put('/:id', async(req,res)=>{
     try{
         let{cart_items}=req.body;
         console.log(cart_items,"holaa");

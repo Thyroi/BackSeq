@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails} = require('../controllers/purchaseOrders');
+const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails, getOrdersByClientId} = require('../controllers/purchaseOrders');
 
 const router = Router();
 
@@ -38,10 +38,12 @@ router.patch('/:id', async(req,res)=>{
 
 router.get("/",async (req, res) => {
         try {
-            let { filter } = req.query;
+            let { status } = req.query;
+            let {client}=req.query;
             let response;
-            if (filter) response = await getOrdersByStatus(filter);
-            if (!filter) response = await getAllOrders();
+            if (status) response = await getOrdersByStatus(status);
+            if (client) response = await getOrdersByClientId(client);
+            if (!status&&!client) response = await getAllOrders();
             return response?res.status(200).json(response):res.status(404)
                 
         } catch (error) {
