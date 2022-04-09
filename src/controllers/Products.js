@@ -76,7 +76,7 @@ const getAllProducts = async () => {
         console.log(error);
     }
 }
-const getSomeProducts = async (products) => {
+/* const getSomeProducts = async (products) => {
     try {
         let tProducts = await Products.findAll({
             where: {
@@ -92,7 +92,7 @@ const getSomeProducts = async (products) => {
     } catch (error) {
         console.log(error);
     }
-}
+} */
 const getProductBySuperSearch = async (filters) => {
     try {
         const response = await Products.findAll({
@@ -342,7 +342,7 @@ const getReviews = async ({ id, rating, limit, orderField, order }) => {
 }
 module.exports = {
     getAllProducts,
-    getSomeProducts,
+    //getSomeProducts,
     getProductDetails,
     getByCategory,
     getByCollection,

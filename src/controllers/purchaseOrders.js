@@ -3,7 +3,7 @@ const { PurchaseOrder, Client } = require('../db');
 
     const newOrder=async (info, address, clientPhone )=>{
         console.log(info);
-        console.log(clientPhone);
+
 
 
         try{
@@ -21,14 +21,14 @@ const { PurchaseOrder, Client } = require('../db');
      }};
 
      
-    const updateOrder=async (info, clientPhone)=>{
+    const updateOrder=async (info, id)=>{
         console.log(info);
-        console.log(clientPhone);
+        console.log(id);
 
         try{
             const updatedclient = await PurchaseOrder.update(info,
                 {
-                where: {clientPhone }
+                where: {orderId:id }
               });
         
       
@@ -55,21 +55,32 @@ const { PurchaseOrder, Client } = require('../db');
     }
 
      const getOrdersByStatus=async (filter)=>{
-        console.log(filter);
+        console.log(filter.toLowerCase(), "hola");
 
         try{
             const response = await PurchaseOrder.findAll({
+              /*   where:{orderStatus:filter} ,      */      
                 include: [{
                     model: Client,
                     through: {
                         attributes: ['phone']
                     }
-                }],
-                where:{orderStatus:filter}            
+                }], 
             })    
       
         return  response;
 
+     }catch(e){
+         console.log(e);
+     }};
+
+     
+     const getOrderDetails=async (id)=>{
+
+        try{
+            const response = await PurchaseOrder.findByPk(id);
+             
+       return response
      }catch(e){
          console.log(e);
      }};
@@ -81,7 +92,8 @@ const { PurchaseOrder, Client } = require('../db');
         newOrder,
         updateOrder,
         getAllOrders,
-        getOrdersByStatus
+        getOrdersByStatus,
+        getOrderDetails
     }
 
 

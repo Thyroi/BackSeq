@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const { newOrder,updateOrder, getAllOrders, getOrdersByStatus} = require('../controllers/purchaseOrders');
+const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails} = require('../controllers/purchaseOrders');
 
 const router = Router();
 
@@ -50,6 +50,20 @@ router.get("/",async (req, res) => {
         }
     }
 ); 
+router.get("/:id",async (req, res) => {
+    try {
+        let {id}=req.params;
+         response = await getOrderDetails(id);
+ 
+        return response?res.status(200).json(response):res.status(404)
+            
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json('Error en el servidor.');
+    }
+}
+); 
+
 
 
 

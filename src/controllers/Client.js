@@ -13,7 +13,7 @@ const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-      let token = crypto.createHash('md5').update(login_name).digest('hex');
+      let token = crypto.createHash('md5').update(Date.now().toString).digest('hex');
       const createdClient = await Client.findOrCreate({
         where: { phone: phone },
         defaults: {
