@@ -145,7 +145,7 @@ route.get("/",
             if (filters) response = await getProductBySuperSearch(filters);
             if (!filters) response = await getAllProducts();
             return response.msg
-                ? res.status(404).json(await getAllProducts())
+                ? res.status(200).json(await getAllProducts())
                 : res.status(200).json(response);
         } catch (error) {
             console.log(error);
