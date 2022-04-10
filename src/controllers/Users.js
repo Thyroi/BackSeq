@@ -36,7 +36,7 @@ const user = {
   },
   updateUserRol: async (req, res) => {
     try {
-      const userID = req.query.id_user;
+      const userID = req.body.id_user;
       const updatedRol = await Users.update(req.body, {
         where: { id_user: userID }
       });
@@ -48,7 +48,7 @@ const user = {
   },
   deleteUser: async (req, res) => {
     try {
-      const userID = req.params.id_user;
+      const userID = req.body.id_user;
       const deleteUser = await Users.destroy({
         where: { id_user: userID }
       });

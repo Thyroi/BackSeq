@@ -21,8 +21,8 @@ router.use('/client', client);
 router.use('/cart', cart);
 router.use('/offers', offers);
 router.use('/lists', list);
-
-
 router.use('/reviews', review);
 router.use('/orders', purchaseOrders);
+
+
 module.exports = router;
