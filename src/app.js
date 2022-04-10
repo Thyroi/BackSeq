@@ -20,7 +20,7 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   next();
 });
 
@@ -57,7 +57,7 @@ server.post("/process-payment", (req, res) => {
             return res.status(response.status).json({
                 id: response.body.id,
                 status: response.body.status,
-                status_detail: response.body.status_detail,                
+                status_detail: response.body.status_detail,
             });
         })
         .catch((err) => {
