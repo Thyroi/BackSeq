@@ -253,13 +253,14 @@ const getByOffer = async (param) => {
     }
 }
 const createProduct = async (prop) => {
-    const { product, categories, collection } = prop
-    const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image } = product
+    const { product } = prop
+    const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image, collection, categories } = product
     try {
         const newProduct = await Products.create({
             id_product,
             name,
-            authorized_refund, price,
+            authorized_refund, 
+            price,
             description,
             brand,
             is_offer,
@@ -268,13 +269,13 @@ const createProduct = async (prop) => {
             default_image,
             collection
         });
-        categories.map(async e => {
+        Promise.all (categories.map(async e => {
             const eDB = await Category.findAll({
                 where: { name: e }
             })
             newProduct.addCategory(eDB);
-        });
-        // const collectione = await Collection.findByPk(collections);
+        }))
+        // // const collectione = await Collection.findByPk(collections);
         // collectione.addProducts(newProduct);
         return { "status": 201, "message": "Product has been created correctly.", "data": newProduct };
     } catch (error) {
