@@ -4,7 +4,7 @@
   "description": "Backend for an ecommerce using: PostgreSQL, Squielize, Express y Node.js",
   "main": "index.js",
   "engines": {
-    "node": "4.1.1"
+    "node": ">=6"
   },
   "scripts": {
     "start": "nodemon index.js"
