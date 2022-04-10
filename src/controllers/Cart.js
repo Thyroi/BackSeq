@@ -32,9 +32,23 @@ const { Cart, } = require('../db');
             console.log(e);
     }
 
+};
+
+const deleteCart= async (id)=>{
+    console.log(id);
+   try{
+       console.log(info);
+       const deletedCart= await Cart.destroy(
+            {where:{ClientPhone:id}});
+      
+   }catch(e){
+       console.log(e);
+}
+
 }
 
 module.exports ={
     updateCart,
-    getCart
+    getCart,
+    deleteCart
 }
