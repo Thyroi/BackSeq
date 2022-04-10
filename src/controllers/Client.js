@@ -4,10 +4,7 @@ const { Sequelize, Op } = require('sequelize');
 const { Client, Cart, Review } = require('../db.js');
 const sendMail = require('./Mailer.js');
 
-// const hash=(string)=>{
-//   let characters= string.slice(0,-4).split("");
-//   return characters.reduce((h,c)=>(h=c.charCodeAt(0)+(h<<6)+(h<<16)-h), 0);
-// }
+
 
 const client = {
   addClient: async (req, res) => {
@@ -28,6 +25,7 @@ const client = {
           token
         }
       });
+      
       if(!createdClient[1] && login_name){
         console.log(login_name, login_password);
         let update =await Client.update({
@@ -37,7 +35,7 @@ const client = {
         }, {where:{phone:phone}}
         )
       };
-      if (createdClient && login_password) {
+      if (createdClient[1] && login_password) {
         sendMail(email, token)
       };
       let isThereCar=await Cart.findOne({
