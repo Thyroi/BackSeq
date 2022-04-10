@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Backend for an ecommerce using: PostgreSQL, Squielize, Express y Node.js",
   "main": "index.js",
+  "engines": {
+    "node": "12.11.1"
+  },
   "scripts": {
     "start": "nodemon index.js"
   },
