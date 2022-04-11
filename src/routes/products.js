@@ -10,6 +10,7 @@ const { getAllProducts,
     getWomen,
     getReviews,
     getProductBySuperSearch,
+    getByMoreRecent,
     getMen } = require('../controllers/Products');
 
 route.get("/bygender", async (req, res) => {
@@ -106,11 +107,11 @@ route.get("/getReviews",
     }
 );
 
-route.get("/someProducts",
+route.get("/getByMoreRecent",
     async (req, res) => {
         try {
-            let { products } = req.body;
-            const response = await getSomeProducts(products);
+            let { order } = req.query;
+            const response = await getByMoreRecent(order);
             return response.msg
                 ? res.status(404).json(response)
                 : res.status(200).json(response);

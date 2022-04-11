@@ -77,23 +77,24 @@ const getAllProducts = async () => {
         console.log(error);
     }
 }
-/* const getSomeProducts = async (products) => {
+const getByMoreRecent = async (order) => {
+    order = order?order:'DESC'
     try {
-        let tProducts = await Products.findAll({
+        const tProducts = await Products.findAll({
+            order: [
+                ['updatedAt', order]
+            ],
             where: {
-                sdelete: false,
-                id_product: {
-                    [Op.contains]: products
-                }
+                sdelete: false
             }
         });
-        return !tProducts.length
-            ? { msg: 'Sin coincidencias en la tabla.' }
-            : tProducts;
+        return !tProducts
+            ? { msg: 'Products not found.' }
+            : tProducts
     } catch (error) {
         console.log(error);
     }
-} */
+}
 const getProductBySuperSearch = async (filters) => {
     try {
         let response = await Products.findAll({
@@ -131,12 +132,12 @@ const getProductBySuperSearch = async (filters) => {
         });
 
         let responseII = response.filter(product => {
-            let colores = product.variants.map(variant => {return variant.ColorName});
+            let colores = product.variants.map(variant => { return variant.ColorName });
             return filters.filter(term => colores.join(' ').toLowerCase().includes(term.toLowerCase())).length > 0
         })
         return !response.length
             ? { msg: 'Product not found.' }
-            : responseII.length?responseII:response;
+            : responseII.length ? responseII : response;
     } catch (error) {
         console.log(error);
     }
@@ -352,5 +353,6 @@ module.exports = {
     getWomen,
     getMen,
     getReviews,
-    getProductBySuperSearch
+    getProductBySuperSearch,
+    getByMoreRecent
 };
