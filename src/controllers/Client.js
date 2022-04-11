@@ -4,8 +4,6 @@ const { Sequelize, Op } = require('sequelize');
 const { Client, Cart, Review } = require('../db.js');
 const sendMail = require('./Mailer.js');
 
-
-
 const client = {
   addClient: async (req, res) => {
     try {

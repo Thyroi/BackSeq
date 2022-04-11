@@ -17,6 +17,7 @@ const deleteProduct = async (id) => {
     }
 }
 const updateProducts = async ({ updatedProduct, productCategories }) => {
+    updatedProduct.variants[0].ProductImages = updatedProduct.variants[0].ProductImages ? updatedProduct.variants[0].ProductImages : ["https://i.ibb.co/hdm6TSq/no-image.png"];
     try {
         let actualizacion = await Products.update(
             updatedProduct, {
@@ -95,7 +96,7 @@ const getAllProducts = async () => {
 } */
 const getProductBySuperSearch = async (filters) => {
     try {
-        const response = await Products.findAll({
+        let response = await Products.findAll({
             include: [{
                 model: Category,
                 required: false,
@@ -118,18 +119,6 @@ const getProductBySuperSearch = async (filters) => {
                         }
                     }
                 },
-                // {
-                //     // variants: {
-                //     //     [Op.contains]: [{ColorName: 'PATITO'}]
-                //     // }
-                //     // variants: {
-                //     //     [Op.contains]: [{
-                //     //         ColorName: {
-                //     //             [Op.any]: filters.map(co => `%${co}%`)
-                //     //         }
-                //     //     }]
-                //     // }
-                // },
                 {
                     '$Categories.name$': {
                         [Op.iLike]: {
@@ -140,9 +129,14 @@ const getProductBySuperSearch = async (filters) => {
                 ]
             }
         });
+
+        let responseII = response.filter(product => {
+            let colores = product.variants.map(variant => {return variant.ColorName});
+            return filters.filter(term => colores.join(' ').toLowerCase().includes(term.toLowerCase())).length > 0
+        })
         return !response.length
             ? { msg: 'Product not found.' }
-            : response;
+            : responseII.length?responseII:response;
     } catch (error) {
         console.log(error);
     }
@@ -254,12 +248,14 @@ const getByOffer = async (param) => {
 }
 const createProduct = async (prop) => {
     const { product } = prop
-    const { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image, collection, categories } = product
+    let { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image, collection, categories } = product
+    variants[0].ProductImages = variants[0].ProductImages ? variants[0].ProductImages : ["https://i.ibb.co/hdm6TSq/no-image.png"];
+    default_image = default_image ? default_image : "https://i.ibb.co/hdm6TSq/no-image.png";
     try {
         const newProduct = await Products.create({
             id_product,
             name,
-            authorized_refund, 
+            authorized_refund,
             price,
             description,
             brand,
@@ -269,7 +265,7 @@ const createProduct = async (prop) => {
             default_image,
             collection
         });
-        Promise.all (categories.map(async e => {
+        Promise.all(categories.map(async e => {
             const eDB = await Category.findAll({
                 where: { name: e }
             })
