@@ -130,9 +130,14 @@ const getProductBySuperSearch = async (filters) => {
             }
         });
 
+        let responseII = response.filter(product => {
+            let colores = product.variants.map(variant => {return variant.ColorName});
+            return filters.filter(term => colores.join(' ').toLowerCase().includes(term.toLowerCase())).length > 0
+        })
+
         return !response.length
             ? { msg: 'Product not found.' }
-            : response;
+            : responseII.length?responseII:response;
     } catch (error) {
         console.log(error);
     }
