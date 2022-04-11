@@ -86,8 +86,7 @@ const client = {
     } catch(error){
       console.log(error);
     }
-  },
-        
+  },    
   getClientbyID: async (req, res) => {
     try {
       const id = req.params.id;
