@@ -1,4 +1,4 @@
-const { getCategories, getCollections, addCat } = require("../controllers/selectors");
+const { getCategories, getCollections, addCat } = require("../controllers/Selectors.js");
 
 const route = require("express").Router();
 

@@ -6,7 +6,7 @@ const getList = async (filters) => {
     let { product, user } = filters
     user = user ? parseInt(user) : null;
     try {
-        const tLists = await List.findAll(
+        let tLists = await List.findAll(
             {
                 where: {
                     [Op.or]: [
@@ -17,10 +17,18 @@ const getList = async (filters) => {
                             Colaborators: { [Op.contains]: `${user}` }
                         }]
                 }
-                // get only 1 photo, dscription, price
             });
-
-        return tLists;
+        //Para la preview de la lista
+        let products = tLists.map(async (list) => {
+            list.List = await Products.findAll({
+                    attributes: ['id_product', 'sdelete', 'name', 'price', 'description', 'is_offer', 'default_image'],
+                    where: {
+                        id_product: { [Op.in]: list.List }
+                    }
+                })
+                return list
+        });
+        return await Promise.all(products);
     } catch (error) {
         console.log(error);
         return error.data
