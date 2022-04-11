@@ -134,7 +134,6 @@ const getProductBySuperSearch = async (filters) => {
             let colores = product.variants.map(variant => {return variant.ColorName});
             return filters.filter(term => colores.join(' ').toLowerCase().includes(term.toLowerCase())).length > 0
         })
-
         return !response.length
             ? { msg: 'Product not found.' }
             : responseII.length?responseII:response;
