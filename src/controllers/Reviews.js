@@ -10,7 +10,7 @@ const getReviews = async (filters) => {
         const tReviews = await Review.findAll(
             {
                 where: {
-                    ClientPhone: user ? user : { [Op.ne]: null } ,
+                    ClientPhone: user ? user : { [Op.ne]: null },
                     ProductIdProduct: product ? product : { [Op.ne]: null },
                     stars: {
                         [Op.gte]: rating
@@ -33,6 +33,7 @@ const getReviews = async (filters) => {
 
 const createReview = async (review) => {
     const { stars, description, user, product } = review
+    if(stars<1 || stars>5) return { msg: '1-5 valid range.', updated: false };
     const tReview = {
         stars: stars,
         description: description,
@@ -59,19 +60,26 @@ const createReview = async (review) => {
 const updateReview = async (review) => {
     const { stars, description, user, product } = review
     try {
-        const review = await Review.update({
-            stars: stars,
-            description: description
-        }, {
+        if(stars<1 || stars>5) return { msg: '1-5 valid range.', updated: false };
+        const tProduct = await Products.findByPk(parseInt(product));
+        if (!tProduct) return { msg: 'Product not found.', updated: false };
+        const tClient = await Client.findByPk(parseInt(user));
+        if (!tClient) return { msg: 'Client not found.', updated: false };
+        const tReview = await Review.findOne({
             where: {
                 ClientPhone: user,
                 ProductIdProduct: product
             }
         });
-        return review;
+        if (!tReview) return { msg: 'Review not found.', updated: false };
+        
+        const updProduct = await tProduct.update({ reviews_score: (tProduct.reviews_score - tReview.stars) + stars })
+        const updReview = await tReview.update({ stars: stars, description: description });
+
+        return { updated: true, updProduct, updReview }
     } catch (error) {
-        console.log(error);
-        return error.data
+        console.log("ERROR____________\n" + error);
+        return { updated: false, msg: error.data }
     }
 }
 

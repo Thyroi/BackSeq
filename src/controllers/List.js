@@ -3,18 +3,18 @@ const { Sequelize, Op } = require('sequelize');
 const { Client, Products, List } = require('../db.js');
 
 const getList = async (filters) => {
-    let { product, user } = filters
-    user = user ? parseInt(user) : null;
+    let { rList, ClientPhone } = filters
+    ClientPhone = ClientPhone ? parseInt(ClientPhone) : null;
     try {
         let tLists = await List.findAll(
             {
                 where: {
                     [Op.or]: [
                         {
-                            ClientPhone: user ? user : { [Op.ne]: null },
+                            ClientPhone: ClientPhone ? ClientPhone : { [Op.ne]: null },
                         },
                         {
-                            Colaborators: { [Op.contains]: `${user}` }
+                            Colaborators: { [Op.contains]: `${ClientPhone}` }
                         }]
                 }
             });
@@ -36,16 +36,16 @@ const getList = async (filters) => {
 }
 
 const createList = async (list) => {
-    const { user, products, colaborators, title } = list
+    const { ClientPhone, rList, Colaborators, title } = list
     const nList = {
-        ClientPhone: parseInt(user),
-        List: products,
-        Colaborators: colaborators,
+        ClientPhone: parseInt(ClientPhone),
+        List: rList,
+        Colaborators: Colaborators,
         title: title
     }
     try {
-        if (!user) return { msg: 'Provide clientId.' };
-        const tClient = await Client.findByPk(parseInt(user));
+        if (!ClientPhone) return { msg: 'Provide clientId.' };
+        const tClient = await Client.findByPk(parseInt(ClientPhone));
         console.log(tClient);
         const tList = await tClient?.createList(nList);
         return !tClient
@@ -58,12 +58,12 @@ const createList = async (list) => {
 }
 
 const updateList = async (list) => {
-    let { id, products, colaborators, title } = list
+    let { id, rList, Colaborators, title } = list
     id = id ? parseInt(id) : null;
     try {
         const nList = await List.update({
-            List: products,
-            Colaborators: colaborators,
+            List: rList,
+            Colaborators: Colaborators,
             title: title
         }, {
             where: {
