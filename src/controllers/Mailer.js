@@ -16,7 +16,7 @@ async function main(email, token) {
       subject: "Soy Juan", // Subject line
       text: "Hello world?", // plain text body
       html: `<a href="http://localhost:3001/client/verify/?token=${token}">Verificar</a>`
-      //html:`<a href="http://localhost:3001/orders/${token}">Verificar tu orden</a>`
+      
     });
     return options.messageId;
   } catch(error) {
