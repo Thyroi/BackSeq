@@ -59,15 +59,24 @@ const createReview = async (review) => {
 const updateReview = async (review) => {
     const { stars, description, user, product } = review
     try {
-        const review = await Review.update({
-            stars: stars,
-            description: description
-        }, {
+        const tProduct = await Products.findByPk(parseInt(product));
+        const review = await Review.findOne({
             where: {
                 ClientPhone: user,
                 ProductIdProduct: product
             }
         });
+        // update product
+        tProduct.reviews -= 1;
+        tProduct.reviews_score = tProduct.reviews_score - review.stars;
+        //update review
+        review.stars = stars;
+        review.description = description;
+        // update product
+        tProduct.reviews += 1;
+        tProduct.reviews_score += stars;
+        tProduct.save();
+        review.save();
         return review;
     } catch (error) {
         console.log(error);
