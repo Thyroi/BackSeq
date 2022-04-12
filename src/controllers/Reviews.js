@@ -66,14 +66,9 @@ const updateReview = async (review) => {
                 ProductIdProduct: product
             }
         });
-        // update product
-        tProduct.reviews -= 1;
         tProduct.reviews_score = tProduct.reviews_score - review.stars;
-        //update review
         review.stars = stars;
         review.description = description;
-        // update product
-        tProduct.reviews += 1;
         tProduct.reviews_score += stars;
         tProduct.save();
         review.save();
