@@ -54,6 +54,24 @@ module.exports = (sequelize) => {
         collection: {
             type: DataTypes.INTEGER(),
             allowNull: false
+        },
+        reviews: {
+            type: DataTypes.INTEGER(),
+            defaultValue: 0,
+            allowNull: true,
+        },
+        reviews_score: {
+            type: DataTypes.FLOAT(),
+            defaultValue: 0,
+            allowNull: true
+        },
+        rating: {
+            type: DataTypes.VIRTUAL(),
+            get() {
+                const score = this.getDataValue('reviews_score');
+                const total = this.getDataValue('reviews');
+                return score? score/total: 0;
+            }
         }
     }, {timestamps: true});
 }

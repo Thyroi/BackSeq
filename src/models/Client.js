@@ -54,6 +54,10 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING(32),
       allowNull: false,
       defaultValue: "algo"
+    },
+    newsletter: {
+      type: DataTypes.BOOLEAN(),
+      defaultValue: false
     }
   }, { timestamps: false });
 };

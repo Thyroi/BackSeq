@@ -92,6 +92,7 @@ Invoice.belongsTo(PurchaseOrder);
 
 Products.hasMany(Review);
 Review.belongsTo(Products);
+
 Client.hasMany(Review);
 Review.belongsTo(Client);
 

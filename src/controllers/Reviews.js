@@ -42,13 +42,16 @@ const createReview = async (review) => {
         if (!user) return { msg: 'Provide userId.' }
         const tProduct = await Products.findByPk(parseInt(product));
         const CreatedReview = await tProduct?.createReview(tReview);
+        tProduct.reviews += 1;
+        tProduct.reviews_score += stars;
+        tProduct.save()
         return !tProduct
             ? { msg: 'Product not found.' }
             : !CreatedReview
                 ? { msg: 'Product ok. Check other fields. ' }
                 : CreatedReview;
     } catch (error) {
-        console.log('SUIZO VGRA' + error);
+        console.log('SUIZO VRGA' + error);
         return error.data
     }
 }
