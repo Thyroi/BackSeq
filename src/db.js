@@ -71,7 +71,8 @@ const {
   PurchaseOrder,
   Client,
   Users,
-  Invoice
+  Invoice,
+  PaymentResponse
 } = sequelize.models;
 
 
@@ -97,6 +98,11 @@ Review.belongsTo(Client);
 
 Client.hasMany(List);
 List.belongsTo(Client);
+
+PurchaseOrder.hasOne(PaymentResponse);
+PaymentResponse.belongsTo(PurchaseOrder);
+
+
 
 module.exports = {
   ...sequelize.models,
