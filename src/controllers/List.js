@@ -19,16 +19,34 @@ const getList = async (filters) => {
                 }
             });
         //Para la preview de la lista
-        let products = tLists.map(async (list) => {
+        let response = tLists.map(async (list) => {
             list.List = await Products.findAll({
-                    attributes: ['id_product', 'sdelete', 'name', 'price', 'description', 'is_offer', 'default_image'],
+                attributes: ['id_product', 'sdelete', 'name', 'price', 'description', 'is_offer', 'default_image'],
+                where: {
+                    id_product: { [Op.in]: list.List }
+                }
+            });
+            //tofix when isverified este implementado, change isRegistered > isVerified
+            if (list.Colaborators.length) {
+                const idColaborators = list.Colaborators.map(e => e.phone);
+                let dataColaborators = await Client.findAll({
+                    attributes: ['phone', 'login_name', 'email', 'name', 'lastname', 'isVerified'],
                     where: {
-                        id_product: { [Op.in]: list.List }
+                        isRegistered: true,
+                        phone: { [Op.in]: idColaborators}
                     }
-                })
-                return list
+                }).then(data => {
+                    list.Colaborators = list.Colaborators.map(e => {
+                        console.log(e.phone);
+                        console.log(data[0].phone);
+
+                        return { ...e, ...data.find(c => c.phone === e.phone) }
+                    })
+                });
+            }
+            return list
         });
-        return await Promise.all(products);
+        return await Promise.all(response);
     } catch (error) {
         console.log(error);
         return error.data
