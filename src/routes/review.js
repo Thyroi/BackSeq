@@ -23,23 +23,23 @@ route.post("/create", async (req, res) => {
     const review = req.body;
     try {
         let response = await updateReview(review);
-        if (!response[0]) response = await createReview(review);
+        if (!response.updated) response = await createReview(review);
         return response.msg
             ? res.status(404).json(response)
             : res.status(200).json(response);
     } catch (error) {
         console.log(error);
-        return res.status(500).json('rompiste todo.');
+        return res.status(500).json(`rompiste todo.\n${error}`);
     }
 });
 
 route.patch("/update", async (req, res) => {
     const review = req.body;
     try {
-        let created = await updateReview(review);
-        return !created[0]
-            ? res.status(404).json({ message: "this product for this user not exist." })
-            : res.status(200).json({ message: `updated reviews ${created[0]}.`});
+        let updated = await updateReview(review);
+        return updated.msg
+            ? res.status(404).json(updated)
+            : res.status(200).json(updated);
     } catch (error) {
         console.log(error);
         return res.status(500).json('rompiste todo.');
