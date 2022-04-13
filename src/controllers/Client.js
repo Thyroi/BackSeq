@@ -24,7 +24,7 @@ const client = {
           token
         }
       });
-      
+
       if(!createdClient[1] && login_name){
         console.log(login_name, login_password);
         let update =await Client.update({
@@ -39,9 +39,9 @@ const client = {
       };
       let isThereCar=await Cart.findOne({
         where:{
-           ClientPhone:phone} 
+           ClientPhone:phone}
    });
-      if(login_name &&!isThereCar){ 
+      if(login_name &&!isThereCar){
         let newCart = await Cart.create();
         newCart.setClient(phone);
       }
@@ -88,7 +88,7 @@ const client = {
       console.log(error);
     }
   },
-        
+
   getClientbyID: async (req, res) => {
     try {
       const id = req.params.id;
@@ -142,6 +142,19 @@ const client = {
       console.log("Cliente eliminado con Exito!!");
       res.status(200).send("Cliente eleiminado con Exito!!");
     } catch (error) {
+      console.log(error);
+    }
+  },
+  getClientbylogname_logpass: async (req, res) => {
+    try {
+      const {login_name, login_password} = req.body;
+      const getClientbynick_pass = await Client.findOne({
+        where: { login_name: login_name,
+                 login_password: login_password }
+      });
+      res.status(200).json(getClientbynick_pass);
+    }
+    catch (error) {
       console.log(error);
     }
   }
