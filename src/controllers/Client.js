@@ -142,6 +142,26 @@ const client = {
     } catch (error) {
       console.log(error);
     }
+  },
+  getClientBynick_pass: async (req, res) => {
+    try {
+      const login_name = req.body.login_name;
+      const login_password = req.body.login_password;
+      if((login_name === req.body.login_name && login_name !== 'Anonymous') && (login_password === req.body.login_password && login_password !== '')) {
+      const encontrado = await Client.findOne({
+        where: {
+          login_name: login_name,
+          login_password: login_password
+        }
+      });
+        res.status(200).json(encontrado);
+      } else {
+        res.send("Cliente no encontrado");
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 }
 
