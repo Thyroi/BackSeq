@@ -104,6 +104,21 @@ const client = {
       console.log(error);
     }
   },
+  getClientbyEmail: async (req, res) => {
+    try {
+      const {email} = req.query;
+      if(!email) return { msg: 'provide e-mail.'};
+      const tClient = await Client.findOne({
+        where: { email: email }
+      });
+      return tClient
+        ? res.status(200).json({msg: `Client found`, client: tClient})
+        : res.status(404).json({msg: `Client not found`});
+    }
+    catch (error) {
+      console.log("ERROR_en_getClientbyEmail__________\n"+error);
+    }
+  },
   getAllClients: async (req, res) => {
     try {
       const getclients = await Client.findAll();

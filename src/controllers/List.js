@@ -11,7 +11,7 @@ const getList = async (filters) => {
                 where: {
                     [Op.or]: [
                         {
-                            ClientPhone: ClientPhone ? ClientPhone : { [Op.ne]: null },
+                            id: ClientPhone ? ClientPhone : { [Op.ne]: null },
                         },
                         {
                             Colaborators: { [Op.contains]: `${ClientPhone}` }
