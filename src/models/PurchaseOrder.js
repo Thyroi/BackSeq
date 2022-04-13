@@ -19,6 +19,11 @@ module.exports = (sequelize) => {
       type:DataTypes.JSON(),
       allowNull:false,
   },
+  total:{
+    type:DataTypes.FLOAT(),
+    allowNull:false
+
+  },
   address:{
     type:DataTypes.JSON(),
     allowNull:true,
