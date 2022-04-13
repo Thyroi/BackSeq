@@ -145,9 +145,9 @@ const client = {
   },
   getClientBynick_pass: async (req, res) => {
     try {
-      const login_name = req.body.login_name;
-      const login_password = req.body.login_password;
-      if((login_name === req.body.login_name && login_name !== 'Anonymous') && (login_password === req.body.login_password && login_password !== '')) {
+      const login_name = req.query.login_name;
+      const login_password = req.query.login_password;
+      if((login_name === req.query.login_name && login_name !== 'Anonymous') && (login_password === req.query.login_password && login_password !== '')) {
       const encontrado = await Client.findOne({
         where: {
           login_name: login_name,
