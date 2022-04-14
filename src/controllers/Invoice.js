@@ -13,9 +13,9 @@ const invoice = {
   },
   getInvoicebyID: async (req, res) => {
     try {
-      const id = req.params.invoiceID;
+      const {invoiceID} = req.params;
       const getinvoiceID = await Invoice.findOne({
-        where: {invoiceID: id}
+        where: {invoiceID: invoiceID}
       });
       res.status(200).json(getinvoiceID);
     } catch (error) {
