@@ -11,24 +11,44 @@ const getList = async (filters) => {
                 where: {
                     [Op.or]: [
                         {
-                            ClientPhone: ClientPhone ? ClientPhone : { [Op.ne]: null },
+                            id: ClientPhone ? ClientPhone : { [Op.ne]: null },
                         },
                         {
                             Colaborators: { [Op.contains]: `${ClientPhone}` }
                         }]
                 }
             });
-        //Para la preview de la lista
-        let products = tLists.map(async (list) => {
+        // Para evitar mas llamados al back
+        let response = tLists.map(async (list) => {
+            //Para la preview de los products
             list.List = await Products.findAll({
-                    attributes: ['id_product', 'sdelete', 'name', 'price', 'description', 'is_offer', 'default_image'],
+                attributes: ['id_product', 'sdelete', 'name', 'price', 'description', 'is_offer', 'default_image'],
+                where: {
+                    id_product: { [Op.in]: list.List }
+                }
+            });
+            //Para el preview de los colaboradores y access manage
+            //tofix when isverified este implementado, change isRegistered > isVerified
+            if (list.Colaborators.length) {
+                const idColaborators = list.Colaborators.map(e => e.phone);
+                await Client.findAll({
+                    attributes: ['phone', 'login_name', 'email', 'name', 'lastname', 'isVerified'],
                     where: {
-                        id_product: { [Op.in]: list.List }
+                        isRegistered: true,
+                        phone: { [Op.in]: idColaborators }
                     }
-                })
-                return list
+                }).then(data => {
+                    list.Colaborators = list.Colaborators.map(e => {
+                        return {
+                            ...e,
+                            ...{ ...data.find(c => parseInt(c.phone) === parseInt(e.phone)) }.dataValues
+                        }
+                    })
+                });
+            }
+            return list
         });
-        return await Promise.all(products);
+        return await Promise.all(response);
     } catch (error) {
         console.log(error);
         return error.data

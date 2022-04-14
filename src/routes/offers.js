@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { mailer } = require("../controllers/Mailer");
+const mailer = require("../controllers/Mailer");
 const { getItems, genOffer } = require('../controllers/Offers');
 
 route.get("/hora", async (req, res) => {
