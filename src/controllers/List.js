@@ -18,14 +18,16 @@ const getList = async (filters) => {
                         }]
                 }
             });
-        //Para la preview de la lista
+        // Para evitar mas llamados al back
         let response = tLists.map(async (list) => {
+            //Para la preview de los products
             list.List = await Products.findAll({
                 attributes: ['id_product', 'sdelete', 'name', 'price', 'description', 'is_offer', 'default_image'],
                 where: {
                     id_product: { [Op.in]: list.List }
                 }
             });
+            //Para el preview de los colaboradores y access manage
             //tofix when isverified este implementado, change isRegistered > isVerified
             if (list.Colaborators.length) {
                 const idColaborators = list.Colaborators.map(e => e.phone);
