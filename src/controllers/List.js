@@ -19,6 +19,7 @@ const getList = async (filters) => {
                 }
             });
         // Para evitar mas llamados al back
+        console.log("---->>> "+tLists.length);
         let response = tLists.map(async (list) => {
             //Para la preview de los products
             list.List = await Products.findAll({
@@ -27,8 +28,8 @@ const getList = async (filters) => {
                     id_product: { [Op.in]: list.List }
                 }
             });
-            //Para el preview de los colaboradores y access manage
-            //tofix when isverified este implementado, change isRegistered > isVerified
+            // Para el preview de los colaboradores y access manage
+            // tofix when isverified este implementado, change isRegistered > isVerified
             if (list.Colaborators.length) {
                 const idColaborators = list.Colaborators.map(e => e.phone);
                 await Client.findAll({
