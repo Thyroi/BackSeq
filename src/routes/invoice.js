@@ -1,5 +1,5 @@
 const route = require("express").Router();
-cosnt { getAllInvoices } = require('../controllers/Invoice');
+const { getAllInvoices } = require('../controllers/Invoice');
 
 route.get("/",getAllInvoices);
 

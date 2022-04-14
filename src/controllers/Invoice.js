@@ -13,4 +13,4 @@ const invoice = {
   }
 }
 
-model.exports = invoice;
+module.exports = invoice;
