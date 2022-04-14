@@ -29,18 +29,18 @@ const getList = async (filters) => {
             //tofix when isverified este implementado, change isRegistered > isVerified
             if (list.Colaborators.length) {
                 const idColaborators = list.Colaborators.map(e => e.phone);
-                let dataColaborators = await Client.findAll({
+                await Client.findAll({
                     attributes: ['phone', 'login_name', 'email', 'name', 'lastname', 'isVerified'],
                     where: {
                         isRegistered: true,
-                        phone: { [Op.in]: idColaborators}
+                        phone: { [Op.in]: idColaborators }
                     }
                 }).then(data => {
                     list.Colaborators = list.Colaborators.map(e => {
-                        console.log(e.phone);
-                        console.log(data[0].phone);
-
-                        return { ...e, ...data.find(c => c.phone === e.phone) }
+                        return {
+                            ...e,
+                            ...{ ...data.find(c => parseInt(c.phone) === parseInt(e.phone)) }.dataValues
+                        }
                     })
                 });
             }
