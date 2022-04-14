@@ -10,6 +10,17 @@ const invoice = {
     } catch (error) {
       console.log(error);
     }
+  },
+  getInvoicebyID: async (req, res) => {
+    try {
+      const id = req.params.invoiceID;
+      const getinvoiceID = await Invoice.findOne({
+        where: {invoiceID: id}
+      });
+      res.status(200).json(getinvoiceID);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

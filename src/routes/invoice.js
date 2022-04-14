@@ -1,6 +1,7 @@
 const route = require("express").Router();
-const { getAllInvoices } = require('../controllers/Invoice');
+const { getAllInvoices, getInvoicebyID } = require('../controllers/Invoice');
 
 route.get("/",getAllInvoices);
+route.get("/:id",getInvoicebyID);
 
 module.exports = route;
