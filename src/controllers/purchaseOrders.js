@@ -1,17 +1,26 @@
 const { Sequelize, Op } = require('sequelize');
 const { PurchaseOrder, Client } = require('../db');
+const { getClientbyID } = require('./Client');
+const sendMail = require('./Mailer.js');
 
-    const newOrder=async (info, address, clientPhone )=>{
-        console.log(info);
-
+    const newOrder=async (info, address, clientPhone, total, orderStatus)=>{
+    
         try{
          let purchaseOrder=await PurchaseOrder.create({
                  orderDetails:info,
-                 address   
+                 total,
+                 address,
+                 orderStatus
+
          });
          let  resp= await Client.findByPk(clientPhone);
-         console.log(resp);
         purchaseOrder.setClient(resp);
+    
+        let email=resp.dataValues.email;
+        let orderId=purchaseOrder.dataValues.orderId;
+      
+       //sendMail(email,orderId);
+
         return  purchaseOrder;
 
      }catch(e){
@@ -42,7 +51,7 @@ const { PurchaseOrder, Client } = require('../db');
             return await PurchaseOrder.findAll({
                 include:{
                     model:Client,
-                    attributes:['phone'],
+                    attributes:['name','lastname'],
                 }         
                });
            }catch(e){
@@ -53,7 +62,11 @@ const { PurchaseOrder, Client } = require('../db');
     
         try{
             const response = await PurchaseOrder.findAll({
-               where:{orderStatus:status} ,          
+               where:{orderStatus:status} , 
+               include:{
+                model:Client,
+                attributes:['name', 'lastname'],
+            }                           
             })    
         return  response;
      }catch(e){
@@ -62,7 +75,11 @@ const { PurchaseOrder, Client } = require('../db');
      const getOrdersByClientId=async (client)=>{
         try{
             const response = await PurchaseOrder.findAll({
-               where:{ClientPhone:client} ,          
+               where:{ClientPhone:client} , 
+               include:{
+                model:Client,
+                attributes:['name', 'lastname'],
+            }                  
             })    
         return  response;
      }catch(e){
@@ -72,7 +89,11 @@ const { PurchaseOrder, Client } = require('../db');
      
      const getOrderDetails=async (id)=>{
         try{
-            const response = await PurchaseOrder.findByPk(id);
+            const response = await PurchaseOrder.findByPk(id,  
+                {include:{
+                model:Client,
+                attributes:['phone', 'name', 'lastname'],
+                 } });
              
        return response
      }catch(e){

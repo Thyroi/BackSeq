@@ -6,9 +6,8 @@ const router = Router();
 
 router.post('/', async(req,res)=>{
     try{
-        let{orderDetails, address, clientPhone}=req.body;
-        //console.log(orderDetails, address, clientPhone);
-        let response=await newOrder(orderDetails, address,clientPhone);
+        let{orderDetails, address, clientPhone, total, orderStatus}=req.body;
+        let response=await newOrder(orderDetails, address,clientPhone, total, orderStatus);
        return response?res.status(200).json(response):res.status(404);
 
 
@@ -65,9 +64,6 @@ router.get("/:id",async (req, res) => {
     }
 }
 ); 
-
-
-
 
 module.exports = router;
 

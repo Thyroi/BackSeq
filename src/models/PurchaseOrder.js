@@ -1,6 +1,4 @@
 const { DataTypes } = require('sequelize');
-
-
 module.exports = (sequelize) => {
   sequelize.define('PurchaseOrder', {
      orderId:{
@@ -9,12 +7,7 @@ module.exports = (sequelize) => {
          unique:true,
          allowNull:false,
          primaryKey:true,
-
-     },
-   /*   date:{
-         type:DataTypes.DATE(),
-         allowNULL:false,
-     }, */
+     },     
     orderStatus:{
         type: DataTypes.ENUM(),
         values: ['Canceled', 'Submited', 'Completed', 'Processing'],
@@ -26,12 +19,17 @@ module.exports = (sequelize) => {
       type:DataTypes.JSON(),
       allowNull:false,
   },
+  total:{
+    type:DataTypes.FLOAT(),
+    allowNull:false
+
+  },
   address:{
     type:DataTypes.JSON(),
     allowNull:true,
   }
-
-  },{timestamps: true,
+  },
+   {timestamps: true,
     updatedAt:false,
     ceratedAt: 'date',
 } );
