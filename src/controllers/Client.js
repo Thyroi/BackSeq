@@ -110,7 +110,10 @@ const client = {
       const {email} = req.query;
       if(!email) return { msg: 'provide e-mail.'};
       const tClient = await Client.findOne({
-        where: { email: email }
+        where: { 
+          isRegistered: true,
+          email: email
+        }
       });
       return tClient
         ? res.status(200).json({msg: `Client found`, client: tClient})
