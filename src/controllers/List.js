@@ -122,7 +122,6 @@ const sendOffers = async () => {
     }
 }
 
-
 module.exports = {
     createList,
     updateList,
