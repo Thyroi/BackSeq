@@ -1,153 +1,172 @@
 [{
-    "phone":91635188230,
+    "phone":541100000001,
     "email":"LawrenceVFeldman@gustr.com",
     "login_name":"",
     "login_password":"66554433",
     "name":"Lawrence",
     "lastname":"Feldman",
     "address": {
-        "calle":"Burning Memory Lane",
-        "numero":"2570",
+        "streetNumber":"Burning Memory Lane",
         "city":"Philadelphia",
-        "zip_code":"19124"
+        "zipCode":"19124",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":false
-   
+    "isRegistered":false,
+    "isVerified": false
 },
 {
-    "phone":2034052487,
+    "phone":541100000002,
     "email":"PeterMTurner@superrito.com",
     "login_name":"PeterMTurner",
     "login_password":"shohth0Ae",
     "name":"Peter",
     "lastname":"Turner",
     "address": {
-        "calle":"Cheshire Road",
-        "numero":"1800",
-        "city":"Stamford",
-        "zip_code":"06995"
+        "streetNumber":"Av  Memory Lane",
+        "city":"chorilandia",
+        "zipCode":"19124",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
    
 },
  {
-    "phone":759089880,
+    "phone":541100000003,
     "email":"JamesGMoberly@gustr.com",
     "login_name":"Sibrom",
     "login_password":"EipheJ7Ee",
     "name":"James",
     "lastname":"Moberly",
     "address": {
-        "calle":"Golden Street",
-        "numero":"1302",
-        "city":"Miami",
-        "zip_code":"33179"
+        "streetNumber":"Danger place",
+        "city":"CABA",
+        "zipCode":"52451",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 },
 {
-    "phone":2184673105,
+    "phone":541100000004,
     "email":"CaitlinDHunter@gustr.com",
     "login_name":"Moothoung65",
     "login_password":"suo8Ood4",
     "name":"Caitlin",
     "lastname":"Hunter",
     "address": {
-        "calle":"Ferrell Street",
-        "numero":"4933",
-        "city":"Solway",
-        "zip_code":"56678"
+        "streetNumber":"Sarasa Memory Lane",
+        "city":"LCDLL",
+        "zipCode":"12345",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 },
 {
-    "phone":6503016766,
+    "phone":541100000005,
     "email":"MaryHGage@superrito.com",
     "login_name":"Privall",
     "login_password":"aquoo7ioV",
     "name":"Mary",
     "lastname":"Gage",
     "address": {
-        "calle":"Ella Street",
-        "numero":"1168",
-        "city":"Daly City",
-        "zip_code":"94015"
+        "streetNumber":"Av La Mona",
+        "city":"CBA CAPITAL",
+        "zipCode":"55478",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 },
 {
-    "phone":6018950356,
+    "phone":541100000006,
     "email":"VernonDCabrera@superrito.com",
     "login_name":"Allons1960",
     "login_password":"doVie6ugah6",
     "name":"Vernon",
     "lastname":"Cabrera",
     "address": {
-        "calle":"Devils Hill Road",
-        "numero":"4213",
-        "city":"Jackson",
-        "zip_code":"39201"
+        "streetNumber":"Allá  Memory Lane",
+        "city":"DondeSea",
+        "zipCode":"41748",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 },
 {
-    "phone":2152746503,
+    "phone":541100000007,
     "email":"MasonPFord@gustr.com",
     "login_name":"Muckbithat",
     "login_password":"ohveiK2Yoh",
     "name":"Mason",
     "lastname":"Ford",
     "address": {
-        "calle":"Burning Memory Lane",
-        "numero":"2747",
-        "city":"Philadelphia",
-        "zip_code":"19103"
+        "streetNumber":"Ellé  Memory Lane",
+        "city":"Any place",
+        "zipCode":"99689",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 },
 {
-    "phone":5418999729,
+    "phone":541100000008,
     "email":"ValeriePFarnsworth@gustr.com",
     "login_name":"Malithe",
     "login_password":"yo4aejaiSh",
     "name":"Valerie",
     "lastname":"Farnsworth",
     "address": {
-        "calle":"Skinner Hollow Road",
-        "numero":"1978",
-        "city":"Jacksonville",
-        "zip_code":"97530"
+        "streetNumber":"PJE  Memory Lane",
+        "city":"Santa Fé",
+        "zipCode":"12121",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 },
 {
-    "phone":2129352783,
+    "phone":541100000009,
     "email":"DonnaRLatch@gustr.com",
     "login_name":"Ockbet",
     "login_password":"Towag4Ei",
     "name":"Donna",
     "lastname":"Latch",
     "address": {
-        "calle":"Rosewood Lane",
-        "numero":"4216",
-        "city":"New York",
-        "zip_code":"10022"
+        "streetNumber":"Umpa Lumpa",
+        "city":"lejos donde kgan los conejos",
+        "zipCode":"636363",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 },
 {
-    "phone":7084873792,
+    "phone":541100000010,
     "email":"VirgieTRichards@superrito.com",
     "login_name":"Boothat",
     "login_password":"jio4eLiecie",
     "name":"Virgie",
     "lastname":"Richards",
     "address": {
-        "calle":"Hog Camp Road",
-        "numero":"971",
-        "city":"Arlington Heights",
-        "zip_code":"60005"
+        "streetNumber":"PJE ALLÁ",
+        "city":"dnwquidnqwdqwdjwqj",
+        "zipCode":"111111",
+        "provinceDepartment":"Santiago del Esteco",
+        "particularDetails":"a la vuelta de tu hna"
     },
-    "isRegistered":true
+    "isRegistered":true,
+    "isVerified": true
 } 
 ]
