@@ -61,7 +61,6 @@ const createList = async (list) => {
     try {
         if (!ClientPhone) return { msg: 'Provide clientId.' };
         const tClient = await Client.findByPk(parseInt(ClientPhone));
-        console.log(tClient);
         const tList = await tClient?.createList(nList);
         return !tClient
             ? { msg: 'Client not found.' }
