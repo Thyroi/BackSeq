@@ -1,15 +1,12 @@
-const nodemailer = require('nodemailer')
-const path = require('path')
-const hbs = require('nodemailer-express-handlebars')
+const Handlebars = require('handlebars');
+const fs = require('fs');
+const nodemailer = require('nodemailer');
+const path = require('path');
 
-// typeMail = ()=> {
-//   switch (type) {
-//     case 'singup':
-//       return 
-//         `<a href="http://localhost:3001/client/verify/?token=${token}">Verificar</a>`
-//       break;
-//   }
-// }
+const filePath = path.join('Reset', '../views/Reset.html');
+const source = fs.readFileSync(filePath, 'utf-8').toString();
+const template = Handlebars.compile(source);
+const hmtlSend = template;
 
 async function mailer(email) {
   try {
@@ -21,21 +18,18 @@ async function mailer(email) {
       },
     });
 
-    transporter.use('compile', hbs({
-      viewEngine: 'express-handlebars',
-      viewPath: path.resolve('./views'),
-    }))
-
     let options = await transporter.sendMail({
       from: 'e.commerce2022shop@gmail.com', // sender address
       to: 'juanjo2895@hotmail.com, llamagustin@gmail.com', // list of receivers
       subject: 'sarasa', // Subject line
       text: 'cualca', // plain text body
-      template: 'index',
+      html: source,
     });
+
     return options.messageId;
+
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     // console.log(error.errors[0].message);
   }
 }
