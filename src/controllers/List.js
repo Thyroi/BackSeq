@@ -35,7 +35,7 @@ const getList = async (filters) => {
                 await Client.findAll({
                     attributes: ['phone', 'login_name', 'email', 'name', 'lastname', 'isVerified'],
                     where: {
-                        isRegistered: true,
+                        isVerified: true,
                         phone: { [Op.in]: idColaborators }
                     }
                 }).then(data => {
