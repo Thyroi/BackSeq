@@ -89,7 +89,9 @@ const client = {
           token: client.token
         }
         sendMail(info);
-        return res.status(200).send("Correo de reseteo enviado");
+        return res.status(200).send("Correo de reseteo enviado.");
+      }else{
+        return res.status(404).send("Cliente no encontrado.");
       }
     } catch(error){
       console.log(error);
