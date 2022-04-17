@@ -11,15 +11,14 @@ const getList = async (filters) => {
                 where: {
                     [Op.or]: [
                         {
-                            id: ClientPhone ? ClientPhone : { [Op.ne]: null },
+                            ClientPhone: ClientPhone ? ClientPhone : { [Op.ne]: null },
                         },
                         {
-                            Colaborators: { [Op.contains]: `${ClientPhone}` }
+                            Colaborators: { [Op.contains]: ClientPhone }
                         }]
                 }
             });
         // Para evitar mas llamados al back
-        console.log("---->>> "+tLists.length);
         let response = tLists.map(async (list) => {
             //Para la preview de los products
             list.List = await Products.findAll({
@@ -29,9 +28,7 @@ const getList = async (filters) => {
                 }
             });
             // Para el preview de los colaboradores y access manage
-            // tofix when isverified este implementado, change isRegistered > isVerified
             if (list.Colaborators.length) {
-                const idColaborators = list.Colaborators.map(e => e.phone);
                 await Client.findAll({
                     attributes: ['phone', 'login_name', 'email', 'name', 'lastname', 'isVerified'],
                     where: {
@@ -39,12 +36,9 @@ const getList = async (filters) => {
                         phone: { [Op.in]: idColaborators }
                     }
                 }).then(data => {
-                    list.Colaborators = list.Colaborators.map(e => {
-                        return {
-                            ...e,
-                            ...{ ...data.find(c => parseInt(c.phone) === parseInt(e.phone)) }.dataValues
-                        }
-                    })
+                    list.Colaborators = data;
+                    // Escapa de los get y set de sequelize
+                    //         ...{ ...data.find(c => parseInt(c.phone) === parseInt(e)) }.dataValues
                 });
             }
             return list
@@ -67,7 +61,6 @@ const createList = async (list) => {
     try {
         if (!ClientPhone) return { msg: 'Provide clientId.' };
         const tClient = await Client.findByPk(parseInt(ClientPhone));
-        console.log(tClient);
         const tList = await tClient?.createList(nList);
         return !tClient
             ? { msg: 'Client not found.' }
@@ -128,7 +121,6 @@ const sendOffers = async () => {
         console.log(error);
     }
 }
-
 
 module.exports = {
     createList,

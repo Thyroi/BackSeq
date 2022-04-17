@@ -1,7 +1,7 @@
 
 const { Router } = require('express');
 const {Cart, Client}=require ('../db');
-const {createCart, updateCart, getCart, deleteCart}=require ('../controllers/cart.js');
+const {createCart, updateCart, getCart, deleteCart}=require ('../controllers/Cart.js');
 
 const router = Router();
 
