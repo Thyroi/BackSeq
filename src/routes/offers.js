@@ -8,7 +8,8 @@ route.get("/hora", async (req, res) => {
     return res.json(updated)
 });
 route.get("/email", async (req, res) => {
-    const mail = await mailer();
+    const mail = await mailer("confirmation");
+    const mailu = await mailer("reset");
     return res.json(mail)
 });
 module.exports = route;
