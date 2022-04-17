@@ -32,7 +32,49 @@ const getList = async (filters) => {
                 await Client.findAll({
                     attributes: ['phone', 'login_name', 'email', 'name', 'lastname', 'isVerified'],
                     where: {
-                        // isRegistered: true, SI EL LOGIN ES ANONYMOUS O ISVERIFIED FALSE INDICAS QUE NO ES CLIENTE FANO
+                        isVerified: true,
+                        phone: { [Op.in]: list.Colaborators }
+                    }
+                }).then(data => {
+                    list.Colaborators = data;
+                    // Escapa de los get y set de sequelize
+                    //         ...{ ...data.find(c => parseInt(c.phone) === parseInt(e)) }.dataValues
+                });
+            }
+            return list
+        });
+        return await Promise.all(response);
+    } catch (error) {
+        console.log(error);
+        return error.data
+    }
+}
+const getListByIdAndTitle = async (filters) => {
+    let { ClientPhone, title } = filters
+    ClientPhone = ClientPhone ? parseInt(ClientPhone) : null;
+    try {
+        let tLists = await List.findAll(
+            {
+                where: {
+                    ClientPhone: ClientPhone,
+                    title: title
+                }
+            });
+        // Para evitar mas llamados al back
+        let response = tLists.map(async (list) => {
+            //Para la preview de los products
+            list.List = await Products.findAll({
+                attributes: ['id_product', 'sdelete', 'name', 'price', 'description', 'is_offer', 'default_image'],
+                where: {
+                    id_product: { [Op.in]: list.List }
+                }
+            });
+            // Para el preview de los colaboradores y access manage
+            if (list.Colaborators.length) {
+                await Client.findAll({
+                    attributes: ['phone', 'login_name', 'email', 'name', 'lastname', 'isVerified'],
+                    where: {
+                        isVerified: true,
                         phone: { [Op.in]: list.Colaborators }
                     }
                 }).then(data => {
@@ -127,5 +169,6 @@ module.exports = {
     updateList,
     getList,
     deleteList,
-    sendOffers
+    sendOffers,
+    getListByIdAndTitle
 };
