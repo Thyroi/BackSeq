@@ -75,10 +75,10 @@ const client = {
     }
   },
   resetPassword: async (req, res) => {
+    const { email } = req.query;
     try {
-      const { phone } = req.body;
       const client = await Client.findOne({
-        where: { phone: phone }
+        where: { email: email }
       });
       if (client) {
         client.token = crypto.createHash('md5').update(client.token).digest('hex')
@@ -89,7 +89,7 @@ const client = {
           token: client.token
         }
         sendMail(info);
-        return res.status(200).json(client);
+        return res.status(200).send("Correo de reseteo enviado");
       }
     } catch(error){
       console.log(error);
@@ -147,8 +147,7 @@ const client = {
         {
           where: { phone: id }
         });
-
-      res.status(200).json(updatedclient).send("Cliente actualizado");
+      res.status(200).send("Cliente actualizado");
     } catch (error) {
       console.log(error);
     }
