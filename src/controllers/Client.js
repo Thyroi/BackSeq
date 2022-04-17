@@ -8,7 +8,6 @@ const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-      console.log(phone, "soy el phone que viene del front en addclient");
       let token = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
       const createdClient = await Client.findOrCreate({
         where: { phone: phone },
@@ -26,7 +25,6 @@ const client = {
       });
 
       if(!createdClient[1] && login_name){
-        console.log(login_name, login_password);
         let update =await Client.update({
           login_name:login_name,
           login_password:login_password,
@@ -35,7 +33,12 @@ const client = {
         )
       };
       if (createdClient[1] && login_password) {
-        sendMail(email, token)
+        let info = {
+          type: 'confirmation',
+          email: email,
+          token: createdClient[0].token
+        }
+        await sendMail(info);
       };
       let isThereCar=await Cart.findOne({
         where:{
