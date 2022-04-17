@@ -20,16 +20,22 @@ async function mailer(info) {
     let source = "";
     let template = "";
     let user = info.email;
+    let url = ``;
+    let subject = "";
     switch (info.type) {
       case "confirmation":
         filePath = path.join('confirm', '../views/confirm.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
+        url = `http://localhost:3000/confirm?token=${info.token}`;
+        subject = "Account confirmation";
         break;
       case "reset":
         filePath = path.join('Reset', '../views/Reset.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
+        subject = "Reset password";
+        url = `http://localhost:3000/reset?token=${info.token}`;
         break;
       default:
         break;
@@ -37,9 +43,8 @@ async function mailer(info) {
     let options = await transporter.sendMail({
       from: 'e.commerce2022shop@gmail.com', // sender address
       to: user, // list of receivers
-      subject: 'sarasa', // Subject line
-      text: 'cualca', // plain text body
-      html: source
+      subject: subject, // Subject line
+      html: template({ url })
     });
     return options.messageId;
 

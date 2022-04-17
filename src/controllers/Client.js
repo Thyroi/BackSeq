@@ -80,18 +80,21 @@ const client = {
       const client = await Client.findOne({
         where: { phone: phone }
       });
-      console.log(client);
       if (client) {
         client.token = crypto.createHash('md5').update(client.token).digest('hex')
         client.save();
-        sendMail(client.email, client.token);
+        let info = {
+          type: 'reset',
+          email: client.email,
+          token: client.token
+        }
+        sendMail(info);
         return res.status(200).json(client);
       }
     } catch(error){
       console.log(error);
     }
   },
-
   getClientbyID: async (req, res) => {
     try {
       const id = req.params.id;
