@@ -338,6 +338,41 @@ const getReviews = async ({ id, rating, limit, orderField, order }) => {
             ? { msg: 'Product has no reviews.' }
             : tReviews;
 }
+const getOrderPrice = async (type) =>{
+    try {
+        let data = await getAllProducts();
+        if (type === 'ASC'){
+            data.sort(function (a, b) {
+                if (a.price > b.price) {
+                    return 1;
+                }
+                if (a.price < b.price) {
+                    return -1;
+                }
+                // a must be equal to b
+                return 0;
+            });
+            return data;
+        }else if (type === 'DESC'){
+            data.sort(function (a, b) {
+                if (a.price < b.price) {
+                    return 1;
+                }
+                if (a.price > b.price) {
+                    return -1;
+                }
+                // a must be equal to b
+                return 0;
+            });
+            return data;
+        }else {
+            return data;
+        }
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
 module.exports = {
     getAllProducts,
     //getSomeProducts,
@@ -354,5 +389,6 @@ module.exports = {
     getMen,
     getReviews,
     getProductBySuperSearch,
-    getByMoreRecent
+    getByMoreRecent,
+    getOrderPrice
 };

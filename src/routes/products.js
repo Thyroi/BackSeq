@@ -11,7 +11,18 @@ const { getAllProducts,
     getReviews,
     getProductBySuperSearch,
     getByMoreRecent,
+    getOrderPrice,
     getMen } = require('../controllers/Products');
+
+route.get("/order", async (req, res) => {
+    const { type } = req.query;
+    try {
+        const ordered = await getOrderPrice(type);
+        return res.status(200).json(ordered);
+    } catch (error) {
+        return res.status(500).json("No funciona")
+    }
+});
 
 route.get("/bygender", async (req, res) => {
     try {
