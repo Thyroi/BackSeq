@@ -7,6 +7,9 @@ const {
     sendOffers,
     getListByIdAndTitle
 } = require('../controllers/List');
+const verify_client_token = require('../controllers/verify_client_token.js');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 route.get("/get", async (req, res) => {
     const filters = req.query;
@@ -44,7 +47,15 @@ route.get("/offer", async (req, res) => {
     }
 });
 
-route.post("/create", async (req, res) => {
+route.post("/create", verify_client_token, async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     const list = req.body;
     try {
         response = await createList(list);
@@ -57,7 +68,15 @@ route.post("/create", async (req, res) => {
     }
 });
 
-route.patch("/update", async (req, res) => {
+route.patch("/update", verify_client_token, async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     const list = req.body;
     try {
         let updated = await updateList(list);
@@ -70,7 +89,15 @@ route.patch("/update", async (req, res) => {
     }
 });
 
-route.delete("/delete", async (req, res) => {
+route.delete("/delete", verify_client_token, async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     const {id} = req.query;
     try {
         let tDeleted = await deleteList(parseInt(id));
