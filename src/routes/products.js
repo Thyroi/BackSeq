@@ -13,6 +13,9 @@ const { getAllProducts,
     getByMoreRecent,
     getOrderPrice,
     getMen } = require('../controllers/Products');
+const verify_admin_token = require('../controllers/verify_admin_token.js');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 route.get("/order", async (req, res) => {
     const { type } = req.query;
@@ -73,8 +76,15 @@ route.get("/byoffer", async (req, res) => {
     }
 });
 
-route.patch("/update",
-    async (req, res) => {
+route.patch("/update", verify_admin_token, async (req, res) => {
+        jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+          if(error){
+            res.status(403).send({message:"Forbidden Access"});
+          } else {
+            res.json({message:"Acceso autorizado",
+                      authData})
+          }
+        })
         try {
             const updatedProduct = req.body;
             const response = await updateProducts(updatedProduct);
@@ -88,8 +98,15 @@ route.patch("/update",
     }
 );
 
-route.patch("/delete/:id",
-    async (req, res) => {
+route.patch("/delete/:id", verify_admin_token, async (req, res) => {
+        jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+          if(error){
+            res.status(403).send({message:"Forbidden Access"});
+          } else {
+            res.json({message:"Acceso autorizado",
+                      authData})
+          }
+        })
         try {
             const { id } = req.params;
             const response = await deleteProduct(id);
@@ -166,7 +183,15 @@ route.get("/",
     }
 );
 
-route.post("/add", async (req, res) => {
+route.post("/add", verify_admin_token, async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     const product = req.body
     try {
         const newProduct = await createProduct(product);
