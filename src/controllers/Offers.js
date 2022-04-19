@@ -1,5 +1,6 @@
 const { Sequelize, Op } = require('sequelize');
-const { Products, Category, Collection } = require('../db.js');
+const { Products, Category, Collection, Client } = require('../db.js');
+const { mailer } = require('../controllers/Mailer');
 
 module.exports = {
     getItems: async() => {
@@ -64,7 +65,12 @@ module.exports = {
                 }
             )
         });
-        return productUpdate;
+        const clients = await Client.findAll({
+            where:{newsletter: true}
+        });
+        let emails = clients.map(e => e.email)
+        let mail = await mailer({type: "offers", email: emails});
+        return clients;
     }
     
 };

@@ -19,7 +19,7 @@ async function mailer(info) {
     let filePath = "";
     let source = "";
     let template = "";
-    let user = 'juanjo2895@hotmail.com';
+    let user = info.email;
     let url = ``;
     let subject = "";
     switch (info.type) {
@@ -43,6 +43,14 @@ async function mailer(info) {
         template = Handlebars.compile(source);
         url = `http://localhost:3000/confirm?token=${info.token}`;
         subject = "Account confirmation";
+        break;
+      case "offers":
+        filePath = path.join('Offers', '../views/Offers.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/confirm?token=${info.token}`;
+        user = email.join(',');
+        subject = "New offers";
         break;
       case "confirmOrder":
         filePath = path.join('ConfirmOrder', '../views/ConfirmOrder.html');
@@ -71,7 +79,7 @@ async function mailer(info) {
       from: 'e.commerce2022shop@gmail.com', // sender address
       to: user, // list of receivers
       subject: subject, // Subject line
-      html: template({ url })
+      html: template({ url }) // html body
     });
     return options.messageId;
 
