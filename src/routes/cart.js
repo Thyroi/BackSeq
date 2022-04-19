@@ -13,7 +13,7 @@ router.put('/:id', verify_client_token, async(req,res)=>{
     if(error){
       res.status(403).send({message:"Forbidden Access"});
     } else {
-      res.json({message:"Acceso autorizado",
+      res.json({message:"Authorized Access",
                 authData})
     }
   })
@@ -40,7 +40,7 @@ router.get('/:id', verify_client_token, async(req,res)=>{
     if(error){
       res.status(403).send({message:"Forbidden Access"});
     } else {
-      res.json({message:"Acceso autorizado",
+      res.json({message:"Authorized Access",
                 authData})
     }
   })
@@ -62,7 +62,7 @@ router.delete('/:id', verify_client_token, async(req,res)=>{
     if(error){
       res.status(403).send({message:"Forbidden Access"});
     } else {
-      res.json({message:"Acceso autorizado",
+      res.json({message:"Authorized Access",
                 authData})
     }
   })

@@ -27,7 +27,7 @@ route.post("/create", verify_client_token, async (req, res) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
+        res.json({message:"Authorized Access",
                   authData})
       }
     })
@@ -49,7 +49,7 @@ route.patch("/update", verify_client_token, verify_client_token, async (req, res
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
+        res.json({message:"Authorized Access",
                   authData})
       }
     })
@@ -70,7 +70,7 @@ route.delete("/delete", verify_client_token, async (req, res) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
+        res.json({message:"Authorized Access",
                   authData})
       }
     })

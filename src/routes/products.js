@@ -81,7 +81,7 @@ route.patch("/update", verify_admin_token, async (req, res) => {
           if(error){
             res.status(403).send({message:"Forbidden Access"});
           } else {
-            res.json({message:"Acceso autorizado",
+            res.json({message:"Authorized Access",
                       authData})
           }
         })
@@ -103,7 +103,7 @@ route.patch("/delete/:id", verify_admin_token, async (req, res) => {
           if(error){
             res.status(403).send({message:"Forbidden Access"});
           } else {
-            res.json({message:"Acceso autorizado",
+            res.json({message:"Authorized Access",
                       authData})
           }
         })
@@ -188,7 +188,7 @@ route.post("/add", verify_admin_token, async (req, res) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
+        res.json({message:"Authorized Access",
                   authData})
       }
     })

@@ -10,7 +10,7 @@ const invoice = {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
+        res.json({message:"Authorized Access",
                   authData})
       }
     })
@@ -26,7 +26,7 @@ const invoice = {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
+        res.json({message:"Authorized Access",
                   authData})
       }
     })
