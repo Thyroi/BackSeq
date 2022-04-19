@@ -44,5 +44,27 @@ module.exports = {
         }
         
         return items
+    },
+    newOffer: async(info) => {
+        var updates =[]
+        const products = await Products.findAll({
+            where: { id_product: info.ids }
+        });
+        let productUpdate = products.map(e => {
+            return {
+                id_product: e.id_product,
+                price_offer: e.price * ((100-info.discount)/100),
+            }
+        });
+        productUpdate.forEach(async (e) => {
+            await Products.update(
+                {is_offer: true, price_offer: e.price_offer},
+                {
+                    where:{ id_product: e.id_product }
+                }
+            )
+        });
+        return productUpdate;
     }
+    
 };
