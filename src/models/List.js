@@ -16,6 +16,10 @@ module.exports = (sequelize) => {
             type: DataTypes.JSONB(),
             allowNull: true
         },
+        Guests: {
+            type: DataTypes.JSONB(),
+            allowNull: true
+        },
         title: {
             type: DataTypes.STRING(),
             allowNull: false,

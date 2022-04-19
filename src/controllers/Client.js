@@ -3,6 +3,8 @@ const crypto = require('crypto');
 const { Sequelize, Op } = require('sequelize');
 const { Client, Cart, Review } = require('../db.js');
 const sendMail = require('./Mailer.js');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const client = {
   addClient: async (req, res) => {
@@ -118,7 +120,7 @@ const client = {
       const {email} = req.query;
       if(!email) return { msg: 'provide e-mail.'};
       const tClient = await Client.findOne({
-        where: { 
+        where: {
           isRegistered: true,
           email: email
         }
@@ -142,6 +144,14 @@ const client = {
   },
   updateClient: async (req, res) => {
     console.log(req.body)
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     try {
       const id = req.params.id;
       const info = req.body;
@@ -155,13 +165,19 @@ const client = {
     }
   },
   deleteUser: async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     try {
       const id = req.params.id;
       const deleteClient = await Client.destroy({
         where: { phone: id }
       });
-
-      console.log(deleteClient);
       console.log("Cliente eliminado con Exito!!");
       res.status(200).send("Cliente eleiminado con Exito!!");
     } catch (error) {

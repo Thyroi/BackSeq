@@ -1,10 +1,20 @@
 const { Router } = require('express');
-
 const { newOrder,updateOrder, getAllOrders, getOrdersByStatus, getOrderDetails, getOrdersByClientId} = require('../controllers/purchaseOrders');
-
 const router = Router();
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const verify_client_token = require('../controllers/verify_client_token.js');
+const verify_admin_token = require('../controllers/verify_admin_token.js');
 
-router.post('/', async(req,res)=>{
+router.post('/', verify_client_token, async(req,res)=>{
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     try{
         let{orderDetails, address, clientPhone, total, orderStatus}=req.body;
         console.log(orderStatus);
@@ -20,7 +30,15 @@ router.post('/', async(req,res)=>{
 
 });
 
-router.patch('/:id', async(req,res)=>{
+router.patch('/:id', verify_admin_token, async(req,res)=>{
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     try{
         let info =req.body;
         let {id}=req.params;
@@ -41,7 +59,7 @@ router.get("/",async (req, res) => {
             if (client) response = await getOrdersByClientId(client);
             if (!status&&!client) response = await getAllOrders();
             return response?res.status(200).json(response):res.status(404)
-                
+
         } catch (error) {
             console.log(error);
             return res.status(500).json('Error en el servidor.');
@@ -53,15 +71,14 @@ router.get("/:id",async (req, res) => {
     try {
         let {id}=req.params;
          response = await getOrderDetails(id);
- 
+
         return response?res.status(200).json(response):res.status(404)
-            
+
     } catch (error) {
         console.log(error);
         return res.status(500).json('Error en el servidor.');
     }
 }
-); 
+);
 
 module.exports = router;
-
