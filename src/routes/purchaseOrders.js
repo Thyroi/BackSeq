@@ -7,6 +7,8 @@ const router = Router();
 router.post('/', async(req,res)=>{
     try{
         let{orderDetails, address, clientPhone, total, orderStatus}=req.body;
+        console.log(orderStatus);
+        if( orderStatus="in-process") orderStatus='Processing';
         let response=await newOrder(orderDetails, address,clientPhone, total, orderStatus);
        return response?res.status(200).json(response):res.status(404);
 

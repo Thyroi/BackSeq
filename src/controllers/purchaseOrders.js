@@ -1,5 +1,6 @@
 const { Sequelize, Op } = require('sequelize');
-const { PurchaseOrder, Client, Invoice } = require('../db');
+const { PurchaseOrder, Client, Invoice, Shippings } = require('../db');
+
 const { getClientbyID } = require('./Client');
 const sendMail = require('./Mailer.js');
 
@@ -26,6 +27,9 @@ const sendMail = require('./Mailer.js');
             invoice_ammount:total
           });
           newInvoice.setPurchaseOrder(orderId);
+
+          let shipping = await Shippings.create();
+          //shipping.setPurchaseOrder(orderId);
         }
 
        //sendMail(email,orderId);
