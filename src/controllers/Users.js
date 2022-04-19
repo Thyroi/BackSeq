@@ -1,9 +1,19 @@
 const axios = require('axios');
 const { Sequelize, Op } = require('sequelize');
 const { Users } = require('../db.js');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const user = {
   addUser: async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     try {
       const { user_name, user_password, rol } = req.body;
       const createdUser = await Users.create({user_name, user_password, rol});
@@ -35,6 +45,14 @@ const user = {
     }
   },
   updateUserRol: async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     try {
       const userID = req.body.id_user;
       const updatedRol = await Users.update(req.body, {
@@ -47,6 +65,14 @@ const user = {
     }
   },
   deleteUser: async (req, res) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        res.json({message:"Acceso autorizado",
+                  authData})
+      }
+    })
     try {
       const userID = req.body.id_user;
       const deleteUser = await Users.destroy({

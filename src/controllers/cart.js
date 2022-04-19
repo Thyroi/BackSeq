@@ -10,9 +10,6 @@ const { Cart, } = require('../db');
               where:{
                  ClientPhone:info
              } 
-            /*  where:{
-                clientId:info
-            } */
          });
         return clientCart;
      }catch(e){
@@ -40,7 +37,7 @@ const deleteCart= async (id)=>{
        console.log(info);
        const deletedCart= await Cart.destroy(
             {where:{ClientPhone:id}});
-      
+
    }catch(e){
        console.log(e);
 }
