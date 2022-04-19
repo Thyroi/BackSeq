@@ -8,7 +8,6 @@ const client = {
   addClient: async (req, res) => {
     try {
       const { phone, email, login_name, login_password, name, lastname, address } = req.body;
-      console.log(phone, "soy el phone que viene del front en addclient");
       let token = crypto.createHash('md5').update(Date.now().toString()).digest('hex');
       const createdClient = await Client.findOrCreate({
         where: { phone: phone },
@@ -26,7 +25,6 @@ const client = {
       });
 
       if(!createdClient[1] && login_name){
-        console.log(login_name, login_password);
         let update =await Client.update({
           login_name:login_name,
           login_password:login_password,
@@ -35,7 +33,12 @@ const client = {
         )
       };
       if (createdClient[1] && login_password) {
-        sendMail(email, token)
+        let info = {
+          type: 'confirmation',
+          email: email,
+          token: createdClient[0].token
+        }
+        await sendMail(info);
       };
       let isThereCar=await Cart.findOne({
         where:{
@@ -72,23 +75,28 @@ const client = {
     }
   },
   resetPassword: async (req, res) => {
+    const { email } = req.query;
     try {
-      const { phone } = req.body;
       const client = await Client.findOne({
-        where: { phone: phone }
+        where: { email: email }
       });
-      console.log(client);
       if (client) {
         client.token = crypto.createHash('md5').update(client.token).digest('hex')
         client.save();
-        sendMail(client.email, client.token);
-        return res.status(200).json(client);
+        let info = {
+          type: 'reset',
+          email: client.email,
+          token: client.token
+        }
+        sendMail(info);
+        return res.status(200).send("Correo de reseteo enviado");
+      }else{
+        return res.status(404).send("Cliente no encontrado");
       }
     } catch(error){
       console.log(error);
     }
   },
-
   getClientbyID: async (req, res) => {
     try {
       const id = req.params.id;
@@ -141,8 +149,7 @@ const client = {
         {
           where: { phone: id }
         });
-
-      res.status(200).json(updatedclient).send("Cliente actualizado");
+      res.status(200).send("Cliente actualizado");
     } catch (error) {
       console.log(error);
     }

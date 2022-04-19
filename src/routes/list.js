@@ -4,7 +4,8 @@ const {
     updateList,
     getList,
     deleteList,
-    sendOffers
+    sendOffers,
+    getListByIdAndTitle
 } = require('../controllers/List');
 
 route.get("/get", async (req, res) => {
@@ -14,6 +15,18 @@ route.get("/get", async (req, res) => {
         return lists
             ? res.status(200).json(lists)
             : res.status(404).json({ msg: `something go wrong. \n ${lists}` });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json('rompiste todo.');
+    }
+});
+route.get("/getbyidandtitle", async (req, res) => {
+    const filters = req.query;
+    try {
+        let lists = await getListByIdAndTitle(filters);
+        return lists.length
+            ? res.status(200).json(lists)
+            : res.status(404).json({ msg: `no se encontro, naranja. \n ${lists}` });
     } catch (error) {
         console.log(error);
         return res.status(500).json('rompiste todo.');
