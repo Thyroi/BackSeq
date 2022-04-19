@@ -29,7 +29,7 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
           newInvoice.setPurchaseOrder(orderId);
 
           let shipping = await Shippings.create();
-          //shipping.setPurchaseOrder(orderId);
+          shipping.setPurchaseOrder(orderId);
         }
 
         //sendMail(email,orderId);
