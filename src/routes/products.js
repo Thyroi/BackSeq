@@ -152,10 +152,11 @@ route.get("/",
     async (req, res) => {
         try {
             let { filters } = req.query;
+            let nested = req.body;
             filters = filters ? filters.split(" ") : null;
             let response;
             if (filters) response = await getProductBySuperSearch(filters);
-            if (!filters) response = await getAllProducts();
+            if (!filters) response = await getAllProducts(nested);
             return response.msg
                 ? res.status(404).json({ message: `not found` })
                 : res.status(200).json(response);
