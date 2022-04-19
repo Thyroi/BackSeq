@@ -62,23 +62,54 @@ const getProductDetails = async (id) => {
         console.log(error);
     }
 }
-const getAllProducts = async () => {
+const getAllProducts = async (nested) => {
     try {
-        let hasData = await Products.findAll({
-            where: {
-                sdelete: false
+        let hasData;
+        if (nested) {
+            let { offer, category, collection } = nested
+            offer = offer ? offer : [true, false];
+            collection = collection ? collection : [1,2,3,4];
+            if (category) {
+                hasData = await Category.findAll({
+                    where: {
+                        id_category: category
+                    },
+                    include: [{
+                        model: Products,
+                        where: {
+                            sdelete: false,
+                            is_offer: offer,
+                            collection: collection
+                        }
+                    }]
+                }
+                );
+            } else {
+                hasData = await Products.findAll({
+                    where: {
+                        sdelete: false,
+                        is_offer: offer,
+                        collection: collection
+                    }
+                });
             }
+        } else {
+            hasData = await Products.findAll({
+                where: {
+                    sdelete: false
+                }
+            });
+            console.log("all: "+hasData.length);
         }
-        );
         return !hasData.length
-            ? { msg: 'Esta vacia la tabla.' }
-            : hasData;
+        ? { msg: 'Esta vacia la tabla.' }
+        : hasData;
     } catch (error) {
         console.log(error);
     }
 }
 const getByMoreRecent = async (order) => {
-    order = order?order:'DESC'
+    order = order ? order : 'DESC'
     try {
         const tProducts = await Products.findAll({
             order: [
@@ -338,10 +369,10 @@ const getReviews = async ({ id, rating, limit, orderField, order }) => {
             ? { msg: 'Product has no reviews.' }
             : tReviews;
 }
-const getOrderPrice = async (type) =>{
+const getOrderPrice = async (type) => {
     try {
         let data = await getAllProducts();
-        if (type === 'ASC'){
+        if (type === 'ASC') {
             data.sort(function (a, b) {
                 if (a.price > b.price) {
                     return 1;
@@ -353,7 +384,7 @@ const getOrderPrice = async (type) =>{
                 return 0;
             });
             return data;
-        }else if (type === 'DESC'){
+        } else if (type === 'DESC') {
             data.sort(function (a, b) {
                 if (a.price < b.price) {
                     return 1;
@@ -365,10 +396,10 @@ const getOrderPrice = async (type) =>{
                 return 0;
             });
             return data;
-        }else {
+        } else {
             return data;
         }
-        
+
     } catch (error) {
         console.log(error);
     }
