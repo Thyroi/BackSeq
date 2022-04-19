@@ -104,6 +104,8 @@ List.belongsTo(Client);
 
 PurchaseOrder.hasOne(PaymentResponse);
 PaymentResponse.belongsTo(PurchaseOrder);
+PurchaseOrder.hasOne(Shippings);
+Shippings.belongsTo(PurchaseOrder);
 
 
 
