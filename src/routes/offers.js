@@ -1,6 +1,6 @@
 const route = require("express").Router();
 const mailer = require("../controllers/Mailer");
-const { getItems, genOffer } = require('../controllers/Offers');
+const { getItems, genOffer, newOffer } = require('../controllers/Offers');
 
 route.patch("/setoff", async (req, res) => {
     const info = await getItems()
@@ -12,4 +12,10 @@ route.get("/email", async (req, res) => {
     const mailu = await mailer({type :"reset"});
     return res.json(mail)
 });
+route.patch("/newOffer", async (req, res) => {
+    const info = req.body;
+    const genOffer = await newOffer(info);
+    return res.status(200).json("Las ofertas se han actualizado");
+}
+);
 module.exports = route;
