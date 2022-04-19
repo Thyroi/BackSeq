@@ -17,6 +17,8 @@ router.post('/', verify_client_token, async(req,res)=>{
     })
     try{
         let{orderDetails, address, clientPhone, total, orderStatus}=req.body;
+        console.log(orderStatus);
+        if( orderStatus="in-process") orderStatus='Processing';
         let response=await newOrder(orderDetails, address,clientPhone, total, orderStatus);
        return response?res.status(200).json(response):res.status(404);
 
@@ -40,18 +42,13 @@ router.patch('/:id', verify_admin_token, async(req,res)=>{
     try{
         let info =req.body;
         let {id}=req.params;
-        //console.log(orderDetails, address, clientPhone);
         let response=await updateOrder(info, id);
        return response?res.status(200).json(response):res.status(404);
-
-
     }catch(e){
         console.log(e);
         return res.status(500).json('Error en el servidor')
     }
-
 });
-
 
 router.get("/",async (req, res) => {
         try {
@@ -69,6 +66,7 @@ router.get("/",async (req, res) => {
         }
     }
 );
+
 router.get("/:id",async (req, res) => {
     try {
         let {id}=req.params;

@@ -73,7 +73,8 @@ const {
   Users,
   Invoice,
   PaymentResponse,
-  SearchTerms
+  SearchTerms,
+  Shippings
 } = sequelize.models;
 
 

@@ -19,7 +19,7 @@ async function mailer(info) {
     let filePath = "";
     let source = "";
     let template = "";
-    let user = info.email;
+    let user = 'juanjo2895@hotmail.com';
     let url = ``;
     let subject = "";
     switch (info.type) {
@@ -36,6 +36,33 @@ async function mailer(info) {
         template = Handlebars.compile(source);
         subject = "Reset password";
         url = `http://localhost:3000/reset?token=${info.token}`;
+        break;
+      case "wishlist":
+        filePath = path.join('Wishlistinvite', '../views/Wishlistinvite.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/confirm?token=${info.token}`;
+        subject = "Account confirmation";
+        break;
+      case "confirmOrder":
+        filePath = path.join('ConfirmOrder', '../views/ConfirmOrder.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        subject = "Order confirmation";
+        break;
+      case "shipped":
+        filePath = path.join('Shipped', '../views/Shipped.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/home`;
+        subject = "Account confirmation";
+        break;
+      case "inProcess":
+        filePath = path.join('InProcess', '../views/InProcess.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/home`;
+        subject = "Account confirmation";
         break;
       default:
         break;
