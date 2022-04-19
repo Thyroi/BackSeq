@@ -5,8 +5,8 @@ const {
     getReviews,
     deleteReview
 } = require('../controllers/Reviews');
-const verify_client_token = require('../controllers/verify_client_token.js');
-const jwt = require('jsonwebtoken');
+// const verify_client_token = require('../controllers/verify_client_token.js');
+// const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 route.get("/get", async (req, res) => {
@@ -22,15 +22,15 @@ route.get("/get", async (req, res) => {
     }
 });
 
-route.post("/create", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
-      }
-    })
+route.post("/create", async (req, res) => {
+    // jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    //   if(error){
+    //     res.status(403).send({message:"Forbidden Access"});
+    //   } else {
+    //     res.json({message:"Acceso autorizado",
+    //               authData})
+    //   }
+    // })
     const review = req.body;
     try {
         let response = await updateReview(review);
@@ -44,15 +44,15 @@ route.post("/create", verify_client_token, async (req, res) => {
     }
 });
 
-route.patch("/update", verify_client_token, verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
-      }
-    })
+route.patch("/update", async (req, res) => {
+    // jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    //   if(error){
+    //     res.status(403).send({message:"Forbidden Access"});
+    //   } else {
+    //     res.json({message:"Acceso autorizado",
+    //               authData})
+    //   }
+    // })
     const review = req.body;
     try {
         let updated = await updateReview(review);
@@ -65,15 +65,15 @@ route.patch("/update", verify_client_token, verify_client_token, async (req, res
     }
 });
 
-route.delete("/delete", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
-      }
-    })
+route.delete("/delete", async (req, res) => {
+    // jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    //   if(error){
+    //     res.status(403).send({message:"Forbidden Access"});
+    //   } else {
+    //     res.json({message:"Acceso autorizado",
+    //               authData})
+    //   }
+    // })
     const review = req.query;
     try {
         let tDeleted = await deleteReview(review);
