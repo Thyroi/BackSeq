@@ -151,8 +151,14 @@ route.get("/:id",
 route.get("/",
     async (req, res) => {
         try {
-            let { filters } = req.query;
-            let nested = req.body;
+            let { filters, offer, category, collection } = req.query;
+            console.log(collection);
+            let nested = {
+              offer: JSON.parse(offer),
+              collection: JSON.parse(collection),
+              category: JSON.parse(category),
+            }
+
             filters = filters ? filters.split(" ") : null;
             let response;
             if (filters) response = await getProductBySuperSearch(filters);

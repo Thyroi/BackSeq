@@ -67,7 +67,7 @@ const getAllProducts = async (nested) => {
         let hasData;
         if (nested) {
             let { offer, category, collection } = nested
-            offer = offer ? offer : [true, false];
+            offer = offer === null ? [true, false] : offer;
             collection = collection ? collection : [1,2,3,4];
             if (category) {
                 hasData = await Category.findAll({
@@ -84,6 +84,10 @@ const getAllProducts = async (nested) => {
                     }]
                 }
                 );
+
+                return !hasData.length
+                  ? { msg: 'Esta vacia la tabla.' }
+                  : {...hasData }[0].Products;
             } else {
                 hasData = await Products.findAll({
                     where: {
@@ -92,6 +96,10 @@ const getAllProducts = async (nested) => {
                         collection: collection
                     }
                 });
+
+                return !hasData.length
+                  ? { msg: 'Esta vacia la tabla.' }
+                  : hasData;
             }
         } else {
             hasData = await Products.findAll({
