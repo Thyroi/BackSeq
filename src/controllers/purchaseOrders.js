@@ -15,8 +15,8 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
         });
         let resp = await Client.findByPk(clientPhone);
         purchaseOrder.setClient(resp);
-        console.log(info, address, clientPhone, total, orderStatus, resp)
         let email=resp.dataValues.email;
+        console.log(email);
         let orderId=purchaseOrder.dataValues.orderId;
 
         if(orderStatus === 'Completed') {
@@ -30,9 +30,29 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
 
           let shipping = await Shippings.create();
           shipping.setPurchaseOrder(orderId);
-        }
+          const mail= {
+            type: 'confirmOrder',
+            email: email,
+             };
+            sendMail(mail);
+         const mail2= {
+            type: 'shipped',
+            email: mail2,
+             };
+            sendMail(mail2);  
 
-        //sendMail(email,orderId);
+        }
+        if(orderStatus === 'Processing') { 
+            const mail= {
+              type: "inProcess",
+              email: email,
+               };
+              sendMail(mail);
+          }
+
+
+
+
         return purchaseOrder;
 
     } catch (e) {
