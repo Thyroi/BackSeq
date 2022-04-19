@@ -1,5 +1,6 @@
 const { Sequelize, Op, where } = require('sequelize');
 const { Products, Category, Collection, Review } = require('../db.js');
+const {addSearchTerm} = require('./Statistics.js')
 
 const deleteProduct = async (id) => {
     try {
@@ -128,6 +129,7 @@ const getByMoreRecent = async (order) => {
 }
 const getProductBySuperSearch = async (filters) => {
     try {
+        await filters.map(async term=> await addSearchTerm(term))
         let response = await Products.findAll({
             include: [{
                 model: Category,
