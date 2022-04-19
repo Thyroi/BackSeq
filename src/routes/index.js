@@ -13,7 +13,10 @@ const list = require('./list');
 const purchaseOrders = require('./purchaseOrders');
 const payments = require('./payments');
 const invoices = require('./invoice');
+const login = require('./login');
+const statistics = require('./statistics');
 
+router.use('/statistics', statistics);
 router.use('/populate', populate);
 router.use('/products', products);
 router.use('/reviews', review);
@@ -29,6 +32,7 @@ router.use('/reviews', review);
 router.use('/orders', purchaseOrders);
 router.use('/payments', payments);
 router.use('/invoice', invoices);
+router.use('/login', login);
 
 
 module.exports = router;
