@@ -37,6 +37,13 @@ async function mailer(info) {
         subject = "Reset password";
         url = `http://localhost:3000/reset?token=${info.token}`;
         break;
+      case "wishlist":
+        filePath = path.join('Wishlistinvite', '../views/Wishlistinvite.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/confirm?token=${info.token}`;
+        subject = "Account confirmation";
+        break;
       default:
         break;
     }
