@@ -15,7 +15,7 @@ const {
      } else {
       try {
           const response = await getOrders();
-          return res.status(200).json({response, message:"Authorized Access", authData});
+          return res.status(200).json(response);
       } catch (error) {
           return res.status(500).json("rompiste todo")
       }
@@ -30,7 +30,7 @@ const {
      } else {
       try {
           const response = await getSearchTerms();
-          return res.status(200).json({response, message:"Authorized Access", authData});
+          return res.status(200).json(response);
       } catch (error) {
           return res.status(500).json("rompiste todo")
       }
@@ -47,7 +47,7 @@ const {
      console.log(term);
       try {
           const response = await addSearchTerm(term);
-          return res.status(200).json({response, message:"Authorized Access", authData});
+          return res.status(200).json(response);
       } catch (error) {
           return res.status(500).json("rompiste todo")
       }

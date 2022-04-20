@@ -86,7 +86,7 @@ route.patch("/update", verify_admin_token, async (req, res) => {
                 const response = await updateProducts(updatedProduct);
                 return response?.msg
                     ? res.status(404).json(response)
-                    : res.status(200).json({response, message:"Authorized Access", authData});
+                    : res.status(200).json(response);
             } catch (error) {
                 console.log(error);
                 return res.status(500).json('Se rompio todo.');
@@ -106,7 +106,7 @@ route.patch("/delete/:id", verify_admin_token, async (req, res) => {
                 const response = await deleteProduct(id);
                 return response.msg
                     ? res.status(404).json(response)
-                    : res.status(200).json({response, message:"Authorized Access", authData});
+                    : res.status(200).json(response);
             } catch (error) {
                 console.log(error);
                 return res.status(500).json('Se rompio todo.');
@@ -196,7 +196,7 @@ route.post("/add", verify_admin_token, async (req, res) => {
         try {
               const newProduct = await createProduct(product);
               console.log(newProduct);
-              return res.json({newProduct, message:"Authorized Access", authData})
+              return res.json(newProduct)
         } catch (error) {
             return res.json({ "message": error.data, "nota": newProduct })
         }

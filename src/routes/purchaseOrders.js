@@ -14,7 +14,7 @@ router.post('/', verify_client_token, async(req,res)=>{
         try{
             let{orderDetails, address, clientPhone, total, orderStatus}=req.body;
             let response=await newOrder(orderDetails, address,clientPhone, total, orderStatus);
-           return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+           return response?res.status(200).json(response):res.status(404);
         }catch(e){
             console.log(e);
             return res.status(500).json('Error en el servidor')
@@ -32,7 +32,7 @@ router.patch('/:id', verify_admin_token, async(req,res)=>{
             let info =req.body;
             let {id}=req.params;
             let response=await updateOrder(info, id);
-            return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+            return response?res.status(200).json(response):res.status(404);
         }catch(e){
             console.log(e);
             return res.status(500).json('Error en el servidor')

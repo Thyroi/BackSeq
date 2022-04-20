@@ -155,7 +155,7 @@ const client = {
             {
               where: { phone: id }
             });
-          res.status(200).json({updatedclient, message:"Authorized Access", authData});
+          res.status(200).json("Cliente actualizado con Exito!!");
         } catch (error) {
           console.log(error);
         }
@@ -173,12 +173,12 @@ const client = {
             where: { phone: id }
           });
           console.log("Cliente eliminado con Exito!!");
-          res.status(200).send({deleteClient, message:"Authorized Access", authData});
+          res.status(200).send("Cliente eliminado con Exito!!");
         } catch (error) {
           console.log(error);
         }
       }
-    })    
+    })
   },
   getClientBynick_pass: async (req, res) => {
     try {

@@ -20,7 +20,7 @@ router.put('/:id', verify_client_token, async(req,res)=>{
             console.log(id,"holaaId");
 
             let response=await updateCart(cart_items, id);
-            return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+            return response?res.status(200).json(response):res.status(404);
 
 
         } catch(e) {
@@ -43,7 +43,7 @@ router.get('/:id', verify_client_token, async(req,res)=>{
         console.log(req.params);
         let clientPhone=req.params.id;
         let response = await getCart(clientPhone);
-        return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+        return response?res.status(200).json(response):res.status(404);
 
         }catch(e){
           console.log(e);
@@ -62,7 +62,7 @@ router.delete('/:id', verify_client_token, async(req,res)=>{
       try{
           let clientPhone=req.params.id;
           let response=await deleteCart(clientPhone);
-          return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+          return response?res.status(200).json(response):res.status(404);
 
       }catch(e){
           console.log(e);
