@@ -4,11 +4,14 @@ const { SearchTerms, PurchaseOrder, Client, Category, Collection } = require('..
 const statistics = {
     getOrders: async () => {
         try {
-            const orders = await PurchaseOrder.findAll({
+            const totalOrders = await PurchaseOrder.findAll({
                 where: {
                     orderStatus: 'Completed'
                 }
             });
+            const totalOrdersCount = totalOrders.length;
+            const totalOrdersSum = totalOrders.reduce((acc, cur) => acc + cur.total, 0);
+
             return orders
         }
         catch (error) {

@@ -165,9 +165,9 @@ const shareList = async (list) => {
     try {
         if (newUser.ClientPhone) {
             const shareList = await List.findByPk(id);
-            shareList.Colaborators = shareList.Colaborators.concat(newUser);
+            shareList.Colaborators = shareList.Colaborators.concat(newUser.ClientPhone);
             await shareList.save();
-            const user = await Client.findByPk(newUser);
+            const user = await Client.findByPk(newUser.ClientPhone);
             let mail = {
                 type: 'wishlist',
                 email: user.email,
