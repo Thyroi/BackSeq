@@ -173,7 +173,6 @@ route.get("/",
     async (req, res) => {
         try {
             let { filters, offer, category, collection, type, method } = req.query;
-        
             offer = offer ? offer : null;
             category = category ? category : null;
             collection = collection ? collection : null;

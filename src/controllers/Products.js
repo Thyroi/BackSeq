@@ -98,10 +98,11 @@ const getAllProducts = async (nested) => {
 
     try {
         let hasData;
-        if (nested) {
+        if (!nested.offer || !nested.category || !nested.collection) {
             let { offer, category, collection } = nested
             offer = offer === null ? [true, false] : offer;
             collection = collection ? collection : [1, 2, 3, 4];
+            console.log(`Entre AQUI LPTM._______________________\n`)
             if (category) {
                 hasData = await Category.findAll({
                     where: {
@@ -145,6 +146,7 @@ const getAllProducts = async (nested) => {
         }
 
     } catch (error) {
+        console.log(`Controller: getAllProducts________________________________\n`);
         console.log(error);
     }
 };
@@ -211,6 +213,7 @@ const getProductBySuperSearch = async (filters) => {
             ? { msg: 'Product not found.' }
             : responseII.length ? responseII : response;
     } catch (error) {
+        console.log(`Controller: getProductBySuperSearch________________________________\n`);
         console.log(error);
     }
 };
