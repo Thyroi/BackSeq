@@ -48,41 +48,29 @@ route.get("/offer", async (req, res) => {
         return res.status(500).json('rompiste todo.');
     }
 });
-route.post("/create", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        const list = req.body;
-        try {
-            response = await createList(list);
-            return response.msg
-                ? res.status(404).json(response)
-                : res.status(200).json({response, message:"Authorized Access", authData});
-        } catch (error) {
-            console.log(error);
-            return res.status(500).json('rompiste todo.');
-        }
-      }
-    })
+route.post("/create", async (req, res) => {
+    const list = req.body;
+    try {
+        response = await createList(list);
+        return response.msg
+            ? res.status(404).json(response)
+            : res.status(200).json(response);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json('rompiste todo.');
+    }
 });
-route.patch("/update", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        const list = req.body;
-        try {
-            let updated = await updateList(list);
-            return !updated[0]
-                ? res.status(404).json({ message: "Check list id." })
-                : res.status(200).json({ message: `Updated list ${updated[0]}.`, authData});
-        } catch (error) {
-            console.log(error);
-            return res.status(500).json('rompiste todo.');
-        }
-      }
-    })
+route.patch("/update",async (req, res) => {
+    const list = req.body;
+    try {
+        let updated = await updateList(list);
+        return !updated[0]
+            ? res.status(404).json({ message: "Check list id." })
+            : res.status(200).json({ message: `Updated list ${updated[0]}.`});
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json('rompiste todo.');
+    }
 });
 route.patch('/share', verify_client_token, async (req, res) => {
   jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {

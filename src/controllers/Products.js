@@ -1,6 +1,38 @@
 const { Sequelize, Op, where } = require('sequelize');
 const { Products, Category, Collection, Review } = require('../db.js');
-const {addSearchTerm} = require('./Statistics.js')
+const { addSearchTerm } = require('./Statistics.js')
+
+
+function order(data, type, method) {
+    if (type === 'ASC') {
+        data.sort(function (a, b) {
+            if (a.method > b.method) {
+                return 1;
+            }
+            if (a.method < b.method) {
+                return -1;
+            }
+            // a must be equal to b
+            return 0;
+        });
+        return data;
+    } else if (type === 'DESC') {
+        data.sort(function (a, b) {
+            if (a.method < b.method) {
+                return 1;
+            }
+            if (a.method > b.method) {
+                return -1;
+            }
+            // a must be equal to b
+            return 0;
+        });
+        return data;
+    }
+    else {
+        return data;
+    }
+};
 
 const deleteProduct = async (id) => {
     try {
@@ -69,7 +101,7 @@ const getAllProducts = async (nested) => {
         if (nested) {
             let { offer, category, collection } = nested
             offer = offer === null ? [true, false] : offer;
-            collection = collection ? collection : [1,2,3,4];
+            collection = collection ? collection : [1, 2, 3, 4];
             if (category) {
                 hasData = await Category.findAll({
                     where: {
@@ -87,8 +119,8 @@ const getAllProducts = async (nested) => {
                 );
 
                 return !hasData.length
-                  ? { msg: 'Esta vacia la tabla.' }
-                  : {...hasData }[0].Products;
+                    ? { msg: 'Esta vacia la tabla.' }
+                    : order({ ...hasData }[0].Products, nested.type, nested.method);
             } else {
                 hasData = await Products.findAll({
                     where: {
@@ -97,10 +129,9 @@ const getAllProducts = async (nested) => {
                         collection: collection
                     }
                 });
-
                 return !hasData.length
-                  ? { msg: 'Esta vacia la tabla.' }
-                  : hasData;
+                    ? { msg: 'Esta vacia la tabla.' }
+                    : order(hasData, nested.type, nested.method);
             }
         } else {
             hasData = await Products.findAll({
@@ -108,11 +139,10 @@ const getAllProducts = async (nested) => {
                     sdelete: false
                 }
             });
-            console.log("all: "+hasData.length);
         }
         return !hasData.length
-        ? { msg: 'Esta vacia la tabla.' }
-        : hasData;
+            ? { msg: 'Esta vacia la tabla.' }
+            : order(hasData, nested.type, nested.method);
     } catch (error) {
         console.log(error);
     }
@@ -137,7 +167,7 @@ const getByMoreRecent = async (order) => {
 }
 const getProductBySuperSearch = async (filters) => {
     try {
-        await filters.map(async term=> await addSearchTerm(term))
+        await filters.map(async term => await addSearchTerm(term))
         let response = await Products.findAll({
             include: [{
                 model: Category,
