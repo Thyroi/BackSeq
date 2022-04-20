@@ -9,9 +9,9 @@ const {
     getListByIdAndTitle
 } = require('../controllers/List');
 
-const verify_client_token = require('../controllers/verify_client_token.js');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+// const verify_client_token = require('../controllers/verify_client_token.js');
+// const jwt = require('jsonwebtoken');
+// require('dotenv').config();
 
 route.get("/get", async (req, res) => {
     const filters = req.query;
@@ -48,15 +48,7 @@ route.get("/offer", async (req, res) => {
         return res.status(500).json('rompiste todo.');
     }
 });
-route.post("/create", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
-      }
-    })
+route.post("/create", async (req, res) => {
     const list = req.body;
     try {
         response = await createList(list);
@@ -68,15 +60,7 @@ route.post("/create", verify_client_token, async (req, res) => {
         return res.status(500).json('rompiste todo.');
     }
 });
-route.patch("/update", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
-      }
-    })
+route.patch("/update",async (req, res) => {
     const list = req.body;
     try {
         let updated = await updateList(list);
@@ -95,15 +79,7 @@ route.patch('/share', async (req, res) => {
         ? res.status(404).json({ message: "Check list id." })
         : res.status(200).json({ message: `Updated list.`});
 });
-route.delete("/delete", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
-      }
-    })
+route.delete("/delete", async (req, res) => {
     const {id} = req.query;
     try {
         let tDeleted = await deleteList(parseInt(id));
