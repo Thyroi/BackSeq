@@ -15,8 +15,7 @@ const {
     } catch (error) {
         return res.status(500).json("rompiste todo")
     }
-  })
-});
+  });
 
  route.get("/getSearchTerms", verify_admin_token, async (req, res) => {
    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {

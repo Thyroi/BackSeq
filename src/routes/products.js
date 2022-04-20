@@ -94,7 +94,6 @@ route.patch("/update", verify_admin_token, async (req, res) => {
           }
         })
     }
-}
 );
 
 route.patch("/delete/:id", verify_admin_token, async (req, res) => {
@@ -115,7 +114,6 @@ route.patch("/delete/:id", verify_admin_token, async (req, res) => {
           }
         })
     }
-}
 );
 
 route.get("/getReviews",
