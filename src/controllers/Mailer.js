@@ -30,6 +30,13 @@ async function mailer(info) {
         url = `http://localhost:3000/confirm?token=${info.token}`;
         subject = "Account confirmation";
         break;
+      case "invitation":
+        filePath = path.join('Invite', '../views/Invite.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/confirm`;
+        subject = "Sing up Invitation";
+        break;
       case "reset":
         filePath = path.join('Reset', '../views/Reset.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
@@ -41,8 +48,8 @@ async function mailer(info) {
         filePath = path.join('Wishlistinvite', '../views/Wishlistinvite.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/confirm?token=${info.token}`;
-        subject = "Account confirmation";
+        url = `http://localhost:3000/confirm`;
+        subject = "You have been invited to share a wishlist";
         break;
       case "offers":
         filePath = path.join('Offers', '../views/Offers.html');

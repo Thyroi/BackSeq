@@ -5,8 +5,10 @@ const {
     getList,
     deleteList,
     sendOffers,
+    shareList,
     getListByIdAndTitle
 } = require('../controllers/List');
+
 const verify_client_token = require('../controllers/verify_client_token.js');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -46,7 +48,6 @@ route.get("/offer", async (req, res) => {
         return res.status(500).json('rompiste todo.');
     }
 });
-
 route.post("/create", verify_client_token, async (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
       if(error){
@@ -67,7 +68,6 @@ route.post("/create", verify_client_token, async (req, res) => {
         return res.status(500).json('rompiste todo.');
     }
 });
-
 route.patch("/update", verify_client_token, async (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
       if(error){
@@ -88,7 +88,13 @@ route.patch("/update", verify_client_token, async (req, res) => {
         return res.status(500).json('rompiste todo.');
     }
 });
-
+route.patch('/share', async (req, res) => {
+    const list = req.body;
+    const share = await shareList(list);
+    return !share
+        ? res.status(404).json({ message: "Check list id." })
+        : res.status(200).json({ message: `Updated list.`});
+});
 route.delete("/delete", verify_client_token, async (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
       if(error){
