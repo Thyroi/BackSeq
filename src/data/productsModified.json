@@ -25,7 +25,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw4da9b486/1_front_750/00459086-01.jpg",
         "collection": 1,
-        "id_category": 3
+        "id_category": 3,
+        "price_offer": 12.99
     },
     {
         "id_product": 2000457117,
@@ -53,7 +54,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5a97c9a9/1_front_750/00457117-01.jpg",
         "collection": 2,
-        "id_category": 3
+        "id_category": 3,
+        "price_offer": 7.49
     },
     {
         "id_product": 2000458518,
@@ -80,7 +82,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwf98acbd5/1_front_750/00458518-01.jpg",
         "collection": 4,
-        "id_category": 4
+        "id_category": 4,
+        "price_offer": 29.99
     },
     {
         "id_product": 1000281433,
@@ -105,7 +108,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwa5fccfee/1_front_750/00281433-01.jpg",
         "collection": 2,
-        "id_category": 5
+        "id_category": 5,
+        "price_offer": 10
     },
     {
         "id_product": 2000451661,
@@ -180,7 +184,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw0bdf18a6/1_front_750/00451661-01.jpg",
         "collection": 1,
-        "id_category": 12
+        "id_category": 12,
+        "price_offer": 12.59
     },
     {
         "id_product": 2000453058,
@@ -212,7 +217,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwde886e03/1_front_750/00453058-02.jpg",
         "collection": 1,
-        "id_category": 7
+        "id_category": 7,
+        "price_offer": 31
     },
     {
         "id_product": 2000454520,
@@ -257,7 +263,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5654e5ca/1_front_750/00454520-01.jpg",
         "collection": 1,
-        "id_category": 6
+        "id_category": 6,
+        "price_offer": 27.99
     },
     {
         "id_product": 2000449098,
@@ -320,7 +327,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwee2d3f4d/1_front_750/00449098-01.jpg",
         "collection": 2,
-        "id_category": 13
+        "id_category": 13,
+        "price_offer": 5
     },
     {
         "id_product": 1000449266,
@@ -374,7 +382,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwb3ff6fc2/1_front_750/00449266-01.jpg",
         "collection": 3,
-        "id_category": 14
+        "id_category": 14,
+        "price_offer": 17.99
     },
     {
         "id_product": 2000449675,
@@ -427,7 +436,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwfd8d4321/1_front_750/00449675-02.jpg",
         "collection": 4,
-        "id_category": 9
+        "id_category": 9,
+        "price_offer": 34.99
     },
     {
         "id_product": 2000449724,
@@ -460,7 +470,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw6d971765/1_front_750/00449724-02.jpg",
         "collection": 1,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 27.99
     },
     {
         "id_product": 1000450071,
@@ -485,7 +496,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw0853e28f/1_front_750/00450071-01.jpg",
         "collection": 2,
-        "id_category": 11
+        "id_category": 11,
+        "price_offer": 14.99
     },
     {
         "id_product": 1000449952,
@@ -720,7 +732,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw611920fd/1_front_750/00449952-02.jpg",
         "collection": 4,
-        "id_category": 11
+        "id_category": 11,
+        "price_offer": 3.99
     },
     {
         "id_product": 2000441318,
@@ -820,7 +833,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwcf718fb7/1_front_750/00441318-01.jpg",
         "collection": 4,
-        "id_category": 12
+        "id_category": 12,
+        "price_offer": 9.99
     },
     {
         "id_product": 2000441344,
@@ -869,7 +883,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw82a60bce/1_front_750/00441344-01.jpg",
         "collection": 1,
-        "id_category": 7
+        "id_category": 7,
+        "price_offer": 34.99
     },
     {
         "id_product": 2000442929,
@@ -931,7 +946,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwc6f1eb45/1_front_750/00442929-01.jpg",
         "collection": 1,
-        "id_category": 12
+        "id_category": 12,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000442074,
@@ -982,7 +998,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw6d436e8f/1_front_750/00442074-02.jpg",
         "collection": 4,
-        "id_category": 15
+        "id_category": 15,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000437165,
@@ -1031,7 +1048,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwa1f8c899/1_front_750/00437165-04.jpg",
         "collection": 3,
-        "id_category": 6
+        "id_category": 6,
+        "price_offer": 5
     },
     {
         "id_product": 2000455271,
@@ -1103,7 +1121,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw4f4ca9d1/1_front_750/00455271-01.jpg",
         "collection": 4,
-        "id_category": 8
+        "id_category": 8,
+        "price_offer": 17.99
     },
     {
         "id_product": 2000454481,
@@ -1184,7 +1203,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw6e21d33c/1_front_750/00454481-01.jpg",
         "collection": 4,
-        "id_category": 9
+        "id_category": 9,
+        "price_offer": 17.99
     },
     {
         "id_product": 1000453235,
@@ -1225,7 +1245,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw23ff73b1/1_front_750/00453235-01.jpg",
         "collection": 1,
-        "id_category": 14
+        "id_category": 14,
+        "price_offer": 27.99
     },
     {
         "id_product": 1000457112,
@@ -1384,7 +1405,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwe8a03027/1_front_750/00457112-01.jpg",
         "collection": 4,
-        "id_category": 16
+        "id_category": 16,
+        "price_offer": 9.99
     },
     {
         "id_product": 1000454209,
@@ -1427,7 +1449,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwc215bda5/1_front_750/00454209-01.jpg",
         "collection": 2,
-        "id_category": 5
+        "id_category": 5,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000457696,
@@ -1478,7 +1501,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwcff9cb2b/1_front_750/00457696-07.jpg",
         "collection": 1,
-        "id_category": 17
+        "id_category": 17,
+        "price_offer": 22.99
     },
     {
         "id_product": 2000456953,
@@ -1523,7 +1547,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw11f65763/1_front_750/00456953-04.jpg",
         "collection": 2,
-        "id_category": 13
+        "id_category": 13,
+        "price_offer": 12.99
     },
     {
         "id_product": 2000455778,
@@ -1570,7 +1595,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw417cd7f5/1_front_750/00455778-01.jpg",
         "collection": 3,
-        "id_category": 18
+        "id_category": 18,
+        "price_offer": 17.99
     },
     {
         "id_product": 1000467101,
@@ -1597,7 +1623,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw503aa49e/1_front_750/00467101-01.jpg",
         "collection": 2,
-        "id_category": 5
+        "id_category": 5,
+        "price_offer": 6
     },
     {
         "id_product": 2000458220,
@@ -1669,7 +1696,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw193b7053/1_front_750/00458220-02.jpg",
         "collection": 2,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 12.59
     },
     {
         "id_product": 1000450074,
@@ -1710,7 +1738,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5af540e3/1_front_750/00450074-02.jpg",
         "collection": 4,
-        "id_category": 11
+        "id_category": 11,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000456589,
@@ -1805,7 +1834,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwd12cfc6f/1_front_750/00456589-01.jpg",
         "collection": 4,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 4.99
     },
     {
         "id_product": 1000454236,
@@ -1850,7 +1880,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw244b1422/1_front_750/00454236-01.jpg",
         "collection": 4,
-        "id_category": 19
+        "id_category": 19,
+        "price_offer": 7.99
     },
     {
         "id_product": 2000384799,
@@ -1881,7 +1912,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw79ee8724/1_front_750/00384799-11.jpg",
         "collection": 1,
-        "id_category": 20
+        "id_category": 20,
+        "price_offer": 4
     },
     {
         "id_product": 1000446634,
@@ -1906,7 +1938,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwf4cda2f8/1_front_750/00446634-01.jpg",
         "collection": 2,
-        "id_category": 5
+        "id_category": 5,
+        "price_offer": 6.99
     },
     {
         "id_product": 2000443759,
@@ -1936,7 +1969,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw607f8968/1_front_750/00443759-01.jpg",
         "collection": 2,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 8.4
     },
     {
         "id_product": 2000460058,
@@ -1970,7 +2004,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwa7d78c32/1_front_750/00460058-02.jpg",
         "collection": 2,
-        "id_category": 21
+        "id_category": 21,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000460489,
@@ -2003,7 +2038,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw9b4ebade/1_front_750/00460489-02.jpg",
         "collection": 2,
-        "id_category": 22
+        "id_category": 22,
+        "price_offer": 29.99
     },
     {
         "id_product": 2000445553,
@@ -2072,7 +2108,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwbd816ab7/1_front_750/00445553-02.jpg",
         "collection": 2,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000457796,
@@ -2101,7 +2138,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw41ac5d03/1_front_750/00457796-01.jpg",
         "collection": 1,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000453015,
@@ -2150,7 +2188,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw97335229/1_front_750/00453015-02.jpg",
         "collection": 3,
-        "id_category": 17
+        "id_category": 17,
+        "price_offer": 29.99
     },
     {
         "id_product": 2000439445,
@@ -2199,7 +2238,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw14609dd7/1_front_750/00439445-01.jpg",
         "collection": 4,
-        "id_category": 17
+        "id_category": 17,
+        "price_offer": 19.99
     },
     {
         "id_product": 1000453235,
@@ -2240,7 +2280,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw23ff73b1/1_front_750/00453235-01.jpg",
         "collection": 4,
-        "id_category": 14
+        "id_category": 14,
+        "price_offer": 27.99
     },
     {
         "id_product": 1000457112,
@@ -2399,7 +2440,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwe8a03027/1_front_750/00457112-01.jpg",
         "collection": 4,
-        "id_category": 16
+        "id_category": 16,
+        "price_offer": 9.99
     },
     {
         "id_product": 1000454209,
@@ -2442,7 +2484,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwc215bda5/1_front_750/00454209-01.jpg",
         "collection": 1,
-        "id_category": 5
+        "id_category": 5,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000457696,
@@ -2493,7 +2536,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwcff9cb2b/1_front_750/00457696-07.jpg",
         "collection": 3,
-        "id_category": 17
+        "id_category": 17,
+        "price_offer": 22.99
     },
     {
         "id_product": 2000456953,
@@ -2538,7 +2582,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw11f65763/1_front_750/00456953-04.jpg",
         "collection": 3,
-        "id_category": 13
+        "id_category": 13,
+        "price_offer": 12.99
     },
     {
         "id_product": 2000455778,
@@ -2585,7 +2630,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw417cd7f5/1_front_750/00455778-01.jpg",
         "collection": 2,
-        "id_category": 18
+        "id_category": 18,
+        "price_offer": 17.99
     },
     {
         "id_product": 1000467101,
@@ -2612,7 +2658,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw503aa49e/1_front_750/00467101-01.jpg",
         "collection": 3,
-        "id_category": 5
+        "id_category": 5,
+        "price_offer": 6
     },
     {
         "id_product": 2000458220,
@@ -2684,7 +2731,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw193b7053/1_front_750/00458220-02.jpg",
         "collection": 3,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 12.59
     },
     {
         "id_product": 1000450074,
@@ -2725,7 +2773,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5af540e3/1_front_750/00450074-02.jpg",
         "collection": 3,
-        "id_category": 11
+        "id_category": 11,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000456589,
@@ -2820,7 +2869,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwd12cfc6f/1_front_750/00456589-01.jpg",
         "collection": 4,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 4.99
     },
     {
         "id_product": 1000454236,
@@ -2865,7 +2915,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw244b1422/1_front_750/00454236-01.jpg",
         "collection": 2,
-        "id_category": 19
+        "id_category": 19,
+        "price_offer": 7.99
     },
     {
         "id_product": 2000384799,
@@ -2896,7 +2947,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw79ee8724/1_front_750/00384799-11.jpg",
         "collection": 4,
-        "id_category": 20
+        "id_category": 20,
+        "price_offer": 4
     },
     {
         "id_product": 1000446634,
@@ -2921,7 +2973,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwf4cda2f8/1_front_750/00446634-01.jpg",
         "collection": 2,
-        "id_category": 5
+        "id_category": 5,
+        "price_offer": 6.99
     },
     {
         "id_product": 2000443759,
@@ -2951,7 +3004,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw607f8968/1_front_750/00443759-01.jpg",
         "collection": 4,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 8.4
     },
     {
         "id_product": 2000460058,
@@ -2985,7 +3039,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwa7d78c32/1_front_750/00460058-02.jpg",
         "collection": 2,
-        "id_category": 21
+        "id_category": 21,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000460489,
@@ -3018,7 +3073,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw9b4ebade/1_front_750/00460489-02.jpg",
         "collection": 2,
-        "id_category": 22
+        "id_category": 22,
+        "price_offer": 29.99
     },
     {
         "id_product": 2000445553,
@@ -3087,7 +3143,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwbd816ab7/1_front_750/00445553-02.jpg",
         "collection": 4,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000457796,
@@ -3116,7 +3173,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw41ac5d03/1_front_750/00457796-01.jpg",
         "collection": 3,
-        "id_category": 10
+        "id_category": 10,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000453015,
@@ -3165,7 +3223,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw97335229/1_front_750/00453015-02.jpg",
         "collection": 1,
-        "id_category": 17
+        "id_category": 17,
+        "price_offer": 29.99
     },
     {
         "id_product": 2000439445,
@@ -3214,7 +3273,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw14609dd7/1_front_750/00439445-01.jpg",
         "collection": 1,
-        "id_category": 17
+        "id_category": 17,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000459086,
@@ -3242,7 +3302,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw4da9b486/1_front_750/00459086-01.jpg",
         "collection": 3,
-        "id_category": 3
+        "id_category": 3,
+        "price_offer": 12.99
     },
     {
         "id_product": 2000457258,
@@ -3275,7 +3336,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw4cb614a9/1_front_750/00457258-02.jpg",
         "collection": 4,
-        "id_category": 23
+        "id_category": 23,
+        "price_offer": 17.99
     },
     {
         "id_product": 2000457117,
@@ -3303,7 +3365,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5a97c9a9/1_front_750/00457117-01.jpg",
         "collection": 2,
-        "id_category": 3
+        "id_category": 3,
+        "price_offer": 7.49
     },
     {
         "id_product": 2000457578,
@@ -3378,7 +3441,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw126e997d/1_front_750/00457578-01.jpg",
         "collection": 1,
-        "id_category": 24
+        "id_category": 24,
+        "price_offer": 16.09
     },
     {
         "id_product": 2000459887,
@@ -3411,7 +3475,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwe83aa43e/1_front_750/00459887-01.jpg",
         "collection": 1,
-        "id_category": 25
+        "id_category": 25,
+        "price_offer": 39.99
     },
     {
         "id_product": 2000457339,
@@ -3449,7 +3514,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw3d403677/1_front_750/00457339-01.jpg",
         "collection": 3,
-        "id_category": 24
+        "id_category": 24,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000455964,
@@ -3536,7 +3602,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwea77cd86/1_front_750/00455964-01.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 17.49
     },
     {
         "id_product": 2000457127,
@@ -3585,7 +3652,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw80035b9f/1_front_750/00457127-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 14.99
     },
     {
         "id_product": 2000452503,
@@ -3667,7 +3735,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwf29f8ff2/1_front_750/00452503-01.jpg",
         "collection": 1,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 24.49
     },
     {
         "id_product": 2000448820,
@@ -3698,7 +3767,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw1a5a3496/1_front_750/00448820-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 9.09
     },
     {
         "id_product": 1000447090,
@@ -3724,7 +3794,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5ce0cb16/1_front_750/00447090-04.jpg",
         "collection": 4,
-        "id_category": 16
+        "id_category": 16,
+        "price_offer": 5.99
     },
     {
         "id_product": 2000456385,
@@ -3794,7 +3865,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwa69740c1/1_front_750/00456385-01.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 16.09
     },
     {
         "id_product": 2000457282,
@@ -3830,7 +3902,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw23752475/1_front_750/00457282-01.jpg",
         "collection": 2,
-        "id_category": 27
+        "id_category": 27,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000457285,
@@ -3862,7 +3935,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw1e65a4ff/1_front_750/00457285-01.jpg",
         "collection": 3,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 24.99
     },
     {
         "id_product": 2000456630,
@@ -3931,7 +4005,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwca0fff66/1_front_750/00456630-01.jpg",
         "collection": 2,
-        "id_category": 28
+        "id_category": 28,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000457284,
@@ -3965,7 +4040,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwea789d61/1_front_750/00457284-01.jpg",
         "collection": 1,
-        "id_category": 24
+        "id_category": 24,
+        "price_offer": 17.49
     },
     {
         "id_product": 2000444146,
@@ -4048,7 +4124,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwdc0354e0/1_front_750/00444146-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 20.99
     },
     {
         "id_product": 2000453001,
@@ -4127,7 +4204,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw07f1e4eb/1_front_750/00453001-01.jpg",
         "collection": 3,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 11.49
     },
     {
         "id_product": 2000456626,
@@ -4199,7 +4277,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw5e53523e/1_front_750/00456626-01.jpg",
         "collection": 4,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000440426,
@@ -4250,7 +4329,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw7a3bf31c/1_front_750/00440426-01.jpg",
         "collection": 1,
-        "id_category": 25
+        "id_category": 25,
+        "price_offer": 34.99
     },
     {
         "id_product": 2000449005,
@@ -4337,7 +4417,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwe644dc5e/1_front_750/00449005-02.jpg",
         "collection": 1,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000457124,
@@ -4406,7 +4487,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw6eefff40/1_front_750/00457124-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 17.99
     },
     {
         "id_product": 2000450934,
@@ -4438,7 +4520,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw37981646/1_front_750/00450934-01.jpg",
         "collection": 3,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000452197,
@@ -4506,7 +4589,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwacf1e469/1_front_750/00452197-01.jpg",
         "collection": 3,
-        "id_category": 27
+        "id_category": 27,
+        "price_offer": 39.99
     },
     {
         "id_product": 2000456577,
@@ -4575,7 +4659,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw339b0a8f/1_front_750/00456577-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000456613,
@@ -4610,7 +4695,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw739ce90f/1_front_750/00456613-01.jpg",
         "collection": 3,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 17.49
     },
     {
         "id_product": 2000452420,
@@ -4676,7 +4762,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw0b879b24/1_front_750/00452420-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 13.99
     },
     {
         "id_product": 1000459546,
@@ -4730,7 +4817,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw765469d8/1_front_750/00459546-02.jpg",
         "collection": 1,
-        "id_category": 16
+        "id_category": 16,
+        "price_offer": 6.99
     },
     {
         "id_product": 2000448784,
@@ -4767,7 +4855,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw7bf02e79/1_front_750/00448784-01.jpg",
         "collection": 1,
-        "id_category": 30
+        "id_category": 30,
+        "price_offer": 9.99
     },
     {
         "id_product": 2000457574,
@@ -4854,7 +4943,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw9f7fb1ce/1_front_750/00457574-01.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000452207,
@@ -4884,7 +4974,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw08983692/1_front_750/00452207-01.jpg",
         "collection": 1,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000452578,
@@ -5010,7 +5101,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw43d62dc9/1_front_750/00452578-01.jpg",
         "collection": 3,
-        "id_category": 28
+        "id_category": 28,
+        "price_offer": 34.99
     },
     {
         "id_product": 2000444171,
@@ -5076,7 +5168,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw92ffd5bd/1_front_750/00444171-02.jpg",
         "collection": 3,
-        "id_category": 31
+        "id_category": 31,
+        "price_offer": 19.59
     },
     {
         "id_product": 2000453726,
@@ -5127,7 +5220,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwc9afd0ca/1_front_750/00453726-01.jpg",
         "collection": 2,
-        "id_category": 25
+        "id_category": 25,
+        "price_offer": 37.99
     },
     {
         "id_product": 2000456619,
@@ -5176,7 +5270,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwd83062b3/1_front_750/00456619-01.jpg",
         "collection": 2,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 12.49
     },
     {
         "id_product": 2000453032,
@@ -5206,7 +5301,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw7f358dff/1_front_750/00453032-03.jpg",
         "collection": 4,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000451919,
@@ -5240,7 +5336,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwd3f6ae07/1_front_750/00451919-01.jpg",
         "collection": 3,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000441846,
@@ -5343,7 +5440,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw43463102/1_front_750/00441846-08.jpg",
         "collection": 1,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 12.59
     },
     {
         "id_product": 2000459090,
@@ -5371,7 +5469,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw7beca089/1_front_750/00459090-01.jpg",
         "collection": 1,
-        "id_category": 3
+        "id_category": 3,
+        "price_offer": 12.99
     },
     {
         "id_product": 2000457594,
@@ -5424,7 +5523,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw2b7f7345/1_front_750/00457594-01.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 5.99
     },
     {
         "id_product": 2000449005,
@@ -5511,7 +5611,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwe644dc5e/1_front_750/00449005-02.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000457124,
@@ -5580,7 +5681,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw6eefff40/1_front_750/00457124-01.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 17.99
     },
     {
         "id_product": 2000450934,
@@ -5612,7 +5714,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw37981646/1_front_750/00450934-01.jpg",
         "collection": 2,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000452197,
@@ -5680,7 +5783,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwacf1e469/1_front_750/00452197-01.jpg",
         "collection": 4,
-        "id_category": 27
+        "id_category": 27,
+        "price_offer": 39.99
     },
     {
         "id_product": 2000456577,
@@ -5749,7 +5853,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw339b0a8f/1_front_750/00456577-01.jpg",
         "collection": 1,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000456613,
@@ -5784,7 +5889,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw739ce90f/1_front_750/00456613-01.jpg",
         "collection": 3,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 17.49
     },
     {
         "id_product": 2000452420,
@@ -5850,7 +5956,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw0b879b24/1_front_750/00452420-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 13.99
     },
     {
         "id_product": 1000459546,
@@ -5904,7 +6011,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw765469d8/1_front_750/00459546-02.jpg",
         "collection": 4,
-        "id_category": 16
+        "id_category": 16,
+        "price_offer": 6.99
     },
     {
         "id_product": 2000448784,
@@ -5941,7 +6049,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw7bf02e79/1_front_750/00448784-01.jpg",
         "collection": 1,
-        "id_category": 30
+        "id_category": 30,
+        "price_offer": 9.99
     },
     {
         "id_product": 2000457574,
@@ -6028,7 +6137,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw9f7fb1ce/1_front_750/00457574-01.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 19.99
     },
     {
         "id_product": 2000452207,
@@ -6058,7 +6168,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw08983692/1_front_750/00452207-01.jpg",
         "collection": 1,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000452578,
@@ -6184,7 +6295,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw43d62dc9/1_front_750/00452578-01.jpg",
         "collection": 2,
-        "id_category": 28
+        "id_category": 28,
+        "price_offer": 34.99
     },
     {
         "id_product": 2000444171,
@@ -6250,7 +6362,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw92ffd5bd/1_front_750/00444171-02.jpg",
         "collection": 2,
-        "id_category": 31
+        "id_category": 31,
+        "price_offer": 19.59
     },
     {
         "id_product": 2000453726,
@@ -6301,7 +6414,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwc9afd0ca/1_front_750/00453726-01.jpg",
         "collection": 3,
-        "id_category": 25
+        "id_category": 25,
+        "price_offer": 37.99
     },
     {
         "id_product": 2000456619,
@@ -6350,7 +6464,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwd83062b3/1_front_750/00456619-01.jpg",
         "collection": 4,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 12.49
     },
     {
         "id_product": 2000453032,
@@ -6380,7 +6495,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw7f358dff/1_front_750/00453032-03.jpg",
         "collection": 4,
-        "id_category": 29
+        "id_category": 29,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000451919,
@@ -6414,7 +6530,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dwd3f6ae07/1_front_750/00451919-01.jpg",
         "collection": 4,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 13.99
     },
     {
         "id_product": 2000441846,
@@ -6517,7 +6634,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw43463102/1_front_750/00441846-08.jpg",
         "collection": 1,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 12.59
     },
     {
         "id_product": 2000459090,
@@ -6545,7 +6663,8 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw7beca089/1_front_750/00459090-01.jpg",
         "collection": 1,
-        "id_category": 3
+        "id_category": 3,
+        "price_offer": 12.99
     },
     {
         "id_product": 2000457594,
@@ -6598,6 +6717,7 @@
         "sdelete": false,
         "default_image": "https://www.forever21.com/on/demandware.static/-/Sites-f21-master-catalog/default/dw2b7f7345/1_front_750/00457594-01.jpg",
         "collection": 2,
-        "id_category": 26
+        "id_category": 26,
+        "price_offer": 5.99
     }
 ]
