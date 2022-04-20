@@ -84,13 +84,19 @@ route.patch("/update", verify_client_token, async (req, res) => {
       }
     })
 });
-route.patch('/share', async (req, res) => {
-    const list = req.body;
-    const share = await shareList(list);
-    return !share
-        ? res.status(404).json({ message: "Check list id." })
-        : res.status(200).json({ message: `Updated list.`});
+route.patch('/share', verify_client_token, async (req, res) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+    if(error){
+      res.status(403).send({message:"Forbidden Access"});
+    } else {
+      const list = req.body;
+      const share = await shareList(list);
+      return !share
+          ? res.status(404).json({ message: "Check list id." })
+          : res.status(200).json({ message: `Updated list.`, authData});
+    }
 });
+
 route.delete("/delete", verify_client_token, async (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
@@ -107,7 +113,7 @@ route.delete("/delete", verify_client_token, async (req, res) => {
             return res.status(500).json('rompiste todo.');
         }
       }
-    })    
+    })
 });
 
 module.exports = route;
