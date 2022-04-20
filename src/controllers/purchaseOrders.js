@@ -37,7 +37,7 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
             sendMail(mail);
          const mail2= {
             type: 'shipped',
-            email: mail2,
+            email: email,
              };
             sendMail(mail2);  
 
@@ -49,9 +49,6 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
                };
               sendMail(mail);
           }
-
-
-
 
         return purchaseOrder;
 
