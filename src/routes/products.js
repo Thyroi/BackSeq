@@ -169,13 +169,14 @@ route.get("/",
     async (req, res) => {
         try {
             let { filters, offer, category, collection } = req.query;
-            console.log(collection);
+            offer = offer ? offer : null;
+            category = category ? category : null;
+            collection = collection ? collection : null;
             let nested = {
               offer: JSON.parse(offer),
               collection: JSON.parse(collection),
               category: JSON.parse(category),
             }
-
             filters = filters ? filters.split(" ") : null;
             let response;
             if (filters) response = await getProductBySuperSearch(filters);
