@@ -8,7 +8,8 @@ route.patch("/setoff", async (req, res) => {
     return res.json(updated)
 });
 route.get("/email", async (req, res) => {
-    const mail = await mailer({type : "offers", discount: "10"});
+    let info = {type : "confirmation", discount: "10", email: "juanjo2895@hotmail.com"}
+    const mail = await mailer(info);
     return res.json(mail)
 });
 route.patch("/newOffer", async (req, res) => {

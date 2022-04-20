@@ -22,13 +22,16 @@ async function mailer(info) {
     let user = info.email;
     let url = ``;
     let subject = "";
+    let discount= "";
+    let loads ="";
     switch (info.type) {
       case "confirmation":
         filePath = path.join('confirm', '../views/confirm.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/confirm?token=${info.token}`;
+        url = "http://localhost:3000/";
         subject = "Account confirmation";
+        loads = ({url})
         break;
       case "invitation":
         filePath = path.join('Invite', '../views/Invite.html');
@@ -36,6 +39,7 @@ async function mailer(info) {
         template = Handlebars.compile(source);
         url = `http://localhost:3000/confirm`;
         subject = "Sing up Invitation";
+        loads = ({url});
         break;
       case "reset":
         filePath = path.join('Reset', '../views/Reset.html');
@@ -55,9 +59,10 @@ async function mailer(info) {
         filePath = path.join('Offers', '../views/Offers.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/confirm?token=${info.token}`;
-        user = email.join(',');
+        url = `http://localhost:3000/`;
         subject = "New offers";
+        discount = info.discount
+        loads = ({url}, {discount})
         break;
       case "confirmOrder":
         filePath = path.join('ConfirmOrder', '../views/ConfirmOrder.html');
@@ -86,7 +91,7 @@ async function mailer(info) {
       from: 'e.commerce2022shop@gmail.com', // sender address
       to: user, // list of receivers
       subject: subject, // Subject line
-      html: template({ url }) // html body
+      html: template(loads) // html body
     });
     return options.messageId;
 

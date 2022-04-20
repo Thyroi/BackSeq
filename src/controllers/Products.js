@@ -2,26 +2,25 @@ const { Sequelize, Op, where } = require('sequelize');
 const { Products, Category, Collection, Review } = require('../db.js');
 const { addSearchTerm } = require('./Statistics.js')
 
-
 function order(data, type, method) {
-    if (type === 'ASC') {
+    if (type === 'ASC' && method) {
         data.sort(function (a, b) {
-            if (a.method > b.method) {
+            if (a[method] > b[method]) {
                 return 1;
             }
-            if (a.method < b.method) {
+            if (a[method] < b[method]) {
                 return -1;
             }
             // a must be equal to b
             return 0;
         });
         return data;
-    } else if (type === 'DESC') {
+    } else if (type === 'DESC' && method) {
         data.sort(function (a, b) {
-            if (a.method < b.method) {
+            if (a[method] < b[method]) {
                 return 1;
             }
-            if (a.method > b.method) {
+            if (a[method] > b[method]) {
                 return -1;
             }
             // a must be equal to b
@@ -48,7 +47,7 @@ const deleteProduct = async (id) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 const updateProducts = async ({ updatedProduct, productCategories }) => {
     updatedProduct.variants[0].ProductImages = updatedProduct.variants[0].ProductImages ? updatedProduct.variants[0].ProductImages : ["https://i.ibb.co/hdm6TSq/no-image.png"];
     try {
@@ -71,7 +70,7 @@ const updateProducts = async ({ updatedProduct, productCategories }) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 const getProductDetails = async (id) => {
     try {
         const details = await Products.findByPk(parseInt(id)
@@ -94,8 +93,9 @@ const getProductDetails = async (id) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 const getAllProducts = async (nested) => {
+
     try {
         let hasData;
         if (nested) {
@@ -139,14 +139,15 @@ const getAllProducts = async (nested) => {
                     sdelete: false
                 }
             });
+            return !hasData.length
+                ? { msg: 'Esta vacia la tabla.' }
+                : order(hasData, nested.type, nested.method);
         }
-        return !hasData.length
-            ? { msg: 'Esta vacia la tabla.' }
-            : order(hasData, nested.type, nested.method);
+
     } catch (error) {
         console.log(error);
     }
-}
+};
 const getByMoreRecent = async (order) => {
     order = order ? order : 'DESC'
     try {
@@ -164,7 +165,7 @@ const getByMoreRecent = async (order) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 const getProductBySuperSearch = async (filters) => {
     try {
         await filters.map(async term => await addSearchTerm(term))
@@ -212,7 +213,7 @@ const getProductBySuperSearch = async (filters) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 const getByCategory = async () => {
     const women = await Category.findAll({
         where: {
@@ -243,7 +244,7 @@ const getByCategory = async () => {
         }]
     });
     return { women, men };
-}
+};
 const getByCollection = async (id) => {
     const women = await Category.findAll({
         where: {
@@ -276,7 +277,7 @@ const getByCollection = async (id) => {
         }]
     });
     return { women, men }
-}
+};
 const getByOffer = async (param) => {
 
     try {
@@ -317,7 +318,7 @@ const getByOffer = async (param) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 const createProduct = async (prop) => {
     const { product } = prop
     let { id_product, name, authorized_refund, price, description, brand, is_offer, variants, sdelete, default_image, collection, categories } = product
@@ -349,7 +350,7 @@ const createProduct = async (prop) => {
     } catch (error) {
         return error.data
     }
-}
+};
 const getWomen = async (id) => {
     const women = await Products.findAll({
         where: {
@@ -367,7 +368,7 @@ const getWomen = async (id) => {
     }
     );
     return women;
-}
+};
 const getMen = async (id) => {
     const men = await Products.findAll({
         where: {
@@ -385,7 +386,7 @@ const getMen = async (id) => {
     }
     );
     return men;
-}
+};
 const getReviews = async ({ id, rating, limit, orderField, order }) => {
     limit = limit ? limit : 20
     id = parseInt(id);
@@ -408,7 +409,7 @@ const getReviews = async ({ id, rating, limit, orderField, order }) => {
         : !tReviews.length
             ? { msg: 'Product has no reviews.' }
             : tReviews;
-}
+};
 const getOrderPrice = async (type) => {
     try {
         let data = await getAllProducts();
@@ -443,7 +444,7 @@ const getOrderPrice = async (type) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 module.exports = {
     getAllProducts,
     //getSomeProducts,

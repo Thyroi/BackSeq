@@ -71,6 +71,9 @@ module.exports = {
         let emails = clients.map(e => e.email)
         let mail = await mailer({type: "offers", email: emails});
         return clients;
+    },
+    imprimir: async() => {
+        await console.log("cron")
     }
     
 };
