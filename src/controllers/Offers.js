@@ -54,22 +54,23 @@ module.exports = {
         let productUpdate = products.map(e => {
             return {
                 id_product: e.id_product,
-                price_offer: e.price * ((100-info.discount)/100),
+                price_offer: e.price,
+                price: e.price * ((100-info.discount)/100),
             }
         });
         productUpdate.forEach(async (e) => {
             await Products.update(
-                {is_offer: true, price_offer: e.price_offer},
+                {is_offer: true, price_offer: e.price_offer, price: e.price},
                 {
                     where:{ id_product: e.id_product }
                 }
             )
         });
         const clients = await Client.findAll({
-            where:{newsletter: true}
+            where:{newsletter: false}
         });
         let emails = clients.map(e => e.email)
-        let mail = await mailer({type: "offers", email: emails});
+        let mail = await mailer({type: "offers", email: emails, discount: info.discount});
         return clients;
     },
     imprimir: async() => {
