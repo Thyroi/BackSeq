@@ -102,7 +102,6 @@ const getAllProducts = async (nested) => {
             let { offer, category, collection } = nested
             offer = offer === null ? [true, false] : offer;
             collection = collection ? collection : [1, 2, 3, 4];
-            console.log(`Entre AQUI LPTM._______________________\n`)
             if (category) {
                 hasData = await Category.findAll({
                     where: {
