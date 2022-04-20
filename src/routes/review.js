@@ -33,7 +33,7 @@ route.post("/create", verify_client_token, async (req, res) => {
             if (!response.updated) response = await createReview(review);
             return response.msg
                 ? res.status(404).json(response)
-                : res.status(200).json({response, message:"Authorized Access", authData});
+                : res.status(200).json(response);
         } catch (error) {
             console.log(error);
             return res.status(500).json(`rompiste todo.\n${error}`);
@@ -52,7 +52,7 @@ route.patch("/update", verify_client_token, async (req, res) => {
             let updated = await updateReview(review);
             return updated.msg
                 ? res.status(404).json(updated)
-                : res.status(200).json({updated, message:"Authorized Access", authData});
+                : res.status(200).json(updated);
         } catch (error) {
             console.log(error);
             return res.status(500).json('rompiste todo.');

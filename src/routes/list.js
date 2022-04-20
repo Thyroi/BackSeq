@@ -58,7 +58,7 @@ route.post("/create", verify_client_token, async (req, res) => {
           response = await createList(list);
           return response.msg
               ? res.status(404).json(response)
-              : res.status(200).json({response, message:"Authorized Access", authData});
+              : res.status(200).json(response);
       } catch (error) {
           console.log(error);
           return res.status(500).json('rompiste todo.');

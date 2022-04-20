@@ -12,7 +12,7 @@ const invoice = {
       } else {
         try {
           const getinvoice = await Invoice.findAll();
-          res.status(200).json({getinvoice, message:"Authorized Access", authData});
+          res.status(200).json(getinvoice);
         } catch (error) {
           console.log(error);
         }
@@ -29,12 +29,12 @@ const invoice = {
           const getinvoiceID = await Invoice.findOne({
             where: {invoiceID: invoiceID}
           });
-          res.status(200).json({getinvoiceID, message:"Authorized Access", authData});
+          res.status(200).json(getinvoiceID);
         } catch (error) {
           console.log(error);
         }
       }
-    })    
+    })
   }
 }
 
