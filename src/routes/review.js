@@ -5,9 +5,9 @@ const {
     getReviews,
     deleteReview
 } = require('../controllers/Reviews');
-// const verify_client_token = require('../controllers/verify_client_token.js');
-// const jwt = require('jsonwebtoken');
-// require('dotenv').config();
+const verify_client_token = require('../controllers/verify_client_token.js');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 route.get("/get", async (req, res) => {
     const filters = req.query;
