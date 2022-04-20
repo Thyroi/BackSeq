@@ -5,7 +5,7 @@ const {
     getOrders
  } = require('../controllers/Statistics');
 
- route.get("/getOrders", async (req, res) => {
+ route.get("/get", async (req, res) => {
     try {
         const response = await getOrders();
         return res.status(200).json(response);
