@@ -64,6 +64,7 @@ const {
   Products,
   Category,
   Collection,
+  Discounts,
   List,
   Favorites,
   Review,
@@ -107,6 +108,8 @@ PaymentResponse.belongsTo(PurchaseOrder);
 PurchaseOrder.hasOne(Shippings);
 Shippings.belongsTo(PurchaseOrder);
 
+PurchaseOrder.hasOne(Discounts);
+Discounts.belongsTo(PurchaseOrder);
 
 
 module.exports = {

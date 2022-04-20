@@ -8,17 +8,12 @@ const {
  const jwt = require('jsonwebtoken');
  require('dotenv').config();
 
- route.get("/getOrders", verify_admin_token, async (req, res) => {
-   jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
-     if(error){
-       res.status(403).send({message:"Forbidden Access"});
-     } else {
-      try {
-          const response = await getOrders();
-          return res.status(200).json({response, message:"Authorized Access", authData});
-      } catch (error) {
-          return res.status(500).json("rompiste todo")
-      }
+ route.get("/get", async (req, res) => {
+    try {
+        const response = await getOrders();
+        return res.status(200).json(response);
+    } catch (error) {
+        return res.status(500).json("rompiste todo")
     }
   })
 });

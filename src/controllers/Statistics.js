@@ -4,15 +4,60 @@ const { SearchTerms, PurchaseOrder, Client, Category, Collection } = require('..
 const statistics = {
     getOrders: async () => {
         try {
-            const totalOrders = await PurchaseOrder.findAll({
+            const totalOrdersComplete = await PurchaseOrder.findAll({
                 where: {
                     orderStatus: 'Completed'
                 }
             });
-            const totalOrdersCount = totalOrders.length;
-            const totalOrdersSum = totalOrders.reduce((acc, cur) => acc + cur.total, 0);
+            const totalOrdersInProcess = await PurchaseOrder.count({
+                where: {
+                    orderStatus: 'Processing'
+                }
+            });
+            const totalOrdersSubmited = await PurchaseOrder.count({
+                where: {
+                    orderStatus: 'Submited'
+                }
+            });
+            const totalOrdersCancelled = await PurchaseOrder.count({
+                where: {
+                    orderStatus: 'Canceled'
+                }
+            });
+            const totalVentas = totalOrdersComplete.reduce((acc, cur) => acc + cur.orderDetails.length, 0);
+            const totalIngresos = totalOrdersComplete.reduce((acc, cur) => acc + cur.total, 0);
 
-            return orders
+            const totalClients = await Client.count();
+            const totalClientsRegistered = await Client.count({
+                where: {
+                    isRegistered: true
+                }
+            });
+            const totalClientsVerified = await Client.count({
+                where: {
+                    isRegistered: true,
+                    isVerified: true
+                }
+            });
+            const totalClientsAnonymous = await Client.count({
+                where: {
+                    isRegistered: false,
+                    isVerified: false
+                }
+            });
+
+            let gralStatistics = {
+                totalOrdersInProcess,
+                totalOrdersSubmited,
+                totalOrdersCancelled,
+                totalVentas,
+                totalIngresos,
+                totalClients,
+                totalClientsRegistered,
+                totalClientsVerified,
+                totalClientsAnonymous
+            }
+            return gralStatistics
         }
         catch (error) {
             console.log(error);

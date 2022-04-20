@@ -94,6 +94,7 @@ route.patch("/update", verify_admin_token, async (req, res) => {
           }
         })
     }
+}
 );
 
 route.patch("/delete/:id", verify_admin_token, async (req, res) => {
@@ -114,6 +115,7 @@ route.patch("/delete/:id", verify_admin_token, async (req, res) => {
           }
         })
     }
+}
 );
 
 route.get("/getReviews",
@@ -164,15 +166,20 @@ route.get("/:id",
 route.get("/",
     async (req, res) => {
         try {
-            let { filters, offer, category, collection } = req.query;
+            let { filters, offer, category, collection, type, method } = req.query;
             offer = offer ? offer : null;
             category = category ? category : null;
             collection = collection ? collection : null;
+            type = type ? type : null;
+            method = method ? method : null;
             let nested = {
-              offer: JSON.parse(offer),
-              collection: JSON.parse(collection),
-              category: JSON.parse(category),
+                offer: offer,
+                collection: collection,
+                category: category,
+                type: type,
+                method: method
             }
+
             filters = filters ? filters.split(" ") : null;
             let response;
             if (filters) response = await getProductBySuperSearch(filters);
