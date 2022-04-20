@@ -9,8 +9,10 @@ require('dotenv').config();
 const router = Router();
 
 router.put('/:id', verify_client_token, async(req,res)=>{
+  console.log(req.token);
   jwt.verify(req.token, process.env.SECRET_KEY, async(error, authData) => {
     if(error){
+      console.log(error);
       res.status(403).send({message:"Forbidden Access"});
     } else {
       try {
@@ -43,7 +45,8 @@ router.get('/:id', verify_client_token, async(req,res)=>{
         console.log(req.params);
         let clientPhone=req.params.id;
         let response = await getCart(clientPhone);
-        return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+        console.log(response, "cart");
+        return response?res.status(200).json(response):res.status(404);
 
         }catch(e){
           console.log(e);
