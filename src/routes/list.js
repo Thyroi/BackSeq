@@ -83,6 +83,7 @@ route.patch('/share', verify_client_token, async (req, res) => {
           ? res.status(404).json({ message: "Check list id." })
           : res.status(200).json({ message: `Updated list.`, authData});
     }
+  })
 });
 
 route.delete("/delete", verify_client_token, async (req, res) => {
