@@ -1,6 +1,7 @@
 const { Sequelize, Op, NOW } = require('sequelize');
 const crypto = require('crypto');
-const productos = require('../data/productsCleanWithOutUndefinedSecondTry.json');
+//const productos = require('../data/productsCleanWithOutUndefinedSecondTry.json');
+const productos = require('../data/productsModified.json');
 const clientes = require('../data/clientes.json');
 const { Products, Category, Client } = require('../db');
 
