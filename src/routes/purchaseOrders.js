@@ -7,45 +7,38 @@ const verify_client_token = require('../controllers/verify_client_token.js');
 const verify_admin_token = require('../controllers/verify_admin_token.js');
 
 router.post('/', verify_client_token, async(req,res)=>{
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try{
+            let{orderDetails, address, clientPhone, total, orderStatus}=req.body;
+            let response=await newOrder(orderDetails, address,clientPhone, total, orderStatus);
+           return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+        }catch(e){
+            console.log(e);
+            return res.status(500).json('Error en el servidor')
+        }
       }
     })
-    try{
-        let{orderDetails, address, clientPhone, total, orderStatus}=req.body;
-        let response=await newOrder(orderDetails, address,clientPhone, total, orderStatus);
-       return response?res.status(200).json(response):res.status(404);
-
-
-    }catch(e){
-        console.log(e);
-        return res.status(500).json('Error en el servidor')
-    }
-
 });
 
 router.patch('/:id', verify_admin_token, async(req,res)=>{
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async(error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try{
+            let info =req.body;
+            let {id}=req.params;
+            let response=await updateOrder(info, id);
+            return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+        }catch(e){
+            console.log(e);
+            return res.status(500).json('Error en el servidor')
+        }
       }
     })
-    try{
-        let info =req.body;
-        let {id}=req.params;
-        let response=await updateOrder(info, id);
-       return response?res.status(200).json(response):res.status(404);
-    }catch(e){
-        console.log(e);
-        return res.status(500).json('Error en el servidor')
-    }
 });
 
 router.get("/",async (req, res) => {

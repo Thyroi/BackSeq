@@ -9,74 +9,68 @@ require('dotenv').config();
 const router = Router();
 
 router.put('/:id', verify_client_token, async(req,res)=>{
-  jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async(error, authData) => {
     if(error){
       res.status(403).send({message:"Forbidden Access"});
     } else {
-      res.json({message:"Acceso autorizado",
-                authData})
+      try {
+            let{cart_items}=req.body;
+            console.log(cart_items,"holaa");
+            let {id}=req.params;
+            console.log(id,"holaaId");
+
+            let response=await updateCart(cart_items, id);
+            return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+
+
+        } catch(e) {
+          console.log(e);
+          return res.status(500).json('Error en el servidor')
+        }
     }
   })
-    try{
-        let{cart_items}=req.body;
-        console.log(cart_items,"holaa");
-        let {id}=req.params;
-        console.log(id,"holaaId");
 
-        let response=await updateCart(cart_items, id);
-       return response?res.status(200).json(response):res.status(404);
-
-
-    }catch(e){
-        console.log(e);
-        return res.status(500).json('Error en el servidor')
-    }
 }
 
 );
 
 router.get('/:id', verify_client_token, async(req,res)=>{
-  jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
     if(error){
       res.status(403).send({message:"Forbidden Access"});
     } else {
-      res.json({message:"Acceso autorizado",
-                authData})
+      try{
+        console.log(req.params);
+        let clientPhone=req.params.id;
+        let response = await getCart(clientPhone);
+        return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+
+        }catch(e){
+          console.log(e);
+          return res.status(500).json('Error en el servidor')
+        }
     }
   })
-    console.log(req.params);
-    try{
-        let clientPhone=req.params.id;
-        /* console.log(clientId, "hola"); */
-        let response=await getCart(clientPhone);
-       return response?res.status(200).json(response):res.status(404);
 
-    }catch(e){
-        console.log(e);
-        return res.status(500).json('Error en el servidor')
-    }
 });
 
 router.delete('/:id', verify_client_token, async(req,res)=>{
-  jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
     if(error){
       res.status(403).send({message:"Forbidden Access"});
     } else {
-      res.json({message:"Acceso autorizado",
-                authData})
+      try{
+          let clientPhone=req.params.id;
+          let response=await deleteCart(clientPhone);
+          return response?res.status(200).json({response, message:"Authorized Access", authData}):res.status(404);
+
+      }catch(e){
+          console.log(e);
+          return res.status(500).json('Error en el servidor')
+      }
     }
   })
-    console.log(req.params);
-    try{
-        let clientPhone=req.params.id;
-        /* console.log(clientId, "hola"); */
-        let response=await deleteCart(clientPhone);
-       return response?res.status(200).json(response):res.status(404);
 
-    }catch(e){
-        console.log(e);
-        return res.status(500).json('Error en el servidor')
-    }
 });
 
 

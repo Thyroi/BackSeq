@@ -49,44 +49,40 @@ route.get("/offer", async (req, res) => {
     }
 });
 route.post("/create", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        const list = req.body;
+        try {
+            response = await createList(list);
+            return response.msg
+                ? res.status(404).json(response)
+                : res.status(200).json({response, message:"Authorized Access", authData});
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json('rompiste todo.');
+        }
       }
     })
-    const list = req.body;
-    try {
-        response = await createList(list);
-        return response.msg
-            ? res.status(404).json(response)
-            : res.status(200).json(response);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('rompiste todo.');
-    }
 });
 route.patch("/update", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        const list = req.body;
+        try {
+            let updated = await updateList(list);
+            return !updated[0]
+                ? res.status(404).json({ message: "Check list id." })
+                : res.status(200).json({ message: `Updated list ${updated[0]}.`, authData});
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json('rompiste todo.');
+        }
       }
     })
-    const list = req.body;
-    try {
-        let updated = await updateList(list);
-        return !updated[0]
-            ? res.status(404).json({ message: "Check list id." })
-            : res.status(200).json({ message: `Updated list ${updated[0]}.`});
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('rompiste todo.');
-    }
 });
 route.patch('/share', async (req, res) => {
     const list = req.body;
@@ -96,24 +92,22 @@ route.patch('/share', async (req, res) => {
         : res.status(200).json({ message: `Updated list.`});
 });
 route.delete("/delete", verify_client_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        const {id} = req.query;
+        try {
+            let tDeleted = await deleteList(parseInt(id));
+            return tDeleted > 0
+                ? res.status(200).json({ msg: `${tDeleted} list deleted.` })
+                : res.status(404).json({ msg: `Check list id. ${tDeleted} list afected.`, authData });
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json('rompiste todo.');
+        }
       }
-    })
-    const {id} = req.query;
-    try {
-        let tDeleted = await deleteList(parseInt(id));
-        return tDeleted > 0
-            ? res.status(200).json({ msg: `${tDeleted} list deleted.` })
-            : res.status(404).json({ msg: `Check list id. ${tDeleted} list afected.` });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('rompiste todo.');
-    }
+    })    
 });
 
 module.exports = route;
