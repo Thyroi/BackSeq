@@ -48,7 +48,7 @@ const getList = async (filters) => {
         console.log(error);
         return error.data
     }
-}
+};
 const getListByIdAndTitle = async (filters) => {
     let { ClientPhone, title } = filters
     ClientPhone = ClientPhone ? parseInt(ClientPhone) : null;
@@ -90,8 +90,7 @@ const getListByIdAndTitle = async (filters) => {
         console.log(error);
         return error.data
     }
-}
-
+};
 const createList = async (list) => {
     const { ClientPhone, rList, Colaborators, title } = list
     const nList = {
@@ -111,8 +110,7 @@ const createList = async (list) => {
         console.log('rompiste todo ' + error);
         return error.data
     }
-}
-
+};
 const updateList = async (list) => {
     let { id, rList, Colaborators, title } = list
     id = id ? parseInt(id) : null;
@@ -131,8 +129,7 @@ const updateList = async (list) => {
         console.log(error);
         return error.data
     }
-}
-
+};
 const deleteList = async (id) => {
     try {
         const tDeleted = await List.destroy({
@@ -144,7 +141,7 @@ const deleteList = async (id) => {
     } catch (error) {
         return error.data
     }
-}
+};
 const sendOffers = async () => {
     try {
         let tList = await getList({ user: 2152746503 });
@@ -162,7 +159,39 @@ const sendOffers = async () => {
     } catch (error) {
         console.log(error);
     }
-}
+};
+const shareList = async (list) => {
+    const { id, newUser } = list;
+    try {
+        if (newUser.ClientPhone) {
+            const shareList = await List.findByPk(id);
+            shareList.Colaborators = shareList.Colaborators.concat(newUser);
+            await shareList.save();
+            const user = await Client.findByPk(newUser);
+            let mail = {
+                type: 'wishlist',
+                email: user.email,
+            }
+            await mailer(mail);
+            return shareList;
+        }else{
+            let mail ={
+                type: 'wishlist',
+                email: newUser?.email,
+            }
+            let mail2 ={
+                type: 'invitation',
+                email: newUser.email,
+            }
+            await mailer(mail);
+            await mailer(mail2);
+            return "Email's sent"
+        }
+    } catch (error) {
+        console.log(error);
+        return error.data
+    }
+};
 
 module.exports = {
     createList,
@@ -170,5 +199,6 @@ module.exports = {
     getList,
     deleteList,
     sendOffers,
+    shareList,
     getListByIdAndTitle
 };
