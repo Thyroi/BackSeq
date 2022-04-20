@@ -6,22 +6,21 @@ require('dotenv').config();
 
 const user = {
   addUser: async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try {
+          const { user_name, user_password, rol } = req.body;
+          const createdUser = await Users.create({user_name, user_password, rol});
+          res.status(200).json({createdUser, message:"Authorized Access", authData});
+        }
+        catch (error) {
+          console.log(error);
+        }
       }
     })
-    try {
-      const { user_name, user_password, rol } = req.body;
-      const createdUser = await Users.create({user_name, user_password, rol});
-      res.status(200).send("Usuario creado de manera Exitosa!!");
-    }
-    catch (error) {
-      console.log(error);
-    }
+
   },
   getUserbyID: async (req, res) => {
     try {
@@ -45,44 +44,42 @@ const user = {
     }
   },
   updateUserRol: async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try {
+              const userID = req.body.id_user;
+              const updatedRol = await Users.update(req.body, {
+                where: { id_user: userID }
+              });
+              console.log("Rol de usuario actualizado con Exito!!");
+              res.status(200).json({updatedRol, message:"Authorized Access", authData});
+            } catch (error) {
+                console.log(error);
+          }
       }
     })
-    try {
-      const userID = req.body.id_user;
-      const updatedRol = await Users.update(req.body, {
-        where: { id_user: userID }
-      });
-      console.log("Rol de usuario actualizado con Exito!!");
-      res.status(200).json("Rol de usuario actualizado con Exito!!");
-    } catch (error) {
-      console.log(error);
-    }
   },
   deleteUser: async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        res.json()
+        try {
+              const userID = req.body.id_user;
+              const deleteUser = await Users.destroy({
+                where: { id_user: userID }
+              });
+            console.log("Empleado eleiminado con Exito!!");
+            res.status(200).json({deleteUser, message:"Authorized Access", authData});
+        } catch (error) {
+            console.log(error);
+        }
       }
     })
-    try {
-      const userID = req.body.id_user;
-      const deleteUser = await Users.destroy({
-        where: { id_user: userID }
-      });
-      console.log("Empleado eleiminado con Exito!!");
-      res.status(200).send("Empleado eleiminado con Exito!!");
-    } catch (error) {
-      console.log(error);
-    }
+
   }
 }
 
