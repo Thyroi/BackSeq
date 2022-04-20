@@ -77,49 +77,43 @@ route.get("/byoffer", async (req, res) => {
 });
 
 route.patch("/update", verify_admin_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-        if (error) {
-            res.status(403).send({ message: "Forbidden Access" });
-        } else {
-            res.json({
-                message: "Acceso autorizado",
-                authData
-            })
-        }
-    })
-    try {
-        const updatedProduct = req.body;
-        const response = await updateProducts(updatedProduct);
-        return response?.msg
-            ? res.status(404).json(response)
-            : res.status(200).json(response);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('Se rompio todo.');
+        jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+          if(error){
+            res.status(403).send({message:"Forbidden Access"});
+          } else {
+            try {
+                const updatedProduct = req.body;
+                const response = await updateProducts(updatedProduct);
+                return response?.msg
+                    ? res.status(404).json(response)
+                    : res.status(200).json(response);
+            } catch (error) {
+                console.log(error);
+                return res.status(500).json('Se rompio todo.');
+            }
+          }
+        })
     }
 }
 );
 
 route.patch("/delete/:id", verify_admin_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-        if (error) {
-            res.status(403).send({ message: "Forbidden Access" });
-        } else {
-            res.json({
-                message: "Acceso autorizado",
-                authData
-            })
-        }
-    })
-    try {
-        const { id } = req.params;
-        const response = await deleteProduct(id);
-        return response.msg
-            ? res.status(404).json(response)
-            : res.status(200).json(response);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('Se rompio todo.');
+        jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+          if(error){
+            res.status(403).send({message:"Forbidden Access"});
+          } else {
+            try {
+                const { id } = req.params;
+                const response = await deleteProduct(id);
+                return response.msg
+                    ? res.status(404).json(response)
+                    : res.status(200).json(response);
+            } catch (error) {
+                console.log(error);
+                return res.status(500).json('Se rompio todo.');
+            }
+          }
+        })
     }
 }
 );
@@ -201,25 +195,20 @@ route.get("/",
 );
 
 route.post("/add", verify_admin_token, async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
-        if (error) {
-            res.status(403).send({ message: "Forbidden Access" });
-        } else {
-            res.json({
-                message: "Acceso autorizado",
-                authData
-            })
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+      if(error){
+        res.status(403).send({message:"Forbidden Access"});
+      } else {
+        const product = req.body
+        try {
+              const newProduct = await createProduct(product);
+              console.log(newProduct);
+              return res.json(newProduct)
+        } catch (error) {
+            return res.json({ "message": error.data, "nota": newProduct })
         }
+      }
     })
-    const product = req.body
-    try {
-        const newProduct = await createProduct(product);
-        console.log(newProduct);
-        return res.json(newProduct)
-
-    } catch (error) {
-        return res.json({ "message": error.data, "nota": newProduct })
-    }
 });
 
 

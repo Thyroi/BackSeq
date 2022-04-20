@@ -144,45 +144,41 @@ const client = {
   },
   updateClient: async (req, res) => {
     console.log(req.body)
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try {
+          const id = req.params.id;
+          const info = req.body;
+          const updatedclient = await Client.update(info,
+            {
+              where: { phone: id }
+            });
+          res.status(200).json("Cliente actualizado con Exito!!");
+        } catch (error) {
+          console.log(error);
+        }
       }
     })
-    try {
-      const id = req.params.id;
-      const info = req.body;
-      const updatedclient = await Client.update(info,
-        {
-          where: { phone: id }
-        });
-      res.status(200).send("Cliente actualizado");
-    } catch (error) {
-      console.log(error);
-    }
   },
   deleteUser: async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try {
+          const id = req.params.id;
+          const deleteClient = await Client.destroy({
+            where: { phone: id }
+          });
+          console.log("Cliente eliminado con Exito!!");
+          res.status(200).send("Cliente eliminado con Exito!!");
+        } catch (error) {
+          console.log(error);
+        }
       }
     })
-    try {
-      const id = req.params.id;
-      const deleteClient = await Client.destroy({
-        where: { phone: id }
-      });
-      console.log("Cliente eliminado con Exito!!");
-      res.status(200).send("Cliente eleiminado con Exito!!");
-    } catch (error) {
-      console.log(error);
-    }
   },
   getClientBynick_pass: async (req, res) => {
     try {

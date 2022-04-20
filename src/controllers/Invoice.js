@@ -6,39 +6,35 @@ require('dotenv').config();
 
 const invoice = {
   getAllInvoices: async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try {
+          const getinvoice = await Invoice.findAll();
+          res.status(200).json(getinvoice);
+        } catch (error) {
+          console.log(error);
+        }
       }
     })
-    try {
-      const getinvoice = await Invoice.findAll();
-      res.status(200).json(getinvoice);
-    } catch (error) {
-      console.log(error);
-    }
   },
   getInvoicebyID: async (req, res) => {
-    jwt.verify(req.token, process.env.SECRET_KEY, (error, authData) => {
+    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){
         res.status(403).send({message:"Forbidden Access"});
       } else {
-        res.json({message:"Acceso autorizado",
-                  authData})
+        try {
+          const {invoiceID} = req.params;
+          const getinvoiceID = await Invoice.findOne({
+            where: {invoiceID: invoiceID}
+          });
+          res.status(200).json(getinvoiceID);
+        } catch (error) {
+          console.log(error);
+        }
       }
     })
-    try {
-      const {invoiceID} = req.params;
-      const getinvoiceID = await Invoice.findOne({
-        where: {invoiceID: invoiceID}
-      });
-      res.status(200).json(getinvoiceID);
-    } catch (error) {
-      console.log(error);
-    }
   }
 }
 
