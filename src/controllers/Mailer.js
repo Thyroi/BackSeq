@@ -92,7 +92,7 @@ async function mailer(info) {
         url = `http://localhost:3000/home`;
         subject = "Discount code";
         discount = info.discount;
-        count = info.count;
+        code = info.code;
         loads = ({url}, {discount}, {code})
         break;
       default:
