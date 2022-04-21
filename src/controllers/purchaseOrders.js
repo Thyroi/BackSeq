@@ -17,7 +17,6 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
         let resp = await Client.findByPk(clientPhone);
         purchaseOrder.setClient(resp);
         let email = resp.dataValues.email;
-        console.log(email);
         let orderId = purchaseOrder.dataValues.orderId;
 
         if (orderStatus === 'Completed') {
@@ -56,7 +55,7 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
             let discount = crypto.createHash('md5').update(data).digest('hex').slice(0, 8);
             const mail = {
                 type: "discount",
-                email: resp.email,
+                email: email,
                 code: discount,
                 discount: 10
             };

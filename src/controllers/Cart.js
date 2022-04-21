@@ -56,8 +56,8 @@ const verifyDiscount = async (code, total) => {
         });
 
         if (response) {
-            response.state = false;
-            await response.save();
+            // response.state = false;
+            // await response.save();
             let discount = response.discount;
             let newTotal = total - (total * (discount / 100));
             return newTotal;

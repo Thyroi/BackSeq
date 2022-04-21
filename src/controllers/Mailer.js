@@ -93,7 +93,7 @@ async function mailer(info) {
         subject = "Discount code";
         discount = info.discount;
         code = info.code;
-        loads = ({url}, {discount}, {code})
+        loads = ({url, discount, code})
         break;
       default:
         break;
