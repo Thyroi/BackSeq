@@ -171,6 +171,7 @@ const shareList = async (list) => {
             let mail = {
                 type: 'wishlist',
                 email: user.email,
+
             }
             await mailer(mail);
             return shareList;
@@ -178,7 +179,6 @@ const shareList = async (list) => {
             let mail ={
                 type: 'wishlist',
                 email: newUser.email,
-                user : user.name
             }
             let mail2 ={
                 type: 'invitation',

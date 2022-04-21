@@ -26,7 +26,6 @@ async function mailer(info) {
     let code ="";
     let loads ="";
     let token ="";
-    let invite = "";
     switch (info.type) {
       case "confirmation":
         filePath = path.join('confirm', '../views/confirm.html');
@@ -57,8 +56,7 @@ async function mailer(info) {
         filePath = path.join('Wishlistinvite', '../views/Wishlistinvite.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/confirm`;
-        invite = info.user;
+        url = `http://localhost:3000/`;
         subject = "You have been invited to share a wishlist";
         loads = ({url});
         break;
