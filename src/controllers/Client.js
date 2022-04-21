@@ -144,10 +144,10 @@ const client = {
   },
   updateClient: async (req, res) => {
     console.log(req.body)
-    jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
-      if(error){
-        res.status(403).send({message:"Forbidden Access"});
-      } else {
+    // jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+    //   if(error){
+    //     res.status(403).send({message:"Forbidden Access"});
+    //   } else {
         try {
           const id = req.params.id;
           const info = req.body;
@@ -159,9 +159,9 @@ const client = {
         } catch (error) {
           console.log(error);
         }
-      }
-    })
-  },
+      },
+  //   })
+  // },
   deleteUser: async (req, res) => {
     jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
       if(error){

@@ -8,7 +8,7 @@ route.get("/resetPass",resetPassword)
 route.post("/",addClient);
 route.get("/:id",getClientbyID);
 route.get("/",getAllClients);
-route.patch("/:id", verify_client_token, updateClient);
+route.patch("/:id", updateClient);
 route.delete("/:id",verify_client_token, deleteUser);
 
 module.exports = route;
