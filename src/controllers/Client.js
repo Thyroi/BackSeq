@@ -88,7 +88,7 @@ const client = {
         let info = {
           type: 'reset',
           email: client.email,
-          token: client.token
+          token: client.phone
         }
         sendMail(info);
         return res.status(200).send("Correo de reseteo enviado");
@@ -143,7 +143,6 @@ const client = {
     }
   },
   updateClient: async (req, res) => {
-    console.log(req.body)
     // jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
     //   if(error){
     //     res.status(403).send({message:"Forbidden Access"});

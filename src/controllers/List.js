@@ -170,7 +170,7 @@ const shareList = async (list) => {
             const user = await Client.findByPk(newUser.ClientPhone);
             let mail = {
                 type: 'wishlist',
-                email: user.email,
+                email: user?.email,
 
             }
             await mailer(mail);

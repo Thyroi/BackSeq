@@ -1,4 +1,4 @@
-
+    
 const { Sequelize, Op } = require('sequelize');
 const { Cart, Discounts} = require('../db');
 
