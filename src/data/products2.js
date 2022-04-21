@@ -4,9 +4,9 @@ let p2= productos.map(p=>p.variants);
 let price_offer
 productos.forEach(element => {
     element.price_offer=element.price;
-    element.variants.forEach(v=>{
-        v.ProductImages.shift();
-    })   
+    if(element.is_offer){
+        element.price=element.price_offer-(element.price_offer*(Math.random() * (5 - 14) + 5)/100);
+    }
 });
 console.log(productos[0]);
 

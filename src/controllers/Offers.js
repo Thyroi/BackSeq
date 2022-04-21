@@ -1,6 +1,6 @@
 const { Sequelize, Op } = require('sequelize');
 const { Products, Category, Collection, Client } = require('../db.js');
-const { mailer } = require('../controllers/Mailer');
+const mailer  = require('./Mailer');
 
 module.exports = {
     getItems: async() => {
@@ -66,13 +66,13 @@ module.exports = {
                 }
             )
         });
-        // const clients = await Client.findAll({
-        //     where:{newsletter: false}
-        // });
-        // let emails = clients.map(e => e.email)
-        // let mail = await mailer({type: "offers", email: emails, discount: info.discount});
-        // return clients;
-        return 
+        const clients = await Client.findAll({
+            where:{newsletter: false}
+        });
+        let emails = clients.map(e => e.email) 
+        let asd = {type: "offers", email: emails, discount: info.discount}
+        let mail = await mailer(asd);
+        return mail;
     },
     imprimir: async() => {
         await console.log("cron")

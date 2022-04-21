@@ -64,6 +64,7 @@ async function mailer(info) {
         filePath = path.join('Offers', '../views/Offers.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
+        user = info.email.join(", ");
         url = `https://frontend-five-gules.vercel.app/home`;
         subject = "New offers";
         discount = info.discount
