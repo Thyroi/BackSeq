@@ -17,7 +17,7 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
         let resp = await Client.findByPk(clientPhone);
         purchaseOrder.setClient(resp);
         let email = resp.dataValues.email;
-        console.log(email);
+        console.log(email, "soy el email de la orden");
         let orderId = purchaseOrder.dataValues.orderId;
 
         if (orderStatus === 'Completed') {
@@ -38,7 +38,7 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
             sendMail(mail);
             const mail2 = {
                 type: 'shipped',
-                email: mail2,
+                email: email,
             };
             sendMail(mail2);
 
