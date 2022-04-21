@@ -1,7 +1,7 @@
 
 const { Router } = require('express');
 const {Cart, Client}=require ('../db');
-const {createCart, updateCart, getCart, deleteCart, verifyDiscount}=require ('../controllers/cart.js');
+const { createCart, updateCart, getCart, deleteCart, verifyDiscount}=require ('../controllers/cart.js');
 const verify_client_token = require('../controllers/verify_client_token.js');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();

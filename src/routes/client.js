@@ -3,7 +3,7 @@ const { addClient, getClientbyEmail, getClientbyID, getAllClients, updateClient,
 const verify_client_token = require('../controllers/verify_client_token.js');
 
 route.get("/byEmail",getClientbyEmail);
-route.get("/verify",verify)
+route.patch("/verify",verify)
 route.get("/resetPass",resetPassword)
 route.post("/",addClient);
 route.get("/:id",getClientbyID);

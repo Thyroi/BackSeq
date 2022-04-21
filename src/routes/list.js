@@ -13,40 +13,58 @@ const verify_client_token = require('../controllers/verify_client_token.js');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-route.get("/get", async (req, res) => {
-    const filters = req.query;
-    try {
-        let lists = await getList(filters);
-        return lists
-            ? res.status(200).json(lists)
-            : res.status(404).json({ msg: `something go wrong. \n ${lists}` });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('rompiste todo.');
+route.get("/get", verify_client_token, async (req, res) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+    if(error){
+      res.status(403).send({message:"Forbidden Access"});
+    } else {
+      const filters = req.query;
+      try {
+          let lists = await getList(filters);
+          return lists
+              ? res.status(200).json(lists)
+              : res.status(404).json({ msg: `something go wrong. \n ${lists}` });
+      } catch (error) {
+          console.log(error);
+          return res.status(500).json('rompiste todo.');
+      }
     }
+  })
 });
-route.get("/getbyidandtitle", async (req, res) => {
-    const filters = req.query;
-    try {
-        let lists = await getListByIdAndTitle(filters);
-        return lists.length
-            ? res.status(200).json(lists)
-            : res.status(404).json({ msg: `no se encontro, naranja. \n ${lists}` });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('rompiste todo.');
+route.get("/getbyidandtitle", verify_client_token, async (req, res) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+    if(error){
+      res.status(403).send({message:"Forbidden Access"});
+    } else {
+      const filters = req.query;
+      try {
+          let lists = await getListByIdAndTitle(filters);
+          return lists.length
+              ? res.status(200).json(lists)
+              : res.status(404).json({ msg: `no se encontro, naranja. \n ${lists}` });
+      } catch (error) {
+          console.log(error);
+          return res.status(500).json('rompiste todo.');
+      }
     }
+  })
 });
-route.get("/offer", async (req, res) => {
-    try {
-        let lists = await sendOffers();
-        return lists
-            ? res.status(200).json(lists)
-            : res.status(404).json({ msg: `something go wrong. \n ${lists}` });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json('rompiste todo.');
+route.get("/offer", verify_client_token, async (req, res) => {
+  jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
+    if(error){
+      res.status(403).send({message:"Forbidden Access"});
+    } else {
+      try {
+          let lists = await sendOffers();
+          return lists
+              ? res.status(200).json(lists)
+              : res.status(404).json({ msg: `something go wrong. \n ${lists}` });
+      } catch (error) {
+          console.log(error);
+          return res.status(500).json('rompiste todo.');
+      }
     }
+  })
 });
 route.post("/create", verify_client_token, async (req, res) => {
   jwt.verify(req.token, process.env.SECRET_KEY, async (error, authData) => {
