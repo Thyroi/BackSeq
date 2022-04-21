@@ -1,7 +1,7 @@
 
 const { Router } = require('express');
 const {Cart, Client}=require ('../db');
-const {createCart, updateCart, getCart, deleteCart}=require ('../controllers/Cart.js');
+const {createCart, updateCart, getCart, deleteCart, verifyDiscount}=require ('../controllers/cart.js');
 const verify_client_token = require('../controllers/verify_client_token.js');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -74,6 +74,19 @@ router.delete('/:id', verify_client_token, async(req,res)=>{
   })
 
 });
+
+router.patch("/verifyDiscount", async(req, res)=>{
+  try {
+    const {code, total} = req.body
+    const newTotal = await verifyDiscount(code, total)
+  return res.status(200).json(newTotal)
+  }
+  catch(e){
+    console.log(e);
+    return res.status(500).json('Error en el servidor')
+}
+ 
+})
 
 
 
