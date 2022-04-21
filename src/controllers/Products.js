@@ -98,14 +98,14 @@ const getAllProducts = async (nested) => {
 
     try {
         let hasData;
-        if (!nested.offer || !nested.category || !nested.collection) {
+        if ( typeof nested.offer != 'undefined' || !nested.category || !nested.collection) {
             let { offer, category, collection } = nested
             offer = offer === null ? [true, false] : offer;
             collection = collection ? collection : [1, 2, 3, 4];
             if (category) {
                 hasData = await Category.findAll({
                     where: {
-                        id_category: category
+                        id_category: parseInt(category)
                     },
                     include: [{
                         model: Products,

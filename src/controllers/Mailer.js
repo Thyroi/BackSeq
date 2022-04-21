@@ -23,15 +23,18 @@ async function mailer(info) {
     let url = ``;
     let subject = "";
     let discount= "";
+    let code ="";
     let loads ="";
+    let token =""
     switch (info.type) {
       case "confirmation":
         filePath = path.join('confirm', '../views/confirm.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = "http://localhost:3000/";
+        url = "http://localhost:3000/verification";
         subject = "Account confirmation";
-        loads = ({url})
+        token = info.token;
+        loads = ({url, token})
         break;
       case "invitation":
         filePath = path.join('Invite', '../views/Invite.html');
@@ -83,6 +86,16 @@ async function mailer(info) {
         template = Handlebars.compile(source);
         url = `http://localhost:3000/home`;
         subject = "Account confirmation";
+        break;
+      case "discount":
+        filePath = path.join('Discounts', '../views/Discounts.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/home`;
+        subject = "Discount code";
+        discount = info.discount;
+        code = info.code;
+        loads = ({url, discount, code})
         break;
       default:
         break;

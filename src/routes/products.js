@@ -165,10 +165,10 @@ route.get("/",
     async (req, res) => {
         try {
             let { filters, offer, category, collection, type, method } = req.query;
-            offer = offer ? offer : null;
-            category = category ? category : null;
-            collection = collection ? collection : null;
-            type = type ? type : null;
+            offer = offer ? JSON.parse(offer) : null;
+            category = category ? JSON.parse(category) : null;
+            collection = collection ? JSON.parse(collection) : null;
+            type = type ? type: null;
             method = method ? method : null;
             let nested = {
                 offer: offer,

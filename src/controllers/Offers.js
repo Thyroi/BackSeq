@@ -66,12 +66,13 @@ module.exports = {
                 }
             )
         });
-        const clients = await Client.findAll({
-            where:{newsletter: false}
-        });
-        let emails = clients.map(e => e.email)
-        let mail = await mailer({type: "offers", email: emails, discount: info.discount});
-        return clients;
+        // const clients = await Client.findAll({
+        //     where:{newsletter: false}
+        // });
+        // let emails = clients.map(e => e.email)
+        // let mail = await mailer({type: "offers", email: emails, discount: info.discount});
+        // return clients;
+        return 
     },
     imprimir: async() => {
         await console.log("cron")
