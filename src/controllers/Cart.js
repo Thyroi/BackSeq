@@ -1,6 +1,6 @@
 
 const { Sequelize, Op } = require('sequelize');
-const { Cart, } = require('../db');
+const { Cart, Discounts} = require('../db');
 
 const getCart = async (info) => {
     console.log(info);

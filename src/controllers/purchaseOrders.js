@@ -38,7 +38,7 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
             sendMail(mail);
             const mail2 = {
                 type: 'shipped',
-                email: mail2,
+                email: email,
             };
             sendMail(mail2);
 
@@ -55,7 +55,7 @@ const newOrder = async (info, address, clientPhone, total, orderStatus) => {
             let data = JSON.stringify(orderId + total + clientPhone);
             let discount = crypto.createHash('md5').update(data).digest('hex').slice(0, 8);
             const mail = {
-                type: "discounts",
+                type: "confirmation",
                 email: resp.email,
                 code: discount,
                 discount: 10
