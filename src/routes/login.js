@@ -21,7 +21,7 @@ route.post('/', async (req, res) => {
       })
     }
   } catch (error){
-    res.json({message: "Incorrect User or Password"})
+    res.json({message: "Incorrect login name or password"})
   }
 });
 
@@ -35,14 +35,14 @@ route.post('/admin', async (req, res) => {
         }
       });
       if(!user) {
-        res.json({message: "Incorrect user or password"});
+        res.json({message: "Incorrect login name or password"});
       } else {
         jwt.sign({user}, process.env.SECRET_KEY, (err, token) => {
           res.json({token, user});
         })
       }
     } catch (error) {
-      res.json({message: "Incorrect user or password"});
+      res.json({message: "Incorrect login name or password"});
     }
 });
 
