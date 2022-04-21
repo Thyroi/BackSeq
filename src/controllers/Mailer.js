@@ -31,7 +31,7 @@ async function mailer(info) {
         filePath = path.join('confirm', '../views/confirm.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = "http://localhost:3000/verification";
+        url = "https://frontend-five-gules.vercel.app/verification";
         subject = "Account confirmation";
         token = info.token;
         loads = ({url, token})
@@ -40,7 +40,7 @@ async function mailer(info) {
         filePath = path.join('Invite', '../views/Invite.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/confirm`;
+        url = `https://frontend-five-gules.vercel.app/login`;
         subject = "Sing up Invitation";
         loads = ({url});
         break;
@@ -49,7 +49,7 @@ async function mailer(info) {
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
         subject = "Reset password";
-        url = `http://localhost:3000/reset?token=${info.token}`;
+        url = `https://localhost:3000/resetpassword/`+ info.token;
         loads = ({url});
         break;
       case "wishlist":

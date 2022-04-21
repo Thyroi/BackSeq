@@ -88,7 +88,7 @@ const client = {
         let info = {
           type: 'reset',
           email: client.email,
-          token: client.token
+          token: client.phone
         }
         sendMail(info);
         return res.status(200).send("Correo de reseteo enviado");
