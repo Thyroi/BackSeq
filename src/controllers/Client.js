@@ -59,7 +59,7 @@ const client = {
   },
   verify: async (req, res) => {
     try {
-      const { token } = req.query;
+      const { token } = req.body;
       const client = await Client.findOne({
         where: { token: token }
       });
