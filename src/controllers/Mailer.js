@@ -49,14 +49,14 @@ async function mailer(info) {
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
         subject = "Reset password";
-        url = `https://localhost:3000/resetpassword/`+ info.token;
+        url = `https://frontend-five-gules.vercel.app/resetpassword/`+ info.token;
         loads = ({url});
         break;
       case "wishlist":
         filePath = path.join('Wishlistinvite', '../views/Wishlistinvite.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/`;
+        url = `https://frontend-five-gules.vercel.app/login`;
         subject = "You have been invited to share a wishlist";
         loads = ({url});
         break;
@@ -64,7 +64,7 @@ async function mailer(info) {
         filePath = path.join('Offers', '../views/Offers.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/`;
+        url = `https://frontend-five-gules.vercel.app/home`;
         subject = "New offers";
         discount = info.discount
         loads = ({url}, {discount})
@@ -80,7 +80,7 @@ async function mailer(info) {
         filePath = path.join('Shipped', '../views/Shipped.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/home`;
+        url = `https://frontend-five-gules.vercel.app/home`;
         subject = "Account confirmation";
         loads = ({url});
         break;
@@ -88,7 +88,7 @@ async function mailer(info) {
         filePath = path.join('InProcess', '../views/InProcess.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/home`;
+        url = `https://frontend-five-gules.vercel.app/home`;
         subject = "Account confirmation";
         loads = ({url});
         break;
@@ -96,7 +96,7 @@ async function mailer(info) {
         filePath = path.join('Discounts', '../views/Discounts.html');
         source = fs.readFileSync(filePath, 'utf-8').toString();
         template = Handlebars.compile(source);
-        url = `http://localhost:3000/home`;
+        url = `https://frontend-five-gules.vercel.app/home`;
         subject = "Discount code";
         discount = info.discount;
         code = info.code;
