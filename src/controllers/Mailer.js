@@ -23,6 +23,7 @@ async function mailer(info) {
     let url = ``;
     let subject = "";
     let discount= "";
+    let code ="";
     let loads ="";
     switch (info.type) {
       case "confirmation":
@@ -90,7 +91,8 @@ async function mailer(info) {
         template = Handlebars.compile(source);
         url = `http://localhost:3000/home`;
         subject = "Discount code";
-        discount = info.discount
+        discount = info.discount;
+        count = info.count;
         loads = ({url}, {discount}, {code})
         break;
       default:
