@@ -5,10 +5,11 @@ require('dotenv').config();
 
 
 route.post('/', async (req, res) => {
-  const {login_name} = req.body;
+  const {login_name, login_password} = req.body;
   const client = await Client.findOne({
     where: {
-      login_name: login_name
+      login_name: login_name,
+      login_password: login_password
     }
   });
   if(client){
