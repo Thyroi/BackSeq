@@ -84,6 +84,15 @@ async function mailer(info) {
         url = `http://localhost:3000/home`;
         subject = "Account confirmation";
         break;
+      case "discount":
+        filePath = path.join('Discount', '../views/Discount.html');
+        source = fs.readFileSync(filePath, 'utf-8').toString();
+        template = Handlebars.compile(source);
+        url = `http://localhost:3000/home`;
+        subject = "Discount code";
+        discount = info.discount
+        loads = ({url}, {discount}, {code})
+        break;
       default:
         break;
     }
