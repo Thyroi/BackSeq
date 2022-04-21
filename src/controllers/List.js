@@ -177,7 +177,8 @@ const shareList = async (list) => {
         }else{
             let mail ={
                 type: 'wishlist',
-                email: newUser?.email,
+                email: newUser.email,
+                user : user.name
             }
             let mail2 ={
                 type: 'invitation',
