@@ -94,7 +94,7 @@ route.patch("/update", verify_client_token, async (req, res) => {
         let updated = await updateList(list);
         return !updated[0]
             ? res.status(404).json({ message: "Check list id." })
-            : res.status(200).json({ message: `Updated list ${updated[0]}.`, authData});
+            : res.status(200).json({ message: `Updated list ${updated[0]}.`});
     } catch (error) {
         console.log(error);
         return res.status(500).json('rompiste todo.');

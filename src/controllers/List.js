@@ -115,6 +115,8 @@ const updateList = async (list) => {
     let { id, rList, Colaborators, title } = list
     id = id ? parseInt(id) : null;
     Colaborators = Colaborators.map(c => parseInt(c));
+    console.log(`Colaborators`)
+    console.log(Colaborators)
     try {
         const nList = await List.update({
             List: rList,
@@ -166,7 +168,7 @@ const shareList = async (list) => {
     try {
         if (newUser.ClientPhone) {
             const shareList = await List.findByPk(id);
-            shareList.Colaborators = shareList.Colaborators.concat(newUser.ClientPhone);
+            shareList.Colaborators = shareList.Colaborators.concat(parseInt(newUser.ClientPhone));
             await shareList.save();
             const user = await Client.findByPk(newUser.ClientPhone);
             let mail = {
