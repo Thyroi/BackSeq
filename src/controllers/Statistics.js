@@ -47,6 +47,7 @@ const statistics = {
             });
 
             let gralStatistics = {
+                totalOrdersComplete: totalOrdersComplete.length,
                 totalOrdersInProcess,
                 totalOrdersSubmited,
                 totalOrdersCancelled,

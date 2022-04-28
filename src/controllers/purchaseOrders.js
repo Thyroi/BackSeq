@@ -78,7 +78,7 @@ const updateOrder = async (info, id) => {
     try {
         const updatedclient = await PurchaseOrder.update(info,
             {
-                where: { orderId: id }
+                where: { orderId: parseInt(id) }
             });
         const order = await PurchaseOrder.findByPk(id);
         const client = await Client.findByPk(order.dataValues.ClientPhone);

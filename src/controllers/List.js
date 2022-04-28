@@ -114,6 +114,7 @@ const createList = async (list) => {
 const updateList = async (list) => {
     let { id, rList, Colaborators, title } = list
     id = id ? parseInt(id) : null;
+    Colaborators.map(c => parseInt(c));
     try {
         const nList = await List.update({
             List: rList,
